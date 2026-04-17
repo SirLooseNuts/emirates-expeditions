@@ -11,10 +11,10 @@ export const Route = createFileRoute("/booking")({
   validateSearch: (s) => searchSchema.parse(s),
   head: () => ({
     meta: [
-      { title: "Reserve Your Expedition — Emirates Expedition" },
-      { name: "description", content: "Request your private desert safari, luxury camp, or yacht charter. We'll respond within 4 hours." },
-      { property: "og:title", content: "Reserve Your Expedition — Emirates Expedition" },
-      { property: "og:description", content: "Bespoke booking for cinematic UAE journeys." },
+      { title: "Book Your Group Trip — Emirates Expedition" },
+      { name: "description", content: "Request a quote for school trips, group expeditions, or custom packages. Our team responds the same day." },
+      { property: "og:title", content: "Book Your Group Trip — Emirates Expedition" },
+      { property: "og:description", content: "Get a custom quote for your school, college or group expedition." },
     ],
   }),
   component: BookingPage,
@@ -29,7 +29,7 @@ function BookingPage() {
     setSubmitting(true);
     setTimeout(() => {
       toast.success("Request received", {
-        description: "Our concierge will respond within 4 hours.",
+        description: "Our team will call you back the same day.",
       });
       (e.target as HTMLFormElement).reset();
       setSubmitting(false);
@@ -42,20 +42,19 @@ function BookingPage() {
       <section className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
         <div className="grid gap-16 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <p className="eyebrow">Reserve</p>
-            <h1 className="mt-4 font-display text-5xl leading-[1.05] sm:text-6xl">
-              Begin your <span className="italic gradient-gold-text">expedition</span>.
+            <p className="eyebrow">Book a Trip</p>
+            <h1 className="mt-4 font-display text-5xl leading-[0.95] tracking-wider sm:text-7xl">
+              REQUEST <span className="gradient-gold-text">A QUOTE</span>.
             </h1>
             <p className="mt-6 text-lg text-foreground/80">
-              Tell us a little about your dream day. A real human — usually
-              Khalid or Layla — will reply within four hours with a tailored
-              proposal.
+              Tell us about your group — school, college, family, or custom — and
+              we'll send back a tailored proposal the same day.
             </p>
 
             <div className="mt-12 space-y-6 border-l border-gold/40 pl-6">
-              <Step n="01" t="Share your wishlist" b="The form, or a voice note on WhatsApp — both work." />
-              <Step n="02" t="Get your itinerary" b="A bespoke proposal within four hours, every time." />
-              <Step n="03" t="Land. Disappear." b="We handle the airport, the desert, and everything between." />
+              <Step n="01" t="Share your trip" b="Group size, destinations, dates — quick form or WhatsApp." />
+              <Step n="02" t="Get your quote" b="Custom itinerary + transparent pricing within 24 hours." />
+              <Step n="03" t="Hit the road" b="We handle the coach, the guide, the food, the photos." />
             </div>
           </div>
 
@@ -68,13 +67,13 @@ function BookingPage() {
             </div>
 
             <div>
-              <label className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Expedition</label>
+              <label className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Package</label>
               <select
                 name="tour"
                 defaultValue={preselected ?? ""}
                 className="mt-2 w-full rounded-sm border border-border bg-background px-4 py-3 text-foreground focus:border-gold focus:outline-none"
               >
-                <option value="">Select an expedition…</option>
+                <option value="">Select a package…</option>
                 {tours.map((t) => (
                   <option key={t.slug} value={t.slug}>{t.title}</option>
                 ))}
@@ -100,12 +99,12 @@ function BookingPage() {
             <button
               type="submit"
               disabled={submitting}
-              className="w-full rounded-sm bg-gold py-4 text-sm font-medium uppercase tracking-[0.2em] text-primary-foreground transition-all hover:opacity-90 disabled:opacity-60"
+              className="w-full rounded-sm bg-gold py-4 text-sm font-bold uppercase tracking-[0.2em] text-primary-foreground transition-all hover:opacity-90 disabled:opacity-60"
             >
               {submitting ? "Sending…" : "Submit Request"}
             </button>
             <p className="text-center text-xs text-muted-foreground">
-              By submitting, you agree to our concierge contacting you about your booking.
+              By submitting, you agree to our team contacting you about your booking.
             </p>
           </form>
         </div>
