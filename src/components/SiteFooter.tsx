@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Instagram, Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 export function SiteFooter() {
   return (
@@ -40,7 +40,7 @@ export function SiteFooter() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-gold hover:underline"
               >
-                <Instagram size={14} /> @emirates_expedition_
+                <span className="text-base leading-none">◎</span> @emirates_expedition_
               </a>
             </li>
           </ul>
