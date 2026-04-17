@@ -1,9 +1,9 @@
-import dune from "@/assets/tour-dune.jpg";
-import camp from "@/assets/tour-camp.jpg";
-import camel from "@/assets/tour-camel.jpg";
-import city from "@/assets/tour-city.jpg";
-import sandboard from "@/assets/tour-sandboard.jpg";
-import sea from "@/assets/tour-sea.jpg";
+import candy from "@/assets/bus-candy-combo.webp";
+import shylock from "@/assets/bus-shylock-combo.webp";
+import oneness from "@/assets/bus-oneness-combo.webp";
+import autobacz from "@/assets/bus-autobacz-combo.webp";
+import wildlife from "@/assets/group-wildlife-sanctuary.webp";
+import bamboo from "@/assets/group-bamboo-forest.jpg";
 
 export type Tour = {
   slug: string;
@@ -18,63 +18,63 @@ export type Tour = {
 
 export const tours: Tour[] = [
   {
-    slug: "dune-bashing",
-    title: "Red Dune Bashing",
-    category: "Desert Adventure",
-    duration: "4 hours",
-    price: "from AED 320",
-    image: dune,
-    blurb: "Pulse-racing 4x4 ride across the Lahbab red dunes with a private driver and panoramic photo stops.",
-    highlights: ["Private Land Cruiser", "Sunset photo stop", "Sandboarding included"],
+    slug: "ktm-3",
+    title: "KTM 3.0 — School Expedition",
+    category: "School Trip",
+    duration: "3 Days",
+    price: "Custom Quote",
+    image: candy,
+    blurb: "Our flagship school expedition — Munnar tea hills, Kodaikanal, and Wayanad with chaperoned coaches and licensed guides.",
+    highlights: ["AC tourist coach", "Senior trip leader", "All meals & stays"],
   },
   {
-    slug: "luxury-overnight-camp",
-    title: "Luxury Overnight Camp",
-    category: "Signature Expedition",
-    duration: "Overnight",
-    price: "from AED 1,450",
-    image: camp,
-    blurb: "Sleep beneath a desert sky in a private Bedouin-inspired suite with chef-prepared dinner under the stars.",
-    highlights: ["Private suite tent", "5-course dinner", "Falconry at dawn"],
+    slug: "munnar-kodai-wayanad",
+    title: "Munnar · Kodaikanal · Wayanad",
+    category: "Hill Stations",
+    duration: "4 Days",
+    price: "from ₹8,500",
+    image: oneness,
+    blurb: "Three legendary hill stations in one cinematic loop — tea estates, pine forests, and morning mist over the Western Ghats.",
+    highlights: ["Group of 25–45", "Bonfire night", "Photo stops curated"],
   },
   {
-    slug: "camel-trek-sunset",
-    title: "Sunset Camel Caravan",
-    category: "Heritage",
-    duration: "2 hours",
-    price: "from AED 240",
-    image: camel,
-    blurb: "Follow ancient trade routes on camelback as the desert turns gold and the call to prayer drifts across the sands.",
-    highlights: ["Local Bedouin guide", "Arabic coffee & dates", "Sunset photography"],
+    slug: "coorg-chikmagaluru-belur",
+    title: "Coorg · Chikmagaluru · Belur",
+    category: "Group Expedition",
+    duration: "3 Days",
+    price: "from ₹7,200",
+    image: shylock,
+    blurb: "Coffee country at its richest — waterfalls, plantation walks, and the temple craft of Belur with our signature touring coach.",
+    highlights: ["Plantation stay option", "Local Kodava guide", "Sunrise viewpoint"],
   },
   {
-    slug: "dubai-city-skyline",
-    title: "Dubai Skyline Tour",
-    category: "City Expedition",
-    duration: "Full day",
-    price: "from AED 480",
-    image: city,
-    blurb: "From the souks of Old Dubai to the observation deck of the Burj Khalifa — a curated city in a single day.",
-    highlights: ["Burj Khalifa entry", "Marina cruise", "Old Dubai souks"],
+    slug: "wayanad-wildlife",
+    title: "Wayanad Wildlife Sanctuary",
+    category: "Adventure",
+    duration: "2 Days",
+    price: "from ₹5,400",
+    image: wildlife,
+    blurb: "Edakkal caves, bamboo forests, and a guided sanctuary safari — built for college groups and adventure seekers.",
+    highlights: ["Jeep safari", "Trek with naturalist", "Forest camp dinner"],
   },
   {
-    slug: "sandboarding-adventure",
-    title: "Sandboarding Rush",
-    category: "Adventure Sport",
-    duration: "3 hours",
-    price: "from AED 290",
-    image: sandboard,
-    blurb: "Carve the steepest dunes of the Arabian desert with professional boards and certified instructors.",
-    highlights: ["Pro instructor", "All gear included", "GoPro footage"],
+    slug: "goa-dandeli-hampi",
+    title: "Goa · Dandeli · Hampi",
+    category: "5-Day Package",
+    duration: "5 Days",
+    price: "from ₹12,800",
+    image: autobacz,
+    blurb: "Beach to white-water to ancient ruins — our most-requested long-haul expedition for college and friend groups.",
+    highlights: ["River rafting Dandeli", "Hampi heritage walk", "Goa beach night"],
   },
   {
-    slug: "private-yacht-charter",
-    title: "Private Yacht Charter",
-    category: "Luxury Sea",
-    duration: "4 hours",
-    price: "from AED 2,400",
-    image: sea,
-    blurb: "Cruise past the Burj Al Arab and Palm Jumeirah aboard a private yacht with chef and crew.",
-    highlights: ["Private 48ft yacht", "Onboard chef", "Burj Al Arab views"],
+    slug: "custom-charter",
+    title: "Custom Bus Charter",
+    category: "Bespoke",
+    duration: "Flexible",
+    price: "On request",
+    image: bamboo,
+    blurb: "Industrial visits, devotional trips, family tours or college fests — we design and operate the entire journey end-to-end.",
+    highlights: ["Any route in South India", "Decorated tourist bus", "Full ground crew"],
   },
 ];
