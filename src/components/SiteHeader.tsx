@@ -4,10 +4,9 @@ import { Menu, X } from "lucide-react";
 
 const links = [
   { to: "/", label: "Home" },
-  { to: "/tours", label: "Tours" },
+  { to: "/tours", label: "Packages" },
   { to: "/gallery", label: "Gallery" },
   { to: "/about", label: "About" },
-  { to: "/booking", label: "Booking" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -26,21 +25,21 @@ export function SiteHeader() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-background/80 backdrop-blur-xl border-b border-border/60"
+          ? "bg-background/85 backdrop-blur-xl border-b border-border/60"
           : "bg-transparent"
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
         <Link to="/" className="group flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-full border border-gold/40 bg-background/60">
-            <span className="font-display text-lg text-gold">E</span>
+          <div className="flex h-10 w-10 items-center justify-center rounded-sm bg-gold text-primary-foreground">
+            <span className="font-display text-xl leading-none">E</span>
           </div>
           <div className="leading-tight">
-            <div className="font-display text-lg tracking-wide text-foreground">
-              Emirates <span className="text-gold">Expedition</span>
+            <div className="font-display text-xl tracking-wider text-foreground">
+              EMIRATES <span className="text-gold">EXPEDITION</span>
             </div>
-            <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-              Est · Dubai · UAE
+            <div className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground">
+              A journey of thousand miles
             </div>
           </div>
         </Link>
@@ -50,7 +49,7 @@ export function SiteHeader() {
             <Link
               key={l.to}
               to={l.to}
-              className="text-sm font-light tracking-wide text-foreground/80 transition-colors hover:text-gold"
+              className="text-xs font-medium uppercase tracking-[0.2em] text-foreground/80 transition-colors hover:text-gold"
               activeProps={{ className: "text-gold" }}
               activeOptions={{ exact: l.to === "/" }}
             >
@@ -59,9 +58,9 @@ export function SiteHeader() {
           ))}
           <Link
             to="/booking"
-            className="rounded-sm border border-gold/60 bg-gold/10 px-5 py-2 text-xs font-medium uppercase tracking-[0.2em] text-gold transition-all hover:bg-gold hover:text-primary-foreground"
+            className="rounded-sm bg-gold px-5 py-2 text-xs font-bold uppercase tracking-[0.2em] text-primary-foreground transition-all hover:opacity-90"
           >
-            Reserve
+            Book Now
           </Link>
         </nav>
 
@@ -89,6 +88,13 @@ export function SiteHeader() {
                 {l.label}
               </Link>
             ))}
+            <Link
+              to="/booking"
+              onClick={() => setOpen(false)}
+              className="mt-4 rounded-sm bg-gold px-5 py-3 text-center text-xs font-bold uppercase tracking-[0.2em] text-primary-foreground"
+            >
+              Book Now
+            </Link>
           </nav>
         </div>
       )}

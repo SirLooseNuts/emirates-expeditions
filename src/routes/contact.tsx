@@ -1,13 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, AtSign } from "lucide-react";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact — Emirates Expedition" },
-      { name: "description", content: "Reach our Dubai-based concierge by phone, email, WhatsApp or Instagram. We respond within four hours." },
+      { name: "description", content: "Reach Emirates Expedition by phone (+91 70127 75400 / +91 79945 49785), WhatsApp, email or Instagram." },
       { property: "og:title", content: "Contact — Emirates Expedition" },
-      { property: "og:description", content: "Talk to our concierge about your private UAE expedition." },
+      { property: "og:description", content: "Talk to us about your group trip, school expedition or custom package." },
     ],
   }),
   component: ContactPage,
@@ -20,32 +20,32 @@ function ContactPage() {
         <div className="grid gap-16 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <p className="eyebrow">Get in touch</p>
-            <h1 className="mt-4 font-display text-5xl leading-[1.05] sm:text-7xl">
-              We answer in <span className="italic gradient-gold-text">four hours</span>.
+            <h1 className="mt-4 font-display text-5xl leading-[0.95] tracking-wider sm:text-8xl">
+              CALL US, WE <span className="gradient-gold-text">PICK UP</span>.
             </h1>
             <p className="mt-6 max-w-xl text-lg text-foreground/80">
-              Whether you're planning months ahead or already in the back of a
-              taxi from DXB — we're here. Real humans. Local time.
+              Real humans, India Standard Time. Whether you're planning a school
+              trip months ahead or need a coach this weekend — call, WhatsApp or DM.
             </p>
 
             <div className="mt-12 grid gap-6 sm:grid-cols-2">
-              <Card icon={<Phone size={18} />} title="Call / WhatsApp" lines={["+971 50 000 0000"]} />
-              <Card icon={<Mail size={18} />} title="Email" lines={["hello@emiratesexpedition.com"]} />
-              <Card icon={<MapPin size={18} />} title="Base camp" lines={["Al Quoz, Dubai", "United Arab Emirates"]} />
-              <Card icon={<Clock size={18} />} title="Hours" lines={["Concierge: 24/7", "Office: 09:00 — 21:00 GST"]} />
+              <Card icon={<Phone size={18} />} title="Call / WhatsApp" lines={["+91 70127 75400", "+91 79945 49785"]} />
+              <Card icon={<Mail size={18} />} title="Email" lines={["hello@emiratesexpedition.in"]} />
+              <Card icon={<MapPin size={18} />} title="Base" lines={["Attingal, Thiruvananthapuram", "Kerala, India"]} />
+              <Card icon={<Clock size={18} />} title="Hours" lines={["Bookings: 24/7", "Office: 09:00 — 21:00 IST"]} />
             </div>
 
             <div className="mt-12 rounded-sm border border-gold/40 bg-card/40 p-6">
-              <p className="font-display text-2xl">
-                Prefer Instagram? Slide into our DMs.
+              <p className="font-display text-2xl tracking-wider">
+                PREFER INSTAGRAM? SLIDE IN.
               </p>
               <a
                 href="https://www.instagram.com/emirates_expedition_/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 inline-block font-mono text-sm uppercase tracking-[0.2em] text-gold hover:underline"
+                className="mt-3 inline-flex items-center gap-2 font-mono text-sm uppercase tracking-[0.2em] text-gold hover:underline"
               >
-                @emirates_expedition_ →
+                <AtSign size={14} /> @emirates_expedition_ →
               </a>
             </div>
           </div>
@@ -53,15 +53,15 @@ function ContactPage() {
           <div className="lg:col-span-5">
             <div className="sticky top-32 overflow-hidden rounded-sm border border-border/60 bg-card/40">
               <iframe
-                title="Dubai map"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=55.20%2C25.10%2C55.32%2C25.22&layer=mapnik"
-                className="h-[500px] w-full grayscale"
-                style={{ filter: "grayscale(0.7) brightness(0.7) sepia(0.3)" }}
+                title="Attingal map"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=76.78%2C8.67%2C76.86%2C8.74&layer=mapnik"
+                className="h-[500px] w-full"
+                style={{ filter: "grayscale(0.8) brightness(0.7) contrast(1.1)" }}
               />
               <div className="border-t border-border/60 p-6">
                 <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-gold">Headquarters</p>
-                <p className="mt-2 font-display text-xl">Al Quoz, Dubai</p>
-                <p className="text-sm text-muted-foreground">United Arab Emirates</p>
+                <p className="mt-2 font-display text-xl tracking-wider">ATTINGAL, KERALA</p>
+                <p className="text-sm text-muted-foreground">India</p>
               </div>
             </div>
           </div>
@@ -74,7 +74,7 @@ function ContactPage() {
 function Card({ icon, title, lines }: { icon: React.ReactNode; title: string; lines: string[] }) {
   return (
     <div className="rounded-sm border border-border/60 bg-card/40 p-6">
-      <div className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/40 text-gold">{icon}</div>
+      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gold text-primary-foreground">{icon}</div>
       <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">{title}</p>
       {lines.map((l) => (
         <p key={l} className="mt-1 text-foreground/90">{l}</p>

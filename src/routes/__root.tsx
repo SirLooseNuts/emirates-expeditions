@@ -7,11 +7,11 @@ function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <p className="eyebrow">Lost in the dunes</p>
+        <p className="eyebrow">Lost on the road</p>
         <h1 className="mt-4 text-7xl font-display text-gold">404</h1>
         <h2 className="mt-4 text-xl">Page not found</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          This trail leads nowhere. Let's get you back to base camp.
+          This route doesn't exist. Let's get you back on the bus.
         </p>
         <div className="mt-6">
           <Link
@@ -31,8 +31,8 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Emirates Expedition — Luxury Desert & Adventure Tours in the UAE" },
-      { name: "description", content: "Cinematic desert safaris, private yacht charters, dune adventures, and bespoke UAE expeditions crafted for the curious traveler." },
+      { title: "Emirates Expedition — A Journey of Thousand Miles" },
+      { name: "description", content: "Group expeditions, school trips, college tours and custom packages across South India." },
       { name: "author", content: "Emirates Expedition" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -43,7 +43,7 @@ export const Route = createRootRoute({
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
       },
     ],
   }),

@@ -1,20 +1,30 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import hero from "@/assets/hero-dunes.jpg";
+import hero from "@/assets/group-pathoos-munnar.jpg";
+import bambooImg from "@/assets/group-bamboo-forest.jpg";
+import wildlife from "@/assets/group-wildlife-sanctuary.webp";
+import busCandy from "@/assets/bus-candy-combo.webp";
 import { tours } from "@/data/tours";
 import { TourCard } from "@/components/TourCard";
-import { ArrowRight, Compass, Mountain, Sparkles, Star } from "lucide-react";
+import { ArrowRight, Bus, Compass, Mountain, ShieldCheck, Star, Users } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Emirates Expedition — Cinematic Desert & Adventure Tours in the UAE" },
-      { name: "description", content: "Bespoke desert safaris, luxury overnight camps, sandboarding, yacht charters and Dubai city expeditions across the Emirates." },
-      { property: "og:title", content: "Emirates Expedition — Cinematic UAE Adventures" },
-      { property: "og:description", content: "Where the dunes meet the horizon. Curated journeys for the modern explorer." },
+      { title: "Emirates Expedition — Group Tours, School Trips & Expeditions Across South India" },
+      { name: "description", content: "A journey of thousand miles. Group expeditions, school trips, college tours and custom packages across Munnar, Wayanad, Coorg, Goa & beyond." },
+      { property: "og:title", content: "Emirates Expedition — A Journey of Thousand Miles" },
+      { property: "og:description", content: "Signature touring coaches, expert trip leaders, and unforgettable group adventures across South India." },
+      { property: "og:image", content: hero },
+      { name: "twitter:image", content: hero },
     ],
   }),
   component: Home,
 });
+
+const partners = [
+  "SHIVAGIRI SCHOOL", "GHSS THONNAKKAL", "RIET", "ATTINGAL ITI",
+  "PONGANAD CAMPUS", "SMS GROUP", "AUTOBACS", "KALKI SARANAM",
+];
 
 function Home() {
   return (
@@ -23,47 +33,60 @@ function Home() {
       <section className="relative min-h-screen w-full overflow-hidden">
         <img
           src={hero}
-          alt="Land Cruiser cresting a sand dune at sunset in the Arabian desert"
+          alt="Emirates Expedition group at Munnar tea estates with signature touring coach"
           width={1920}
           height={1080}
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
-        <div className="absolute inset-0 bg-background/30" />
+        <div className="absolute inset-0 bg-background/40" />
 
         <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-end px-6 pb-24 pt-40 lg:px-10">
-          <p className="eyebrow animate-fade-in">United Arab Emirates · Est. 2017</p>
-          <h1 className="mt-6 max-w-4xl font-display text-5xl leading-[1.05] text-foreground sm:text-7xl lg:text-8xl">
-            Where the dunes meet
+          <p className="eyebrow">Est. Kerala · India</p>
+          <h1 className="mt-6 max-w-5xl font-display text-6xl leading-[0.95] tracking-wider text-foreground sm:text-8xl lg:text-[10rem]">
+            A JOURNEY OF
             <br />
-            the <span className="gradient-gold-text italic">horizon</span>.
+            <span className="gradient-gold-text">THOUSAND MILES</span>
           </h1>
           <p className="mt-8 max-w-xl text-base leading-relaxed text-foreground/85 sm:text-lg">
-            Cinematic desert expeditions, private yacht escapes, and bespoke
-            adventures crafted for the curious traveler. The Emirates, told as
-            it deserves to be.
+            Group expeditions, school trips, college tours and custom packages
+            across South India — aboard our signature touring coaches, led by
+            seasoned trip captains.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <Link
               to="/tours"
-              className="group inline-flex items-center gap-3 rounded-sm bg-gold px-8 py-4 text-sm font-medium uppercase tracking-[0.2em] text-primary-foreground transition-all hover:opacity-90"
+              className="group inline-flex items-center gap-3 rounded-sm bg-gold px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-primary-foreground transition-all hover:opacity-90"
             >
-              Explore Expeditions
+              Explore Packages
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
               to="/booking"
               className="inline-flex items-center gap-3 rounded-sm border border-foreground/30 px-8 py-4 text-sm font-medium uppercase tracking-[0.2em] text-foreground transition-all hover:border-gold hover:text-gold"
             >
-              Plan a Private Journey
+              Plan a Group Trip
             </Link>
           </div>
 
           <div className="mt-16 grid grid-cols-3 gap-6 border-t border-foreground/15 pt-8 sm:max-w-2xl">
-            <Stat n="120+" label="Expeditions / month" />
-            <Stat n="4.9★" label="Guest rating" />
-            <Stat n="7yr" label="In the desert" />
+            <Stat n="200+" label="Trips operated" />
+            <Stat n="15K+" label="Happy travelers" />
+            <Stat n="4.9★" label="Group rating" />
           </div>
+        </div>
+      </section>
+
+      {/* MARQUEE */}
+      <section className="relative overflow-hidden border-y border-border/40 bg-gold py-5 text-primary-foreground">
+        <div className="marquee-track flex w-max gap-12 whitespace-nowrap font-display text-2xl tracking-widest">
+          {Array.from({ length: 2 }).map((_, k) => (
+            <div key={k} className="flex gap-12">
+              {["SCHOOL TRIPS", "★", "GROUP EXPEDITIONS", "★", "COLLEGE TOURS", "★", "DEVOTIONAL", "★", "INDUSTRIAL VISITS", "★", "CUSTOM PACKAGES", "★", "FAMILY TOURS", "★"].map((t, i) => (
+                <span key={`${k}-${i}`}>{t}</span>
+              ))}
+            </div>
+          ))}
         </div>
       </section>
 
@@ -71,24 +94,24 @@ function Home() {
       <section className="relative mx-auto max-w-7xl px-6 py-32 lg:px-10">
         <div className="grid gap-16 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <p className="eyebrow">Our Philosophy</p>
-            <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
-              Slow travel,
+            <p className="eyebrow">Our Mission</p>
+            <h2 className="mt-4 font-display text-4xl leading-tight tracking-wider sm:text-6xl">
+              UNFORGETTABLE
               <br />
-              <span className="italic gradient-gold-text">bold horizons</span>.
+              <span className="gradient-gold-text">JOURNEYS</span>.
             </h2>
           </div>
           <div className="lg:col-span-7 lg:pt-4">
             <p className="text-lg leading-relaxed text-foreground/85">
-              Emirates Expedition is a small collective of guides, drivers, and
-              storytellers obsessed with one thing — making sure your time in the
-              UAE feels nothing like a tour. Every itinerary is private, every
-              moment unhurried, every horizon earned.
+              Emirates Expedition is a Kerala-based travel collective specialising
+              in large-group journeys — school field trips, college fests,
+              corporate retreats, and devotional tours. We handle the bus, the
+              route, the food, the photos, and the chaos. You bring the energy.
             </p>
             <div className="mt-10 grid gap-8 sm:grid-cols-3">
-              <Pillar icon={<Compass size={20} />} title="Curated routes" body="Off the brochure, into the real desert." />
-              <Pillar icon={<Mountain size={20} />} title="Private guides" body="Local Emiratis & seasoned expedition leads." />
-              <Pillar icon={<Sparkles size={20} />} title="Cinematic detail" body="Every sunset, every silence — choreographed." />
+              <Pillar icon={<Bus size={20} />} title="Signature coaches" body="Decorated tourist buses built for the long haul." />
+              <Pillar icon={<ShieldCheck size={20} />} title="Safe & licensed" body="Trained drivers, trip captains, full insurance." />
+              <Pillar icon={<Compass size={20} />} title="Crafted routes" body="Hill stations, beaches, and heritage in one loop." />
             </div>
           </div>
         </div>
@@ -99,9 +122,9 @@ function Home() {
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
-              <p className="eyebrow">Signature Expeditions</p>
-              <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
-                Six ways to <span className="italic gradient-gold-text">disappear</span>.
+              <p className="eyebrow">Tour Packages</p>
+              <h2 className="mt-4 font-display text-4xl leading-tight tracking-wider sm:text-6xl">
+                SIX WAYS TO <span className="gradient-gold-text">ROAM</span>.
               </h2>
             </div>
             <Link to="/tours" className="group inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-gold">
@@ -115,43 +138,88 @@ function Home() {
         </div>
       </section>
 
+      {/* PARTNERS */}
+      <section className="relative border-y border-border/60 bg-background py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+          <p className="eyebrow text-center">Our Partners</p>
+          <h2 className="mt-3 text-center font-display text-3xl tracking-wider sm:text-4xl">
+            TRUSTED BY <span className="gradient-gold-text">SCHOOLS & COLLEGES</span>
+          </h2>
+          <div className="mt-12 grid grid-cols-2 gap-8 sm:grid-cols-4">
+            {partners.map((p) => (
+              <div key={p} className="flex h-20 items-center justify-center rounded-sm border border-border/60 bg-card/40 px-4 text-center font-display text-sm tracking-widest text-foreground/70 transition-colors hover:border-gold/60 hover:text-gold">
+                {p}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* GALLERY PREVIEW */}
+      <section className="mx-auto max-w-7xl px-6 py-32 lg:px-10">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <p className="eyebrow">The Gallery</p>
+            <h2 className="mt-4 font-display text-4xl tracking-wider sm:text-6xl">
+              FROM THE <span className="gradient-gold-text">ROAD</span>.
+            </h2>
+          </div>
+          <Link to="/gallery" className="group inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-gold">
+            See more <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+          </Link>
+        </div>
+        <div className="mt-12 grid grid-cols-2 gap-3 lg:grid-cols-4">
+          {[wildlife, bambooImg, busCandy, hero].map((src, i) => (
+            <div key={i} className="group relative aspect-square overflow-hidden rounded-sm border border-border/40">
+              <img src={src} alt="Group expedition moment" loading="lazy" className="h-full w-full object-cover transition-transform duration-[1500ms] group-hover:scale-110" />
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* TESTIMONIAL */}
       <section className="relative mx-auto max-w-5xl px-6 py-32 text-center lg:px-10">
         <div className="flex justify-center gap-1 text-gold">
           {Array.from({ length: 5 }).map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
         </div>
-        <blockquote className="mt-8 font-display text-3xl leading-tight text-foreground sm:text-4xl lg:text-5xl">
-          "We've travelled the world, but the night Emirates Expedition arranged
-          in the Empty Quarter — silence, stars, a private chef under canvas —
-          was the single most beautiful evening of our lives."
+        <blockquote className="mt-8 font-display text-3xl leading-tight tracking-wider text-foreground sm:text-4xl lg:text-5xl">
+          "WE'VE TAKEN THREE BATCHES OF STUDENTS WITH EMIRATES EXPEDITION. THE
+          BUSES, THE GUIDES, THE FOOD — EVERYTHING WAS SPOT ON. THE KIDS STILL
+          TALK ABOUT MUNNAR."
         </blockquote>
         <p className="mt-8 font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">
-          — Sofia & James · London · Overnight Expedition
+          — Faculty Coordinator · GHSS Thonnakkal · KTM 3.0
         </p>
       </section>
 
       {/* CTA */}
       <section className="relative mx-auto max-w-7xl px-6 pb-32 lg:px-10">
         <div className="relative overflow-hidden rounded-sm border border-gold/40 bg-gradient-to-br from-card via-card to-background p-12 lg:p-20">
-          <div className="absolute -right-40 -top-40 h-96 w-96 rounded-full bg-gold/10 blur-3xl" />
+          <div className="absolute -right-40 -top-40 h-96 w-96 rounded-full bg-gold/15 blur-3xl" />
           <div className="relative grid gap-10 lg:grid-cols-2 lg:items-center">
             <div>
-              <p className="eyebrow">Begin your journey</p>
-              <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
-                Tell us your <span className="italic gradient-gold-text">dream day</span>.
+              <p className="eyebrow">Plan a Group Trip</p>
+              <h2 className="mt-4 font-display text-4xl leading-tight tracking-wider sm:text-6xl">
+                <span className="gradient-gold-text">25 OR 250</span>,
+                <br />
+                WE'VE GOT YOU.
               </h2>
               <p className="mt-4 max-w-md text-foreground/80">
-                We'll design it, drive it, and make sure you're home with stories
-                no algorithm can recommend.
+                Tell us your group size, dates, and dream destination. We'll
+                build the route, book the coach, and run the trip end-to-end.
               </p>
+              <div className="mt-6 flex items-center gap-3 font-mono text-sm text-foreground/70">
+                <Users size={16} className="text-gold" />
+                Specialists in groups of 25 – 250
+              </div>
             </div>
             <div className="flex flex-wrap gap-4 lg:justify-end">
-              <Link to="/booking" className="rounded-sm bg-gold px-8 py-4 text-sm font-medium uppercase tracking-[0.2em] text-primary-foreground hover:opacity-90">
-                Reserve
+              <Link to="/booking" className="rounded-sm bg-gold px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-primary-foreground hover:opacity-90">
+                Get a Quote
               </Link>
-              <Link to="/contact" className="rounded-sm border border-foreground/30 px-8 py-4 text-sm font-medium uppercase tracking-[0.2em] hover:border-gold hover:text-gold">
-                Talk to us
-              </Link>
+              <a href="tel:+917012775400" className="rounded-sm border border-foreground/30 px-8 py-4 text-sm font-medium uppercase tracking-[0.2em] hover:border-gold hover:text-gold">
+                Call +91 70127 75400
+              </a>
             </div>
           </div>
         </div>
@@ -163,7 +231,7 @@ function Home() {
 function Stat({ n, label }: { n: string; label: string }) {
   return (
     <div>
-      <div className="font-display text-3xl text-gold sm:text-4xl">{n}</div>
+      <div className="font-display text-3xl tracking-wider text-gold sm:text-5xl">{n}</div>
       <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/70">{label}</div>
     </div>
   );
@@ -172,9 +240,12 @@ function Stat({ n, label }: { n: string; label: string }) {
 function Pillar({ icon, title, body }: { icon: React.ReactNode; title: string; body: string }) {
   return (
     <div>
-      <div className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/40 text-gold">{icon}</div>
-      <h3 className="mt-4 font-display text-xl">{title}</h3>
+      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gold text-primary-foreground">{icon}</div>
+      <h3 className="mt-4 font-display text-xl tracking-wider">{title}</h3>
       <p className="mt-2 text-sm text-muted-foreground">{body}</p>
     </div>
   );
 }
+
+// keep import used
+void Mountain;
