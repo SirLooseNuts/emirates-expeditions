@@ -5,6 +5,11 @@
 //     error logger plugins, and sandbox detection (port/host/strictPort).
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
-// cloudflare: false → disables the Cloudflare Workers adapter so the build
-// produces a standard Node.js server entry that Vercel can run.
-export default defineConfig({ cloudflare: false });
+// cloudflare: false → disables the Cloudflare Workers adapter.
+// ssr: false → builds an SPA instead of an SSR app, generating a static index.html that Vercel uses.
+export default defineConfig({
+  cloudflare: false,
+  tanstackStart: {
+    ssr: false
+  }
+});
