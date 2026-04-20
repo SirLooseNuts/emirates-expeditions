@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Core pages -->
+  <url>
+    <loc>https://emirates-expeditions.vercel.app/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://emirates-expeditions.vercel.app/tours</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://emirates-expeditions.vercel.app/gallery</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://emirates-expeditions.vercel.app/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://emirates-expeditions.vercel.app/contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://emirates-expeditions.vercel.app/booking</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 1-Day Tour packages -->
+  <url><loc>https://emirates-expeditions.vercel.app/tours/wayanad-1day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/marayoor-1day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/munnar-1day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/vagamon-1day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/alappuzha-1day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/athirappilly-1day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/ramakkalmedu-1day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/wonderla-1day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/kodaikanal-1day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/ooty-1day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/kanyakumari-1day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/silver-storm-1day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <!-- 2-Day Tour packages -->
+  <url><loc>https://emirates-expeditions.vercel.app/tours/vagamon-munnar-2day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/munnar-marayoor-2day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/munnar-wonderla-2day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/vagamon-kodaikanal-2day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/wayanad-ooty-2day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/mysore-ooty-2day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/mysore-coorg-2day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/coorg-belur-2day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/coorg-chikmagalur-2day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/bangalore-wonderla-2day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/bangalore-mysore-2day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <!-- 3-Day Tour packages -->
+  <url><loc>https://emirates-expeditions.vercel.app/tours/marayoor-munnar-wonderla-3day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/vagamon-munnar-marayoor-3day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/vagamon-kodaikanal-marayoor-3day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/wayanad-coorg-mysore-3day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/mysore-chikmagalur-coorg-3day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/coorg-chikmagalur-belur-3day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/coorg-chikmagalur-udupi-3day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/bangalore-chikmagalur-coorg-3day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/bangalore-mysore-coorg-3day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <!-- 4-Day Tour packages -->
+  <url><loc>https://emirates-expeditions.vercel.app/tours/ooty-kodai-wayanad-wonderla-4day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/wayanad-coorg-belur-chikmagalur-4day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/wayanad-coorg-mysore-malpe-4day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/mysore-coorg-wonderla-bangalore-4day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/mysore-coorg-belur-malpe-4day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <!-- 5-Day Tour packages -->
+  <url><loc>https://emirates-expeditions.vercel.app/tours/malpe-goa-dandeli-coorg-5day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/goa-dandeli-hampi-5day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://emirates-expeditions.vercel.app/tours/bangalore-dandeli-hampi-5day</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+</urlset>

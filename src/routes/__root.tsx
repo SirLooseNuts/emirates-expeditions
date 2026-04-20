@@ -35,6 +35,8 @@ export const Route = createRootRoute({
       { name: "description", content: "Group expeditions, school trips, college tours and custom packages across South India." },
       { name: "author", content: "Emirates Expedition" },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://emirates-expeditions.vercel.app/" },
+      { property: "og:site_name", content: "Emirates Expedition" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
