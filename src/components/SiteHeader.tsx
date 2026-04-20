@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import logo from "@/assets/logo-main.png";
 
 const links = [
   { to: "/", label: "Home" },
@@ -30,19 +31,19 @@ export function SiteHeader() {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
-        <Link to="/" className="group flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-sm bg-gold text-primary-foreground">
-            <span className="font-display text-xl leading-none">E</span>
+        <div className="flex items-center gap-4">
+          <Link to="/" className="group">
+            <img 
+              src={logo} 
+              alt="Emirates Expedition" 
+              className="h-14 md:h-16 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+            />
+          </Link>
+          <div className="hidden md:block h-8 w-px bg-white/10 mx-2" />
+          <div className="hidden lg:block font-mono text-[9px] uppercase tracking-[0.4em] text-white/40">
+            A journey of thousand miles
           </div>
-          <div className="leading-tight">
-            <div className="font-display text-xl tracking-wider text-foreground">
-              EMIRATES <span className="text-gold">EXPEDITION</span>
-            </div>
-            <div className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground">
-              A journey of thousand miles
-            </div>
-          </div>
-        </Link>
+        </div>
 
         <nav className="hidden items-center gap-8 lg:flex">
           {links.map((l) => (

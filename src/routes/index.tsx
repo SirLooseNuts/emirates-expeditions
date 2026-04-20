@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import hero from "@/assets/group-pathoos-munnar.jpg";
 import bambooImg from "@/assets/group-bamboo-forest.jpg";
 import wildlife from "@/assets/group-wildlife-sanctuary.webp";
-import busCandy from "@/assets/bus-candy-combo.webp";
 import { tours } from "@/data/tours";
 import { TourCard } from "@/components/TourCard";
 import { ArrowRight, Bus, Compass, Mountain, ShieldCheck, Star, Users } from "lucide-react";
@@ -117,23 +116,45 @@ function Home() {
         </div>
       </section>
 
-      {/* SIGNATURE TOURS */}
-      <section className="relative bg-card/30 py-32">
+      {/* MOST DESIRED COLLECTIONS (Carousel) */}
+      <section className="relative overflow-hidden bg-card/30 py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <div className="flex flex-wrap items-end justify-between gap-6">
+          <div className="flex flex-wrap items-end justify-between gap-6 mb-16">
             <div>
-              <p className="eyebrow">Tour Packages</p>
-              <h2 className="mt-4 font-display text-4xl leading-tight tracking-wider sm:text-6xl">
-                SIX WAYS TO <span className="gradient-gold-text">ROAM</span>.
+              <p className="eyebrow">Recommended</p>
+              <h2 className="mt-4 font-display text-4xl leading-tight tracking-wider sm:text-6xl uppercase">
+                MOST <span className="gradient-gold-text">DESIRED</span> COLLECTIONS.
               </h2>
             </div>
             <Link to="/tours" className="group inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-gold">
               View all <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
+        </div>
 
-          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {tours.map((t) => <TourCard key={t.slug} tour={t} />)}
+        {/* Horizontal Marquee */}
+        <div className="relative w-full overflow-hidden">
+          <div className="group flex w-max gap-6 px-10">
+            {/* The carousel track */}
+            <div className="flex animate-marquee gap-6 group-hover:[animation-play-state:paused]">
+              {[1, 2, 3, 4, 5].flatMap((days) => 
+                tours.filter((t) => t.durationInDays === days).slice(0, 2)
+              ).map((t, i) => (
+                <div key={`${t.slug}-${i}`} className="w-[300px] sm:w-[400px]">
+                  <TourCard tour={t} />
+                </div>
+              ))}
+            </div>
+            {/* Duplicate for infinite effect */}
+            <div className="flex animate-marquee gap-6 group-hover:[animation-play-state:paused]" aria-hidden="true">
+              {[1, 2, 3, 4, 5].flatMap((days) => 
+                tours.filter((t) => t.durationInDays === days).slice(0, 2)
+              ).map((t, i) => (
+                <div key={`${t.slug}-${i}-dup`} className="w-[300px] sm:w-[400px]">
+                  <TourCard tour={t} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -169,7 +190,7 @@ function Home() {
           </Link>
         </div>
         <div className="mt-12 grid grid-cols-2 gap-3 lg:grid-cols-4">
-          {[wildlife, bambooImg, busCandy, hero].map((src, i) => (
+          {[wildlife, bambooImg, hero, bambooImg].map((src, i) => (
             <div key={i} className="group relative aspect-square overflow-hidden rounded-sm border border-border/40">
               <img src={src} alt="Group expedition moment" loading="lazy" className="h-full w-full object-cover transition-transform duration-[1500ms] group-hover:scale-110" />
             </div>

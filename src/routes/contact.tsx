@@ -31,7 +31,7 @@ function ContactPage() {
             <div className="mt-12 grid gap-6 sm:grid-cols-2">
               <Card icon={<Phone size={18} />} title="Call / WhatsApp" lines={["+91 70127 75400", "+91 79945 49785"]} />
               <Card icon={<Mail size={18} />} title="Email" lines={["hello@emiratesexpedition.in"]} />
-              <Card icon={<MapPin size={18} />} title="Base" lines={["Attingal, Thiruvananthapuram", "Kerala, India"]} />
+              <Card icon={<MapPin size={18} />} title="Base" lines={["Thattathumala, Trivandrum", "Kerala, India"]} />
               <Card icon={<Clock size={18} />} title="Hours" lines={["Bookings: 24/7", "Office: 09:00 — 21:00 IST"]} />
             </div>
 
@@ -53,14 +53,14 @@ function ContactPage() {
           <div className="lg:col-span-5">
             <div className="sticky top-32 overflow-hidden rounded-sm border border-border/60 bg-card/40">
               <iframe
-                title="Attingal map"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=76.78%2C8.67%2C76.86%2C8.74&layer=mapnik"
+                title="Thattathumala map"
+                src="https://maps.google.com/maps?q=8.801285,76.8781195&z=15&output=embed"
                 className="h-[500px] w-full"
-                style={{ filter: "grayscale(0.8) brightness(0.7) contrast(1.1)" }}
+                style={{ filter: "grayscale(1) brightness(0.6) contrast(1.2) invert(0.9)" }}
               />
               <div className="border-t border-border/60 p-6">
                 <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-gold">Headquarters</p>
-                <p className="mt-2 font-display text-xl tracking-wider">ATTINGAL, KERALA</p>
+                <p className="mt-2 font-display text-xl tracking-wider">THATTATHUMALA, TRIVANDRUM</p>
                 <p className="text-sm text-muted-foreground">India</p>
               </div>
             </div>

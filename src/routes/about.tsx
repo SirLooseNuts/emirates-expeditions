@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import bus from "@/assets/bus-shylock-combo.webp";
+import bus from "@/assets/tour-2day-munnar.png";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -27,7 +27,7 @@ function AboutPage() {
             </h1>
             <div className="mt-10 space-y-6 text-lg leading-relaxed text-foreground/85">
               <p>
-                Emirates Expedition began as a small Attingal-based crew running
+                Emirates Expedition began as a small Thattathumala-based crew running
                 weekend hill-station trips for friends. Word spread. Schools
                 called. Then colleges. Then corporates.
               </p>
