@@ -42,7 +42,7 @@ function Home() {
 
         <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-end px-6 pb-24 pt-40 lg:px-10">
           <p className="eyebrow">Est. Kerala · India</p>
-          <h1 className="mt-6 max-w-5xl font-display text-6xl leading-[0.95] tracking-wider text-foreground sm:text-8xl lg:text-[10rem]">
+          <h1 className="mt-6 max-w-5xl font-display text-5xl leading-[0.95] tracking-wider text-foreground sm:text-8xl lg:text-[10rem]">
             A JOURNEY OF
             <br />
             <span className="gradient-gold-text">THOUSAND MILES</span>
@@ -68,7 +68,7 @@ function Home() {
             </Link>
           </div>
 
-          <div className="mt-16 grid grid-cols-3 gap-6 border-t border-foreground/15 pt-8 sm:max-w-2xl">
+          <div className="mt-16 grid grid-cols-2 gap-y-10 gap-x-6 border-t border-foreground/15 pt-8 sm:grid-cols-3 sm:max-w-2xl">
             <Stat n="200+" label="Trips operated" />
             <Stat n="15K+" label="Happy travelers" />
             <Stat n="4.9★" label="Group rating" />
@@ -94,7 +94,7 @@ function Home() {
         <div className="grid gap-16 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <p className="eyebrow">Our Mission</p>
-            <h2 className="mt-4 font-display text-4xl leading-tight tracking-wider sm:text-6xl">
+            <h2 className="mt-4 font-display text-3xl leading-tight tracking-wider sm:text-6xl">
               UNFORGETTABLE
               <br />
               <span className="gradient-gold-text">JOURNEYS</span>.
@@ -122,7 +122,7 @@ function Home() {
           <div className="flex flex-wrap items-end justify-between gap-6 mb-16">
             <div>
               <p className="eyebrow">Recommended</p>
-              <h2 className="mt-4 font-display text-4xl leading-tight tracking-wider sm:text-6xl uppercase">
+              <h2 className="mt-4 font-display text-3xl leading-tight tracking-wider sm:text-6xl uppercase">
                 MOST <span className="gradient-gold-text">DESIRED</span> COLLECTIONS.
               </h2>
             </div>
@@ -163,10 +163,10 @@ function Home() {
       <section className="relative border-y border-border/60 bg-background py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <p className="eyebrow text-center">Our Partners</p>
-          <h2 className="mt-3 text-center font-display text-3xl tracking-wider sm:text-4xl">
+          <h2 className="mt-3 text-center font-display text-2xl tracking-wider sm:text-4xl">
             TRUSTED BY <span className="gradient-gold-text">SCHOOLS & COLLEGES</span>
           </h2>
-          <div className="mt-12 grid grid-cols-2 gap-8 sm:grid-cols-4">
+          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {partners.map((p) => (
               <div key={p} className="flex h-20 items-center justify-center rounded-sm border border-border/60 bg-card/40 px-4 text-center font-display text-sm tracking-widest text-foreground/70 transition-colors hover:border-gold/60 hover:text-gold">
                 {p}
@@ -181,7 +181,7 @@ function Home() {
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <p className="eyebrow">The Gallery</p>
-            <h2 className="mt-4 font-display text-4xl tracking-wider sm:text-6xl">
+            <h2 className="mt-4 font-display text-3xl tracking-wider sm:text-6xl">
               FROM THE <span className="gradient-gold-text">ROAD</span>.
             </h2>
           </div>
@@ -203,7 +203,7 @@ function Home() {
         <div className="flex justify-center gap-1 text-gold">
           {Array.from({ length: 5 }).map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
         </div>
-        <blockquote className="mt-8 font-display text-3xl leading-tight tracking-wider text-foreground sm:text-4xl lg:text-5xl">
+        <blockquote className="mt-8 font-display text-2xl leading-tight tracking-wider text-foreground sm:text-4xl lg:text-5xl">
           "WE'VE TAKEN THREE BATCHES OF STUDENTS WITH EMIRATES EXPEDITION. THE
           BUSES, THE GUIDES, THE FOOD — EVERYTHING WAS SPOT ON. THE KIDS STILL
           TALK ABOUT MUNNAR."
@@ -220,7 +220,7 @@ function Home() {
           <div className="relative grid gap-10 lg:grid-cols-2 lg:items-center">
             <div>
               <p className="eyebrow">Plan a Group Trip</p>
-              <h2 className="mt-4 font-display text-4xl leading-tight tracking-wider sm:text-6xl">
+              <h2 className="mt-4 font-display text-3xl leading-tight tracking-wider sm:text-6xl">
                 <span className="gradient-gold-text">25 OR 250</span>,
                 <br />
                 WE'VE GOT YOU.

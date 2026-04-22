@@ -100,7 +100,7 @@ function TourDetail() {
                   {tour.category}
                 </span>
               </div>
-              <h1 className="font-display text-6xl md:text-9xl tracking-tight leading-[0.85] text-white max-w-5xl mx-auto uppercase drop-shadow-2xl">
+              <h1 className="font-display text-4xl sm:text-6xl md:text-9xl tracking-tight leading-[0.85] text-white max-w-5xl mx-auto uppercase drop-shadow-2xl">
                 {tour.title.split(' — ')[0]} <br />
                 <span className="gradient-gold-text italic lowercase font-light drop-shadow-none">
                    {tour.title.split(' — ')[1] || ""}
@@ -156,7 +156,7 @@ function TourDetail() {
           >
             <motion.div variants={itemVariants}>
                 <span className="eyebrow block mb-4">The Narrative</span>
-                <h2 className="font-display text-4xl md:text-6xl tracking-tighter uppercase mb-10 leading-none">
+                <h2 className="font-display text-3xl sm:text-4xl md:text-6xl tracking-tighter uppercase mb-10 leading-none">
                     Unfolding the <br /> <span className="gradient-gold-text">Emirates Difference</span>
                 </h2>
                 <div className="space-y-6">
@@ -238,7 +238,7 @@ function TourDetail() {
           <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-10">
             <div className="max-w-2xl">
               <span className="eyebrow text-gold/60">Chronicle</span>
-              <h2 className="mt-4 font-display text-5xl tracking-tight sm:text-7xl uppercase leading-none">
+              <h2 className="mt-4 font-display text-4xl tracking-tight sm:text-7xl uppercase leading-none">
                 THE <span className="gradient-gold-text">EXPEDITION</span> <br /> TIMELINE
               </h2>
             </div>
@@ -351,7 +351,7 @@ function TourDetail() {
                 viewport={{ once: true }}
             >
                 <span className="eyebrow block mb-8">Reservations</span>
-                <h2 className="font-display text-5xl md:text-8xl tracking-tight leading-[0.8] text-white uppercase mb-12">
+                <h2 className="font-display text-4xl sm:text-6xl md:text-8xl tracking-tight leading-[0.8] text-white uppercase mb-12">
                     BEGIN YOUR <br />
                     <span className="gradient-gold-text italic font-light lowercase">Emirates odyssey</span>
                 </h2>

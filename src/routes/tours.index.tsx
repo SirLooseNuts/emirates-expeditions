@@ -76,7 +76,7 @@ function ToursPage() {
            transition={{ duration: 0.8 }}
         >
           <p className="eyebrow">The Expedition Catalogue</p>
-          <h1 className="mt-4 max-w-4xl font-display text-5xl leading-[0.85] tracking-tight sm:text-8xl uppercase">
+          <h1 className="mt-4 max-w-4xl font-display text-4xl leading-[0.85] tracking-tight sm:text-6xl md:text-8xl uppercase">
             A UNIVERSE OF <br /> <span className="gradient-gold-text">JOURNEYS</span>.
           </h1>
           <p className="mt-8 max-w-xl text-xl text-foreground/70 font-light leading-relaxed">
@@ -89,14 +89,14 @@ function ToursPage() {
       <section className="mx-auto max-w-7xl px-6 pb-32 lg:px-10">
         <div className="flex flex-col gap-12">
           {/* Filter Mode Switcher */}
-          <div className="flex items-center gap-6 border-b border-white/5 pb-8">
+          <div className="flex flex-wrap items-center gap-6 border-b border-white/5 pb-8">
             <button
               onClick={() => setFilterMode("duration")}
               className={`flex items-center gap-3 font-mono text-[10px] font-bold uppercase tracking-[0.3em] transition-all ${filterMode === "duration" ? 'text-gold' : 'text-muted-foreground hover:text-white'}`}
             >
               <Timer size={14} /> Explorer By Span
             </button>
-            <div className="h-4 w-px bg-white/10" />
+            <div className="hidden sm:block h-4 w-px bg-white/10" />
             <button
               onClick={() => setFilterMode("location")}
               className={`flex items-center gap-3 font-mono text-[10px] font-bold uppercase tracking-[0.3em] transition-all ${filterMode === "location" ? 'text-gold' : 'text-muted-foreground hover:text-white'}`}
@@ -105,7 +105,7 @@ function ToursPage() {
             </button>
           </div>
 
-          <Tabs.Root key={filterMode} defaultValue={defaultTab} className="flex flex-col gap-12">
+          <Tabs.Root key={filterMode} defaultValue={defaultTab} className="flex flex-col gap-12 overflow-x-hidden">
             <Tabs.List className="flex flex-wrap gap-2 pb-4">
               {activeTabs.map((d) => (
                 <Tabs.Trigger
@@ -153,7 +153,7 @@ function ToursPage() {
           <div className="grid gap-20 lg:grid-cols-2 items-center">
             <div>
               <span className="eyebrow block mb-4">Bespoke Engineering</span>
-              <h2 className="font-display text-4xl leading-none tracking-tight sm:text-7xl uppercase">
+              <h2 className="font-display text-4xl leading-none tracking-tight sm:text-6xl md:text-7xl uppercase">
                 CRAFT YOUR <br /> <span className="gradient-gold-text">OWN ROUTE</span>.
               </h2>
             </div>
