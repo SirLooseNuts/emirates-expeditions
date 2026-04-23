@@ -1,4 +1,5 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Analytics } from "@vercel/analytics/react";
 import appCss from "../styles.css?url";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -32,7 +33,11 @@ export const Route = createRootRoute({
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Emirates Expedition — A Journey of Thousand Miles" },
-      { name: "description", content: "Group expeditions, school trips, college tours and custom packages across South India." },
+      {
+        name: "description",
+        content:
+          "Group expeditions, school trips, college tours and custom packages across South India.",
+      },
       { name: "author", content: "Emirates Expedition" },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://emirates-expeditions.vercel.app/" },
@@ -62,6 +67,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {children}
+        <Analytics />
         <Scripts />
       </body>
     </html>
