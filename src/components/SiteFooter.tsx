@@ -49,7 +49,7 @@ export function SiteFooter() {
             <li className="flex items-start gap-2"><MapPin size={14} className="mt-1 text-gold" /> Thattathumala, Trivandrum, Kerala, India</li>
             <li className="flex items-center gap-2"><Phone size={14} className="text-gold" /> +91 70127 75400</li>
             <li className="flex items-center gap-2"><Phone size={14} className="text-gold" /> +91 79945 49785</li>
-            <li className="flex items-center gap-2"><Mail size={14} className="text-gold" /> hello@emiratesexpedition.in</li>
+            <li className="flex items-center gap-2"><Mail size={14} className="text-gold" /> emiratesexpedition16@gmail.com</li>
             <li>
               <a
                 href="https://www.instagram.com/emirates_expedition_/"

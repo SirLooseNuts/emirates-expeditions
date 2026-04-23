@@ -30,7 +30,7 @@ function ContactPage() {
 
             <div className="mt-12 grid gap-6 sm:grid-cols-2">
               <Card icon={<Phone size={18} />} title="Call / WhatsApp" lines={["+91 70127 75400", "+91 79945 49785"]} />
-              <Card icon={<Mail size={18} />} title="Email" lines={["hello@emiratesexpedition.in"]} />
+              <Card icon={<Mail size={18} />} title="Email" lines={["emiratesexpedition16@gmail.com"]} />
               <Card icon={<MapPin size={18} />} title="Base" lines={["Thattathumala, Trivandrum", "Kerala, India"]} />
               <Card icon={<Clock size={18} />} title="Hours" lines={["Bookings: 24/7", "Office: 09:00 — 21:00 IST"]} />
             </div>
