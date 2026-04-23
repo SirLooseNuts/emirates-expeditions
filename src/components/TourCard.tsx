@@ -19,6 +19,7 @@ export function TourCard({ tour }: { tour: Tour }) {
         <motion.img
           src={tour.image}
           alt={tour.title}
+          loading="lazy"
           animate={{ scale: isHovered ? 1.05 : 1 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="h-full w-full object-cover"

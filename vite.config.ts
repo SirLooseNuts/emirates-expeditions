@@ -4,6 +4,7 @@
 //     componentTagger (dev-only), VITE_* env injection, @ path alias, React/TanStack dedupe,
 //     error logger plugins, and sandbox detection (port/host/strictPort).
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 
 // cloudflare: false → disables the Cloudflare Workers adapter.
 // ssr: false → builds an SPA instead of an SSR app, generating a static index.html that Vercel uses.
@@ -11,5 +12,6 @@ export default defineConfig({
   cloudflare: false,
   tanstackStart: {
     ssr: false
-  }
+  },
+  plugins: [ViteImageOptimizer()]
 });
