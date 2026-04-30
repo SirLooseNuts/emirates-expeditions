@@ -55,14 +55,15 @@ function Home() {
     <>
       {/* HERO */}
       <section className="relative min-h-screen w-full overflow-hidden">
-        <img
-          src={hero}
-          alt="Emirates Expedition group at Munnar tea estates with signature touring coach"
-          width={1920}
-          height={1080}
-          fetchPriority="high"
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
           className="absolute inset-0 h-full w-full object-cover"
-        />
+        >
+          <source src="/hyperspeed.webm" type="video/webm" />
+        </video>
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
         <div className="absolute inset-0 bg-background/40" />
 
