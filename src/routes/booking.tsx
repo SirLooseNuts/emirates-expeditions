@@ -27,10 +27,37 @@ function BookingPage() {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
+
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get("name") || "N/A";
+    const email = formData.get("email") || "N/A";
+    const phone = formData.get("phone") || "N/A";
+    const country = formData.get("country") || "N/A";
+    const tourSlug = formData.get("tour");
+    const date = formData.get("date") || "N/A";
+    const guests = formData.get("guests") || "N/A";
+    const message = formData.get("message") || "N/A";
+
+    const tourTitle = tours.find((t) => t.slug === tourSlug)?.title || (tourSlug === "custom" ? "Custom / bespoke itinerary" : tourSlug || "N/A");
+
+    const whatsappMessage = `*New Quote Request*
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+Country: ${country}
+Package: ${tourTitle}
+Date: ${date}
+Guests: ${guests}
+Message: ${message}`;
+
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    const whatsappUrl = `https://wa.me/917012775400?text=${encodedMessage}`;
+
     setTimeout(() => {
-      toast.success("Request received", {
-        description: "Our team will call you back the same day.",
+      toast.success("Redirecting to WhatsApp...", {
+        description: "Opening WhatsApp to send your request.",
       });
+      window.open(whatsappUrl, "_blank");
       (e.target as HTMLFormElement).reset();
       setSubmitting(false);
     }, 700);

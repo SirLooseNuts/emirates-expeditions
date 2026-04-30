@@ -38,15 +38,15 @@ export default async function handler(req, res) {
 
     if (response.body) {
       if (typeof response.body.getReader === 'function') {
-         const reader = response.body.getReader();
-         while (true) {
-           const { done, value } = await reader.read();
-           if (done) break;
-           res.write(value);
-         }
-         res.end();
+        const reader = response.body.getReader();
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          res.write(value);
+        }
+        res.end();
       } else {
-         res.end(await response.text());
+        res.end(await response.text());
       }
     } else {
       res.end();
