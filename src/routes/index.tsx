@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useRef } from "react";
 import hero from "@/assets/group-pathoos-munnar.jpg";
 import bambooImg from "@/assets/group-bamboo-forest.jpg";
 import wildlife from "@/assets/group-wildlife-sanctuary.webp";
@@ -27,6 +28,20 @@ const partners = [
 ];
 
 function Home() {
+  const partnersRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!partnersRef.current) return;
+    for (const card of partnersRef.current.children) {
+      if (card instanceof HTMLElement) {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty("--mouse-x", `${x}px`);
+        card.style.setProperty("--mouse-y", `${y}px`);
+      }
+    }
+  };
   return (
     <>
       {/* HERO */}
@@ -167,10 +182,35 @@ function Home() {
           <h2 className="mt-3 text-center font-display text-2xl tracking-wider sm:text-4xl uppercase">
             OUR TRUSTED <span className="gradient-gold-text">TRAVEL PARTNERS</span>
           </h2>
-          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div 
+            ref={partnersRef} 
+            onMouseMove={handleMouseMove} 
+            className="group/bento mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
+          >
             {partners.map((p) => (
-              <div key={p} className="flex h-20 items-center justify-center rounded-sm border border-border/60 bg-card/40 px-4 text-center font-display text-sm tracking-widest text-foreground/70 transition-colors hover:border-gold/60 hover:text-gold">
-                {p}
+              <div 
+                key={p} 
+                className="relative flex h-20 items-center justify-center rounded-sm bg-border/40 px-4 text-center font-display text-sm tracking-widest text-foreground/70 transition-colors hover:text-gold"
+              >
+                {/* Border Glow */}
+                <div 
+                  className="pointer-events-none absolute -inset-px rounded-sm opacity-0 transition-opacity duration-300 group-hover/bento:opacity-100"
+                  style={{
+                    background: `radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(255,215,0,0.4), transparent 40%)`,
+                  }}
+                />
+                {/* Inner background */}
+                <div className="absolute inset-[1px] z-0 rounded-sm bg-[#09090b]" />
+                
+                {/* Inner Glow */}
+                <div 
+                  className="pointer-events-none absolute inset-[1px] z-10 rounded-sm opacity-0 transition-opacity duration-300 group-hover/bento:opacity-100"
+                  style={{
+                    background: `radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(255,215,0,0.06), transparent 40%)`,
+                  }}
+                />
+                
+                <span className="relative z-20">{p}</span>
               </div>
             ))}
           </div>
