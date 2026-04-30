@@ -21,8 +21,9 @@ export const Route = createFileRoute("/")({
 });
 
 const partners = [
-  "SHIVAGIRI SCHOOL", "GHSS THONNAKKAL", "RIET", "ATTINGAL ITI",
-  "PONGANAD CAMPUS", "SMS GROUP", "AUTOBACS", "KALKI SARANAM",
+  "Komban", "Oneness", "Shylock", "Daivik",
+  "Madrak", "NORWAY", "Bigbro", "Platinum",
+  "Squadron", "Godfather", "Zero", "Squirrel",
 ];
 
 function Home() {
@@ -164,8 +165,8 @@ function Home() {
       <section className="relative border-y border-border/60 bg-background py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <p className="eyebrow text-center">Our Partners</p>
-          <h2 className="mt-3 text-center font-display text-2xl tracking-wider sm:text-4xl">
-            TRUSTED BY <span className="gradient-gold-text">SCHOOLS & COLLEGES</span>
+          <h2 className="mt-3 text-center font-display text-2xl tracking-wider sm:text-4xl uppercase">
+            OUR TRUSTED <span className="gradient-gold-text">TRAVEL PARTNERS</span>
           </h2>
           <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {partners.map((p) => (
