@@ -164,7 +164,6 @@ function Home() {
       {/* PARTNERS */}
       <section className="relative border-y border-border/60 bg-background py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <p className="eyebrow text-center">Our Partners</p>
           <h2 className="mt-3 text-center font-display text-2xl tracking-wider sm:text-4xl uppercase">
             OUR TRUSTED <span className="gradient-gold-text">TRAVEL PARTNERS</span>
           </h2>
