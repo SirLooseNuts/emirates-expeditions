@@ -24,6 +24,7 @@ import malpe1 from "@/assets/tour-5day-varkala.png";
 import udupi1 from "@/assets/tour-coorg.png";
 import mistsStone from "@/assets/tour-mists-stone.jpg";
 import vagamonKodaiMist from "@/assets/tour-vagamon-kodai-mist.jpg";
+import kodaiMist from "@/assets/tour-kodai-mist.jpg";
 
 export type Tour = {
   slug: string;
@@ -185,7 +186,7 @@ export const tours: Tour[] = [
       duration: "1 Day",
       durationInDays: 1,
       price: consultPrice,
-      image: kodaikanal1,
+      image: kodaiMist,
       blurb: "Escape to the mists of the Palani hills for a day of lakes and pine forests.",
       highlights: ["Kodai Lake", "Bryant Park", "Coaker's Walk"],
       fullDescription: "A quick hop to the high altitudes. Experience the cool breeze of Kodaikanal, its iconic lake, and the serene walks through the park.",
