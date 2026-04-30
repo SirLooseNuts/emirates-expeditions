@@ -22,6 +22,7 @@ import goa1 from "@/assets/tour-3day-alleppey.png";
 import dandeli1 from "@/assets/tour-wayanad-wildlife.png";
 import malpe1 from "@/assets/tour-5day-varkala.png";
 import udupi1 from "@/assets/tour-coorg.png";
+import mistsStone from "@/assets/tour-mists-stone.jpg";
 
 export type Tour = {
   slug: string;
@@ -500,7 +501,7 @@ export const tours: Tour[] = [
       duration: "3 Days",
       durationInDays: 3,
       price: consultPrice,
-      image: kodaikanal1,
+      image: mistsStone,
       blurb: "From the pine-scented hills of Kodai to the ancient dolmens of Marayoor.",
       highlights: ["Kodai Lake", "Marayoor Sandalwood", "Vagamon Meadows"],
       fullDescription: "Experience the unique climates of the Palani hills and the Western Ghats. A journey for mists, meadows, and stone history.",
