@@ -23,6 +23,7 @@ import dandeli1 from "@/assets/tour-wayanad-wildlife.png";
 import malpe1 from "@/assets/tour-5day-varkala.png";
 import udupi1 from "@/assets/tour-coorg.png";
 import mistsStone from "@/assets/tour-mists-stone.jpg";
+import vagamonKodaiMist from "@/assets/tour-vagamon-kodai-mist.jpg";
 
 export type Tour = {
   slug: string;
@@ -307,7 +308,7 @@ export const tours: Tour[] = [
       duration: "2 Days",
       durationInDays: 2,
       price: consultPrice,
-      image: kodaikanal1,
+      image: vagamonKodaiMist,
       blurb: "Escape to the mists of Kodaikanal and the green meadows of Vagamon.",
       highlights: ["Kodai Lake", "Pine Forests", "Vagamon Meadows"],
       fullDescription: "A high-altitude weekend special. Experience the unique pine forests of both locations and the serenity of Kodai Lake.",
