@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useRef } from "react";
-import hero from "@/assets/group-pathoos-munnar.jpg";
+import hero from "@/assets/hero-world-landmarks.png";
 import bambooImg from "@/assets/group-bamboo-forest.jpg";
 import wildlife from "@/assets/group-wildlife-sanctuary.webp";
 import { tours } from "@/data/tours";
@@ -57,7 +57,7 @@ function Home() {
       <section className="relative min-h-screen w-full overflow-hidden">
         <img
           src={hero}
-          alt="Emirates Expedition group at Munnar tea estates with signature touring coach"
+          alt="World landmarks collage featuring Taj Mahal, Eiffel Tower, and Big Ben"
           width={1920}
           height={1080}
           fetchPriority="high"
