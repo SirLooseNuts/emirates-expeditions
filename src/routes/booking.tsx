@@ -53,14 +53,15 @@ Message: ${message}`;
     const encodedMessage = encodeURIComponent(whatsappMessage);
     const whatsappUrl = `https://wa.me/919074390973?text=${encodedMessage}`;
 
-    setTimeout(() => {
-      toast.success("Redirecting to WhatsApp...", {
-        description: "Opening WhatsApp to send your request.",
-      });
-      window.open(whatsappUrl, "_blank");
-      (e.target as HTMLFormElement).reset();
-      setSubmitting(false);
-    }, 700);
+    toast.success("Redirecting to WhatsApp...", {
+      description: "Opening WhatsApp to send your request.",
+    });
+    
+    // Using location.href instead of window.open to ensure it works reliably on mobile and avoids popup blockers
+    window.location.href = whatsappUrl;
+    
+    (e.target as HTMLFormElement).reset();
+    setSubmitting(false);
   };
 
   return (
