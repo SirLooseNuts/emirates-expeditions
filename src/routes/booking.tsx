@@ -51,7 +51,7 @@ Guests: ${guests}
 Message: ${message}`;
 
     const encodedMessage = encodeURIComponent(whatsappMessage);
-    const whatsappUrl = `https://wa.me/917012775400?text=${encodedMessage}`;
+    const whatsappUrl = `https://wa.me/919074390973?text=${encodedMessage}`;
 
     setTimeout(() => {
       toast.success("Redirecting to WhatsApp...", {
