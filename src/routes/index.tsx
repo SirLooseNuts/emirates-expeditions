@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useRef } from "react";
-import hero from "@/assets/hero-world-landmarks.png";
+import hero from "@/assets/scroll-bg.jpg";
 import bambooImg from "@/assets/group-bamboo-forest.jpg";
 import wildlife from "@/assets/group-wildlife-sanctuary.webp";
 import { tours } from "@/data/tours";
@@ -57,11 +57,11 @@ function Home() {
       <section className="relative min-h-screen w-full overflow-hidden">
         <img
           src={hero}
-          alt="World landmarks collage featuring Taj Mahal, Eiffel Tower, and Big Ben"
+          alt="Animated scroll background showing different travel experiences"
           width={1920}
           height={1080}
           fetchPriority="high"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover animate-scroll-vertical"
         />
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
         <div className="absolute inset-0 bg-background/40" />
