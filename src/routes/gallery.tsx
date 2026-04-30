@@ -100,7 +100,7 @@ function GalleryPage() {
                   src={p.src}
                   alt={p.alt}
                   loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-110"
+                  className="h-auto w-full object-cover transition-transform duration-[1200ms] group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
                 <div className="absolute inset-x-0 bottom-0 p-4 translate-y-2 opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
