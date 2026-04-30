@@ -60,21 +60,6 @@ function GalleryPage() {
             <h1 className="max-w-3xl font-display text-5xl leading-[0.95] tracking-wider sm:text-8xl">
             MOMENTS FROM <span className="gradient-gold-text">THE ROAD</span>.
             </h1>
-            <div className="flex flex-wrap gap-2">
-                {CATEGORIES.map((cat) => (
-                    <button
-                        key={cat}
-                        onClick={() => handleFilterChange(cat)}
-                        className={`px-4 py-2 text-[10px] font-mono font-bold uppercase tracking-widest transition-all rounded-sm border ${
-                            activeCategory === cat 
-                            ? "bg-gold text-primary-foreground border-gold shadow-glow-sm" 
-                            : "border-white/10 text-white/40 hover:border-white/30 hover:text-white"
-                        }`}
-                    >
-                        {cat}
-                    </button>
-                ))}
-            </div>
         </div>
         <p className="mt-8 max-w-xl text-lg text-foreground/60 font-light">
           A collection of {galleryPhotos.length} frames from our signature expeditions — the fleet, the crews, and the unforgettable journeys.
