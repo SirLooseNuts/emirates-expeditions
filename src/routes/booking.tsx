@@ -51,14 +51,14 @@ Guests: ${guests}
 Message: ${message}`;
 
     const encodedMessage = encodeURIComponent(whatsappMessage);
-    const whatsappUrl = `https://wa.me/919074390973?text=${encodedMessage}`;
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=919074390973&text=${encodedMessage}`;
 
     toast.success("Redirecting to WhatsApp...", {
       description: "Opening WhatsApp to send your request.",
     });
     
-    // Using location.href instead of window.open to ensure it works reliably on mobile and avoids popup blockers
-    window.location.href = whatsappUrl;
+    // Open in a new tab using the api.whatsapp.com deep link
+    window.open(whatsappUrl, "_blank");
     
     (e.target as HTMLFormElement).reset();
     setSubmitting(false);
