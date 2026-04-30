@@ -40,7 +40,9 @@ function BookingPage() {
 
     const tourTitle = tours.find((t) => t.slug === tourSlug)?.title || (tourSlug === "custom" ? "Custom / bespoke itinerary" : tourSlug || "N/A");
 
-    const whatsappMessage = `*New Quote Request*
+    const whatsappMessage = `Welcome To Emirates Expeditions
+
+*New Quote Request*
 Name: ${name}
 Email: ${email}
 Phone: ${phone}
