@@ -22,9 +22,18 @@ export const Route = createFileRoute("/")({
 });
 
 const partners = [
-  "Komban", "Oneness", "Shylock", "Daivik",
-  "Madrak", "NORWAY", "Bigbro", "Platinum",
-  "Squadron", "Godfather", "Zero", "Squirrel",
+  { name: "Komban", url: "https://www.instagram.com/komban_holidays_official/" },
+  { name: "Oneness", url: "https://www.instagram.com/onenesstravels/" },
+  { name: "Shylock", url: "https://www.instagram.com/shylock_holidays_official/" },
+  { name: "Daivik", url: "https://www.instagram.com/daivik_holidays_official/" },
+  { name: "Madrak", url: "https://www.instagram.com/madrak_travel._experts_/" },
+  { name: "NORWAY", url: "https://www.instagram.com/norway_travel_premium/" },
+  { name: "Bigbro", url: "https://www.instagram.com/bigbro_travelhub_official/" },
+  { name: "Platinum", url: "https://www.instagram.com/platinum_holidays_official/" },
+  { name: "Squadron", url: "https://www.instagram.com/squadron_travel_hub/" },
+  { name: "Godfather", url: "https://www.instagram.com/godfather_holidays_official/" },
+  { name: "Zero", url: "https://www.instagram.com/zero_expeditions/" },
+  { name: "Squirrel", url: "https://www.instagram.com/squirrel_trails/" },
 ];
 
 function Home() {
@@ -188,8 +197,11 @@ function Home() {
             className="group/bento mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
           >
             {partners.map((p) => (
-              <div 
-                key={p} 
+              <a 
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                key={p.name} 
                 className="relative flex h-32 items-center justify-center rounded-sm bg-border/40 px-4 text-center font-display text-xl tracking-widest text-foreground/70 transition-colors hover:text-gold"
               >
                 {/* Border Glow */}
@@ -210,8 +222,8 @@ function Home() {
                   }}
                 />
                 
-                <span className="relative z-20">{p}</span>
-              </div>
+                <span className="relative z-20">{p.name}</span>
+              </a>
             ))}
           </div>
         </div>
