@@ -51,13 +51,13 @@ Guests: ${guests}
 Message: ${message}`;
 
     const encodedMessage = encodeURIComponent(whatsappMessage);
-    const whatsappUrl = `https://api.whatsapp.com/send?phone=919074390973&text=${encodedMessage}`;
+    const whatsappUrl = `https://wa.me/919074390973?text=${encodedMessage}`;
 
     toast.success("Redirecting to WhatsApp...", {
       description: "Opening WhatsApp to send your request.",
     });
     
-    // Open in a new tab using the api.whatsapp.com deep link
+    // Open in a new tab using the wa.me link
     window.open(whatsappUrl, "_blank");
     
     (e.target as HTMLFormElement).reset();
