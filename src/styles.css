@@ -50,7 +50,7 @@
   --popover: oklch(0.16 0.006 90);
   --popover-foreground: oklch(0.97 0.005 90);
 
-  --primary: oklch(0.86 0.18 95);          /* vibrant yellow-gold */
+  --primary: oklch(0.86 0.18 95); /* vibrant yellow-gold */
   --primary-foreground: oklch(0.13 0.005 90);
 
   --secondary: oklch(0.24 0.005 90);
@@ -71,14 +71,19 @@
 
   --gold: oklch(0.86 0.18 95);
   --gold-foreground: oklch(0.13 0.005 90);
-  --sand: oklch(0.90 0.10 95);
-  --ember: oklch(0.65 0.20 50);
+  --sand: oklch(0.9 0.1 95);
+  --ember: oklch(0.65 0.2 50);
 
-  --gradient-hero: linear-gradient(180deg, oklch(0.13 0.005 90 / 0) 0%, oklch(0.13 0.005 90 / 0.55) 55%, oklch(0.13 0.005 90) 100%);
+  --gradient-hero: linear-gradient(
+    180deg,
+    oklch(0.13 0.005 90 / 0) 0%,
+    oklch(0.13 0.005 90 / 0.55) 55%,
+    oklch(0.13 0.005 90) 100%
+  );
   --gradient-gold: linear-gradient(135deg, oklch(0.92 0.16 95) 0%, oklch(0.78 0.18 80) 100%);
-  --gradient-ember: linear-gradient(135deg, oklch(0.65 0.20 50) 0%, oklch(0.45 0.18 30) 100%);
+  --gradient-ember: linear-gradient(135deg, oklch(0.65 0.2 50) 0%, oklch(0.45 0.18 30) 100%);
 
-  --shadow-glow: 0 0 60px oklch(0.86 0.18 95 / 0.30);
+  --shadow-glow: 0 0 60px oklch(0.86 0.18 95 / 0.3);
   --shadow-elegant: 0 30px 80px -20px oklch(0 0 0 / 0.7);
 }
 
@@ -101,7 +106,10 @@
       radial-gradient(ellipse at bottom, oklch(0.18 0.02 90 / 0.4), transparent 60%);
   }
 
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-family: var(--font-display);
     letter-spacing: 0.005em;
     font-weight: 400;
@@ -110,16 +118,24 @@
 }
 
 @layer utilities {
-  .text-gold { color: var(--gold); }
-  .bg-gold { background-color: var(--gold); }
+  .text-gold {
+    color: var(--gold);
+  }
+  .bg-gold {
+    background-color: var(--gold);
+  }
   .gradient-gold-text {
     background: var(--gradient-gold);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
-  .shadow-glow { box-shadow: var(--shadow-glow); }
-  .shadow-elegant { box-shadow: var(--shadow-elegant); }
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  .shadow-elegant {
+    box-shadow: var(--shadow-elegant);
+  }
 
   .eyebrow {
     font-family: var(--font-mono);
@@ -134,8 +150,12 @@
   }
 
   @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
   }
 
   .grain::before {
@@ -157,7 +177,11 @@
   }
 
   @keyframes marquee-cards {
-    from { transform: translateX(0); }
-    to { transform: translateX(calc(-100% - 1.5rem)); }
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - 1.5rem));
+    }
   }
 }

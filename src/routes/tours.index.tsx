@@ -3,15 +3,15 @@ import { tours } from "@/data/tours";
 import { TourCard } from "@/components/TourCard";
 import * as Tabs from "@radix-ui/react-tabs";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Calendar as CalendarIcon, 
-  Clock, 
-  Map as MapIcon, 
-  Rocket, 
-  Globe, 
-  MapPin, 
+import {
+  Calendar as CalendarIcon,
+  Clock,
+  Map as MapIcon,
+  Rocket,
+  Globe,
+  MapPin,
   Timer,
-  Compass
+  Compass,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -52,14 +52,22 @@ function ToursPage() {
         const title = t.title.toLowerCase();
         const category = t.category.toLowerCase();
         const highlightsString = t.highlights.join(" ").toLowerCase();
-        
+
         // Special mapping for Alleppey/Alappuzha
         if (filterId === "alleppey") {
-          return title.includes("alleppey") || title.includes("alappuzha") || category.includes("waterways");
+          return (
+            title.includes("alleppey") ||
+            title.includes("alappuzha") ||
+            category.includes("waterways")
+          );
         }
-        
+
         // General contain check
-        return title.includes(filterId) || category.includes(filterId) || highlightsString.includes(filterId);
+        return (
+          title.includes(filterId) ||
+          category.includes(filterId) ||
+          highlightsString.includes(filterId)
+        );
       });
     }
   };
@@ -71,17 +79,17 @@ function ToursPage() {
     <div className="pt-32 min-h-screen bg-background text-foreground">
       <section className="mx-auto max-w-7xl px-6 pb-12 pt-16 lg:px-10">
         <motion.div
-           initial={{ opacity: 0, y: 20 }}
-           animate={{ opacity: 1, y: 0 }}
-           transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
         >
           <p className="eyebrow">The Expedition Catalogue</p>
           <h1 className="mt-4 max-w-4xl font-display text-4xl leading-[0.85] tracking-tight sm:text-6xl md:text-8xl uppercase">
             A UNIVERSE OF <br /> <span className="gradient-gold-text">JOURNEYS</span>.
           </h1>
           <p className="mt-8 max-w-xl text-xl text-foreground/70 font-light leading-relaxed">
-            From single-day alpine breaks to five-day cross-state loops. 
-            Select your span and explore our curated expeditions.
+            From single-day alpine breaks to five-day cross-state loops. Select your span and
+            explore our curated expeditions.
           </p>
         </motion.div>
       </section>
@@ -92,20 +100,24 @@ function ToursPage() {
           <div className="flex flex-wrap items-center gap-6 border-b border-white/5 pb-8">
             <button
               onClick={() => setFilterMode("duration")}
-              className={`flex items-center gap-3 font-mono text-[10px] font-bold uppercase tracking-[0.3em] transition-all ${filterMode === "duration" ? 'text-gold' : 'text-muted-foreground hover:text-white'}`}
+              className={`flex items-center gap-3 font-mono text-[10px] font-bold uppercase tracking-[0.3em] transition-all ${filterMode === "duration" ? "text-gold" : "text-muted-foreground hover:text-white"}`}
             >
               <Timer size={14} /> Explorer By Span
             </button>
             <div className="hidden sm:block h-4 w-px bg-white/10" />
             <button
               onClick={() => setFilterMode("location")}
-              className={`flex items-center gap-3 font-mono text-[10px] font-bold uppercase tracking-[0.3em] transition-all ${filterMode === "location" ? 'text-gold' : 'text-muted-foreground hover:text-white'}`}
+              className={`flex items-center gap-3 font-mono text-[10px] font-bold uppercase tracking-[0.3em] transition-all ${filterMode === "location" ? "text-gold" : "text-muted-foreground hover:text-white"}`}
             >
               <Compass size={14} /> Explore By Destination
             </button>
           </div>
 
-          <Tabs.Root key={filterMode} defaultValue={defaultTab} className="flex flex-col gap-12 overflow-x-hidden">
+          <Tabs.Root
+            key={filterMode}
+            defaultValue={defaultTab}
+            className="flex flex-col gap-12 overflow-x-hidden"
+          >
             <Tabs.List className="flex flex-wrap gap-2 pb-4">
               {activeTabs.map((d) => (
                 <Tabs.Trigger
@@ -136,7 +148,9 @@ function ToursPage() {
                     </div>
                     {filteredTours(d.id).length === 0 && (
                       <div className="flex h-64 flex-col items-center justify-center rounded-2xl border border-dashed border-white/10 text-muted-foreground">
-                        <p className="font-mono text-xs uppercase tracking-widest">No expeditions found for this criteria</p>
+                        <p className="font-mono text-xs uppercase tracking-widest">
+                          No expeditions found for this criteria
+                        </p>
                       </div>
                     )}
                   </motion.div>
@@ -159,9 +173,8 @@ function ToursPage() {
             </div>
             <div>
               <p className="text-xl text-foreground/70 font-light leading-relaxed">
-                Looking for a specific university loop, devotion circuit, or 
-                corporate retreat? We design fully custom long-haul itineraries 
-                tailored to your group's energy.
+                Looking for a specific university loop, devotion circuit, or corporate retreat? We
+                design fully custom long-haul itineraries tailored to your group's energy.
               </p>
               <a
                 href="/booking"
