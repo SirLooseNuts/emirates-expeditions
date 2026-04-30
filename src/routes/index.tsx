@@ -190,7 +190,7 @@ function Home() {
             {partners.map((p) => (
               <div 
                 key={p} 
-                className="relative flex h-32 items-center justify-center rounded-sm bg-border/40 px-4 text-center font-display text-lg tracking-widest text-foreground/70 transition-colors hover:text-gold"
+                className="relative flex h-32 items-center justify-center rounded-sm bg-border/40 px-4 text-center font-display text-xl tracking-widest text-foreground/70 transition-colors hover:text-gold"
               >
                 {/* Border Glow */}
                 <div 
