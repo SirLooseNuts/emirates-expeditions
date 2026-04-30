@@ -11,7 +11,7 @@ import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 export default defineConfig({
   cloudflare: false,
   tanstackStart: {
-    ssr: false
+    ssr: false,
   },
-  plugins: [ViteImageOptimizer()]
+  plugins: [ViteImageOptimizer()],
 });

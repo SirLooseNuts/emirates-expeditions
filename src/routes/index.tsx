@@ -10,9 +10,17 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Emirates Expedition — Group Tours, School Trips & Expeditions Across South India" },
-      { name: "description", content: "A journey of thousand miles. Group expeditions, school trips, college tours and custom packages across Munnar, Wayanad, Coorg, Goa & beyond." },
+      {
+        name: "description",
+        content:
+          "A journey of thousand miles. Group expeditions, school trips, college tours and custom packages across Munnar, Wayanad, Coorg, Goa & beyond.",
+      },
       { property: "og:title", content: "Emirates Expedition — A Journey of Thousand Miles" },
-      { property: "og:description", content: "Signature touring coaches, expert trip leaders, and unforgettable group adventures across South India." },
+      {
+        property: "og:description",
+        content:
+          "Signature touring coaches, expert trip leaders, and unforgettable group adventures across South India.",
+      },
       { property: "og:image", content: hero },
       { name: "twitter:image", content: hero },
     ],
@@ -21,8 +29,14 @@ export const Route = createFileRoute("/")({
 });
 
 const partners = [
-  "SHIVAGIRI SCHOOL", "GHSS THONNAKKAL", "RIET", "ATTINGAL ITI",
-  "PONGANAD CAMPUS", "SMS GROUP", "AUTOBACS", "KALKI SARANAM",
+  "SHIVAGIRI SCHOOL",
+  "GHSS THONNAKKAL",
+  "RIET",
+  "ATTINGAL ITI",
+  "PONGANAD CAMPUS",
+  "SMS GROUP",
+  "AUTOBACS",
+  "KALKI SARANAM",
 ];
 
 function Home() {
@@ -49,9 +63,8 @@ function Home() {
             <span className="gradient-gold-text">THOUSAND MILES</span>
           </h1>
           <p className="mt-8 max-w-xl text-base leading-relaxed text-foreground/85 sm:text-lg">
-            Group expeditions, school trips, college tours and custom packages
-            across South India — aboard our signature touring coaches, led by
-            seasoned trip captains.
+            Group expeditions, school trips, college tours and custom packages across South India —
+            aboard our signature touring coaches, led by seasoned trip captains.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <Link
@@ -82,7 +95,22 @@ function Home() {
         <div className="marquee-track flex w-max gap-12 whitespace-nowrap font-display text-2xl tracking-widest">
           {Array.from({ length: 2 }).map((_, k) => (
             <div key={k} className="flex gap-12">
-              {["SCHOOL TRIPS", "★", "GROUP EXPEDITIONS", "★", "COLLEGE TOURS", "★", "DEVOTIONAL", "★", "INDUSTRIAL VISITS", "★", "CUSTOM PACKAGES", "★", "FAMILY TOURS", "★"].map((t, i) => (
+              {[
+                "SCHOOL TRIPS",
+                "★",
+                "GROUP EXPEDITIONS",
+                "★",
+                "COLLEGE TOURS",
+                "★",
+                "DEVOTIONAL",
+                "★",
+                "INDUSTRIAL VISITS",
+                "★",
+                "CUSTOM PACKAGES",
+                "★",
+                "FAMILY TOURS",
+                "★",
+              ].map((t, i) => (
                 <span key={`${k}-${i}`}>{t}</span>
               ))}
             </div>
@@ -103,15 +131,27 @@ function Home() {
           </div>
           <div className="lg:col-span-7 lg:pt-4">
             <p className="text-lg leading-relaxed text-foreground/85">
-              Emirates Expedition is a Kerala-based travel collective specialising
-              in large-group journeys — school field trips, college fests,
-              corporate retreats, and devotional tours. We handle the bus, the
-              route, the food, the photos, and the chaos. You bring the energy.
+              Emirates Expedition is a Kerala-based travel collective specialising in large-group
+              journeys — school field trips, college fests, corporate retreats, and devotional
+              tours. We handle the bus, the route, the food, the photos, and the chaos. You bring
+              the energy.
             </p>
             <div className="mt-10 grid gap-8 sm:grid-cols-3">
-              <Pillar icon={<Bus size={20} />} title="Signature coaches" body="Decorated tourist buses built for the long haul." />
-              <Pillar icon={<ShieldCheck size={20} />} title="Safe & licensed" body="Trained drivers, trip captains, full insurance." />
-              <Pillar icon={<Compass size={20} />} title="Crafted routes" body="Hill stations, beaches, and heritage in one loop." />
+              <Pillar
+                icon={<Bus size={20} />}
+                title="Signature coaches"
+                body="Decorated tourist buses built for the long haul."
+              />
+              <Pillar
+                icon={<ShieldCheck size={20} />}
+                title="Safe & licensed"
+                body="Trained drivers, trip captains, full insurance."
+              />
+              <Pillar
+                icon={<Compass size={20} />}
+                title="Crafted routes"
+                body="Hill stations, beaches, and heritage in one loop."
+              />
             </div>
           </div>
         </div>
@@ -127,8 +167,12 @@ function Home() {
                 MOST <span className="gradient-gold-text">DESIRED</span> COLLECTIONS.
               </h2>
             </div>
-            <Link to="/tours" className="group inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-gold">
-              View all <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+            <Link
+              to="/tours"
+              className="group inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-gold"
+            >
+              View all{" "}
+              <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
         </div>
@@ -138,23 +182,26 @@ function Home() {
           <div className="group flex w-max gap-6 px-10">
             {/* The carousel track */}
             <div className="flex animate-marquee gap-6 group-hover:[animation-play-state:paused]">
-              {[1, 2, 3, 4, 5].flatMap((days) => 
-                tours.filter((t) => t.durationInDays === days).slice(0, 2)
-              ).map((t, i) => (
-                <div key={`${t.slug}-${i}`} className="w-[300px] sm:w-[400px]">
-                  <TourCard tour={t} />
-                </div>
-              ))}
+              {[1, 2, 3, 4, 5]
+                .flatMap((days) => tours.filter((t) => t.durationInDays === days).slice(0, 2))
+                .map((t, i) => (
+                  <div key={`${t.slug}-${i}`} className="w-[300px] sm:w-[400px]">
+                    <TourCard tour={t} />
+                  </div>
+                ))}
             </div>
             {/* Duplicate for infinite effect */}
-            <div className="flex animate-marquee gap-6 group-hover:[animation-play-state:paused]" aria-hidden="true">
-              {[1, 2, 3, 4, 5].flatMap((days) => 
-                tours.filter((t) => t.durationInDays === days).slice(0, 2)
-              ).map((t, i) => (
-                <div key={`${t.slug}-${i}-dup`} className="w-[300px] sm:w-[400px]">
-                  <TourCard tour={t} />
-                </div>
-              ))}
+            <div
+              className="flex animate-marquee gap-6 group-hover:[animation-play-state:paused]"
+              aria-hidden="true"
+            >
+              {[1, 2, 3, 4, 5]
+                .flatMap((days) => tours.filter((t) => t.durationInDays === days).slice(0, 2))
+                .map((t, i) => (
+                  <div key={`${t.slug}-${i}-dup`} className="w-[300px] sm:w-[400px]">
+                    <TourCard tour={t} />
+                  </div>
+                ))}
             </div>
           </div>
         </div>
@@ -169,7 +216,10 @@ function Home() {
           </h2>
           <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {partners.map((p) => (
-              <div key={p} className="flex h-20 items-center justify-center rounded-sm border border-border/60 bg-card/40 px-4 text-center font-display text-sm tracking-widest text-foreground/70 transition-colors hover:border-gold/60 hover:text-gold">
+              <div
+                key={p}
+                className="flex h-20 items-center justify-center rounded-sm border border-border/60 bg-card/40 px-4 text-center font-display text-sm tracking-widest text-foreground/70 transition-colors hover:border-gold/60 hover:text-gold"
+              >
                 {p}
               </div>
             ))}
@@ -186,14 +236,26 @@ function Home() {
               FROM THE <span className="gradient-gold-text">ROAD</span>.
             </h2>
           </div>
-          <Link to="/gallery" className="group inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-gold">
-            See more <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+          <Link
+            to="/gallery"
+            className="group inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-gold"
+          >
+            See more{" "}
+            <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
         <div className="mt-12 grid grid-cols-2 gap-3 lg:grid-cols-4">
           {[wildlife, bambooImg, hero, bambooImg].map((src, i) => (
-            <div key={i} className="group relative aspect-square overflow-hidden rounded-sm border border-border/40">
-              <img src={src} alt="Group expedition moment" loading="lazy" className="h-full w-full object-cover transition-transform duration-[1500ms] group-hover:scale-110" />
+            <div
+              key={i}
+              className="group relative aspect-square overflow-hidden rounded-sm border border-border/40"
+            >
+              <img
+                src={src}
+                alt="Group expedition moment"
+                loading="lazy"
+                className="h-full w-full object-cover transition-transform duration-[1500ms] group-hover:scale-110"
+              />
             </div>
           ))}
         </div>
@@ -202,12 +264,13 @@ function Home() {
       {/* TESTIMONIAL */}
       <section className="relative mx-auto max-w-5xl px-6 py-32 text-center lg:px-10">
         <div className="flex justify-center gap-1 text-gold">
-          {Array.from({ length: 5 }).map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
+          {Array.from({ length: 5 }).map((_, i) => (
+            <Star key={i} size={16} fill="currentColor" />
+          ))}
         </div>
         <blockquote className="mt-8 font-display text-2xl leading-tight tracking-wider text-foreground sm:text-4xl lg:text-5xl">
-          "WE'VE TAKEN THREE BATCHES OF STUDENTS WITH EMIRATES EXPEDITION. THE
-          BUSES, THE GUIDES, THE FOOD — EVERYTHING WAS SPOT ON. THE KIDS STILL
-          TALK ABOUT MUNNAR."
+          "WE'VE TAKEN THREE BATCHES OF STUDENTS WITH EMIRATES EXPEDITION. THE BUSES, THE GUIDES,
+          THE FOOD — EVERYTHING WAS SPOT ON. THE KIDS STILL TALK ABOUT MUNNAR."
         </blockquote>
         <p className="mt-8 font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">
           — Faculty Coordinator · GHSS Thonnakkal · KTM 3.0
@@ -227,8 +290,8 @@ function Home() {
                 WE'VE GOT YOU.
               </h2>
               <p className="mt-4 max-w-md text-foreground/80">
-                Tell us your group size, dates, and dream destination. We'll
-                build the route, book the coach, and run the trip end-to-end.
+                Tell us your group size, dates, and dream destination. We'll build the route, book
+                the coach, and run the trip end-to-end.
               </p>
               <div className="mt-6 flex items-center gap-3 font-mono text-sm text-foreground/70">
                 <Users size={16} className="text-gold" />
@@ -236,10 +299,16 @@ function Home() {
               </div>
             </div>
             <div className="flex flex-wrap gap-4 lg:justify-end">
-              <Link to="/booking" className="rounded-sm bg-gold px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-primary-foreground hover:opacity-90">
+              <Link
+                to="/booking"
+                className="rounded-sm bg-gold px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-primary-foreground hover:opacity-90"
+              >
                 Get a Quote
               </Link>
-              <a href="tel:+917012775400" className="rounded-sm border border-foreground/30 px-8 py-4 text-sm font-medium uppercase tracking-[0.2em] hover:border-gold hover:text-gold">
+              <a
+                href="tel:+917012775400"
+                className="rounded-sm border border-foreground/30 px-8 py-4 text-sm font-medium uppercase tracking-[0.2em] hover:border-gold hover:text-gold"
+              >
                 Call +91 70127 75400
               </a>
             </div>
@@ -254,7 +323,9 @@ function Stat({ n, label }: { n: string; label: string }) {
   return (
     <div>
       <div className="font-display text-3xl tracking-wider text-gold sm:text-5xl">{n}</div>
-      <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/70">{label}</div>
+      <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/70">
+        {label}
+      </div>
     </div>
   );
 }
@@ -262,7 +333,9 @@ function Stat({ n, label }: { n: string; label: string }) {
 function Pillar({ icon, title, body }: { icon: React.ReactNode; title: string; body: string }) {
   return (
     <div>
-      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gold text-primary-foreground">{icon}</div>
+      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gold text-primary-foreground">
+        {icon}
+      </div>
       <h3 className="mt-4 font-display text-xl tracking-wider">{title}</h3>
       <p className="mt-2 text-sm text-muted-foreground">{body}</p>
     </div>

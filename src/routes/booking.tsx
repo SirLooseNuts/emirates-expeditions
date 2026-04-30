@@ -12,9 +12,16 @@ export const Route = createFileRoute("/booking")({
   head: () => ({
     meta: [
       { title: "Book Your Group Trip — Emirates Expedition" },
-      { name: "description", content: "Request a quote for school trips, group expeditions, or custom packages. Our team responds the same day." },
+      {
+        name: "description",
+        content:
+          "Request a quote for school trips, group expeditions, or custom packages. Our team responds the same day.",
+      },
       { property: "og:title", content: "Book Your Group Trip — Emirates Expedition" },
-      { property: "og:description", content: "Get a custom quote for your school, college or group expedition." },
+      {
+        property: "og:description",
+        content: "Get a custom quote for your school, college or group expedition.",
+      },
     ],
   }),
   component: BookingPage,
@@ -38,7 +45,9 @@ function BookingPage() {
     const guests = formData.get("guests") || "N/A";
     const message = formData.get("message") || "N/A";
 
-    const tourTitle = tours.find((t) => t.slug === tourSlug)?.title || (tourSlug === "custom" ? "Custom / bespoke itinerary" : tourSlug || "N/A");
+    const tourTitle =
+      tours.find((t) => t.slug === tourSlug)?.title ||
+      (tourSlug === "custom" ? "Custom / bespoke itinerary" : tourSlug || "N/A");
 
     const whatsappMessage = `*New Quote Request*
 Name: ${name}
@@ -56,10 +65,10 @@ Message: ${message}`;
     toast.success("Redirecting to WhatsApp...", {
       description: "Opening WhatsApp to send your request.",
     });
-    
+
     // Open in a new tab using the api.whatsapp.com deep link
     window.open(whatsappUrl, "_blank");
-    
+
     (e.target as HTMLFormElement).reset();
     setSubmitting(false);
   };
@@ -75,18 +84,33 @@ Message: ${message}`;
               REQUEST <span className="gradient-gold-text">A QUOTE</span>.
             </h1>
             <p className="mt-6 text-lg text-foreground/80">
-              Tell us about your group — school, college, family, or custom — and
-              we'll send back a tailored proposal the same day.
+              Tell us about your group — school, college, family, or custom — and we'll send back a
+              tailored proposal the same day.
             </p>
 
             <div className="mt-12 space-y-6 border-l border-gold/40 pl-6">
-              <Step n="01" t="Share your trip" b="Group size, destinations, dates — quick form or WhatsApp." />
-              <Step n="02" t="Get your quote" b="Custom itinerary + transparent pricing within 24 hours." />
-              <Step n="03" t="Hit the road" b="We handle the coach, the guide, the food, the photos." />
+              <Step
+                n="01"
+                t="Share your trip"
+                b="Group size, destinations, dates — quick form or WhatsApp."
+              />
+              <Step
+                n="02"
+                t="Get your quote"
+                b="Custom itinerary + transparent pricing within 24 hours."
+              />
+              <Step
+                n="03"
+                t="Hit the road"
+                b="We handle the coach, the guide, the food, the photos."
+              />
             </div>
           </div>
 
-          <form onSubmit={onSubmit} className="space-y-6 rounded-sm border border-border/60 bg-card/60 p-8 lg:col-span-7 lg:p-12">
+          <form
+            onSubmit={onSubmit}
+            className="space-y-6 rounded-sm border border-border/60 bg-card/60 p-8 lg:col-span-7 lg:p-12"
+          >
             <div className="grid gap-6 sm:grid-cols-2">
               <Field label="Full name" name="name" required />
               <Field label="Email" name="email" type="email" required />
@@ -95,7 +119,9 @@ Message: ${message}`;
             </div>
 
             <div>
-              <label className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Package</label>
+              <label className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+                Package
+              </label>
               <select
                 name="tour"
                 defaultValue={preselected ?? ""}
@@ -103,7 +129,9 @@ Message: ${message}`;
               >
                 <option value="">Select a package…</option>
                 {tours.map((t) => (
-                  <option key={t.slug} value={t.slug}>{t.title}</option>
+                  <option key={t.slug} value={t.slug}>
+                    {t.title}
+                  </option>
                 ))}
                 <option value="custom">Custom / bespoke itinerary</option>
               </select>
@@ -115,7 +143,9 @@ Message: ${message}`;
             </div>
 
             <div>
-              <label className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Tell us more</label>
+              <label className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+                Tell us more
+              </label>
               <textarea
                 name="message"
                 rows={4}
@@ -141,10 +171,17 @@ Message: ${message}`;
   );
 }
 
-function Field({ label, name, type = "text", ...rest }: React.InputHTMLAttributes<HTMLInputElement> & { label: string; name: string }) {
+function Field({
+  label,
+  name,
+  type = "text",
+  ...rest
+}: React.InputHTMLAttributes<HTMLInputElement> & { label: string; name: string }) {
   return (
     <div>
-      <label className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">{label}</label>
+      <label className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+        {label}
+      </label>
       <input
         name={name}
         type={type}
