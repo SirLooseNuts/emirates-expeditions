@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Moon, Sun } from "lucide-react";
 import logo from "@/assets/logo-main.png";
+import { useTheme } from "./ThemeProvider";
 
 const links = [
   { to: "/", label: "Home" },
@@ -14,6 +15,7 @@ const links = [
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -57,6 +59,13 @@ export function SiteHeader() {
               {l.label}
             </Link>
           ))}
+          <button
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="p-2 ml-2 rounded-full border border-border/40 bg-background/50 hover:bg-background/80 transition-colors"
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+          </button>
           <Link
             to="/booking"
             className="rounded-sm bg-gold px-5 py-2 text-xs font-bold uppercase tracking-[0.2em] text-primary-foreground transition-all hover:opacity-90"
@@ -89,6 +98,18 @@ export function SiteHeader() {
                 {l.label}
               </Link>
             ))}
+            <div className="mt-4 flex items-center justify-between">
+              <button
+                onClick={() => {
+                  setTheme(theme === "dark" ? "light" : "dark");
+                  setOpen(false);
+                }}
+                className="flex items-center gap-3 py-2 text-sm tracking-wide text-foreground"
+              >
+                {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+                {theme === "dark" ? "Light Mode" : "Dark Mode"}
+              </button>
+            </div>
             <Link
               to="/booking"
               onClick={() => setOpen(false)}

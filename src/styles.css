@@ -40,6 +40,52 @@
 :root {
   --radius: 0.25rem;
 
+  /* Light Theme */
+  --background: oklch(0.98 0.01 90);
+  --foreground: oklch(0.15 0.01 90);
+
+  --card: oklch(0.99 0.01 90);
+  --card-foreground: oklch(0.15 0.01 90);
+
+  --popover: oklch(0.99 0.01 90);
+  --popover-foreground: oklch(0.15 0.01 90);
+
+  --primary: oklch(0.86 0.18 95);          /* vibrant yellow-gold */
+  --primary-foreground: oklch(0.13 0.005 90);
+
+  --secondary: oklch(0.94 0.01 90);
+  --secondary-foreground: oklch(0.15 0.01 90);
+
+  --muted: oklch(0.92 0.01 90);
+  --muted-foreground: oklch(0.45 0.01 90);
+
+  --accent: oklch(0.86 0.18 95);
+  --accent-foreground: oklch(0.13 0.005 90);
+
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.98 0.01 80);
+
+  --border: oklch(0.90 0.01 90);
+  --input: oklch(0.90 0.01 90);
+  --ring: oklch(0.86 0.18 95);
+
+  --gold: oklch(0.86 0.18 95);
+  --gold-foreground: oklch(0.13 0.005 90);
+  --sand: oklch(0.90 0.10 95);
+  --ember: oklch(0.65 0.20 50);
+
+  --gradient-hero: linear-gradient(180deg, oklch(0.98 0.01 90 / 0) 0%, oklch(0.98 0.01 90 / 0.55) 55%, oklch(0.98 0.01 90) 100%);
+  --gradient-gold: linear-gradient(135deg, oklch(0.92 0.16 95) 0%, oklch(0.78 0.18 80) 100%);
+  --gradient-ember: linear-gradient(135deg, oklch(0.65 0.20 50) 0%, oklch(0.45 0.18 30) 100%);
+
+  --shadow-glow: 0 0 60px oklch(0.86 0.18 95 / 0.30);
+  --shadow-elegant: 0 30px 80px -20px oklch(0 0 0 / 0.1);
+  
+  --bg-radial-top: oklch(0.95 0.02 95 / 0.5);
+  --bg-radial-bottom: oklch(0.93 0.02 90 / 0.5);
+}
+
+.dark {
   /* Premium adventure — deep blacks + vibrant yellow */
   --background: oklch(0.13 0.005 90);
   --foreground: oklch(0.97 0.005 90);
@@ -69,17 +115,11 @@
   --input: oklch(0.24 0.005 90);
   --ring: oklch(0.86 0.18 95);
 
-  --gold: oklch(0.86 0.18 95);
-  --gold-foreground: oklch(0.13 0.005 90);
-  --sand: oklch(0.90 0.10 95);
-  --ember: oklch(0.65 0.20 50);
-
   --gradient-hero: linear-gradient(180deg, oklch(0.13 0.005 90 / 0) 0%, oklch(0.13 0.005 90 / 0.55) 55%, oklch(0.13 0.005 90) 100%);
-  --gradient-gold: linear-gradient(135deg, oklch(0.92 0.16 95) 0%, oklch(0.78 0.18 80) 100%);
-  --gradient-ember: linear-gradient(135deg, oklch(0.65 0.20 50) 0%, oklch(0.45 0.18 30) 100%);
-
-  --shadow-glow: 0 0 60px oklch(0.86 0.18 95 / 0.30);
   --shadow-elegant: 0 30px 80px -20px oklch(0 0 0 / 0.7);
+
+  --bg-radial-top: oklch(0.22 0.03 95 / 0.35);
+  --bg-radial-bottom: oklch(0.18 0.02 90 / 0.4);
 }
 
 @layer base {
@@ -97,8 +137,8 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     background-image:
-      radial-gradient(ellipse at top, oklch(0.22 0.03 95 / 0.35), transparent 60%),
-      radial-gradient(ellipse at bottom, oklch(0.18 0.02 90 / 0.4), transparent 60%);
+      radial-gradient(ellipse at top, var(--bg-radial-top), transparent 60%),
+      radial-gradient(ellipse at bottom, var(--bg-radial-bottom), transparent 60%);
   }
 
   h1, h2, h3, h4 {
