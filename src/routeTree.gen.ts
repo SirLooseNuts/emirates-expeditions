@@ -16,7 +16,6 @@ import { Route as BookingRouteImport } from './routes/booking'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ToursIndexRouteImport } from './routes/tours.index'
-import { Route as ToursSlugRouteImport } from './routes/tours.$slug'
 
 const ToursRoute = ToursRouteImport.update({
   id: '/tours',
@@ -53,11 +52,6 @@ const ToursIndexRoute = ToursIndexRouteImport.update({
   path: '/',
   getParentRoute: () => ToursRoute,
 } as any)
-const ToursSlugRoute = ToursSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => ToursRoute,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -66,7 +60,6 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/tours': typeof ToursRouteWithChildren
-  '/tours/$slug': typeof ToursSlugRoute
   '/tours/': typeof ToursIndexRoute
 }
 export interface FileRoutesByTo {
@@ -75,7 +68,6 @@ export interface FileRoutesByTo {
   '/booking': typeof BookingRoute
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
-  '/tours/$slug': typeof ToursSlugRoute
   '/tours': typeof ToursIndexRoute
 }
 export interface FileRoutesById {
@@ -86,7 +78,6 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/tours': typeof ToursRouteWithChildren
-  '/tours/$slug': typeof ToursSlugRoute
   '/tours/': typeof ToursIndexRoute
 }
 export interface FileRouteTypes {
@@ -98,17 +89,9 @@ export interface FileRouteTypes {
     | '/contact'
     | '/gallery'
     | '/tours'
-    | '/tours/$slug'
     | '/tours/'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/about'
-    | '/booking'
-    | '/contact'
-    | '/gallery'
-    | '/tours/$slug'
-    | '/tours'
+  to: '/' | '/about' | '/booking' | '/contact' | '/gallery' | '/tours'
   id:
     | '__root__'
     | '/'
@@ -117,7 +100,6 @@ export interface FileRouteTypes {
     | '/contact'
     | '/gallery'
     | '/tours'
-    | '/tours/$slug'
     | '/tours/'
   fileRoutesById: FileRoutesById
 }
@@ -181,23 +163,14 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ToursIndexRouteImport
       parentRoute: typeof ToursRoute
     }
-    '/tours/$slug': {
-      id: '/tours/$slug'
-      path: '/$slug'
-      fullPath: '/tours/$slug'
-      preLoaderRoute: typeof ToursSlugRouteImport
-      parentRoute: typeof ToursRoute
-    }
   }
 }
 
 interface ToursRouteChildren {
-  ToursSlugRoute: typeof ToursSlugRoute
   ToursIndexRoute: typeof ToursIndexRoute
 }
 
 const ToursRouteChildren: ToursRouteChildren = {
-  ToursSlugRoute: ToursSlugRoute,
   ToursIndexRoute: ToursIndexRoute,
 }
 
