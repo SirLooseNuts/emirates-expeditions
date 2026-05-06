@@ -74,7 +74,7 @@ Message: ${message}`;
         <div className="grid gap-16 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <p className="eyebrow">Book a Trip</p>
-            <h1 className="mt-4 font-display text-5xl leading-[0.95] tracking-wider sm:text-7xl">
+            <h1 className="mt-4 font-display text-4xl leading-[0.95] tracking-wider sm:text-5xl md:text-7xl">
               REQUEST <span className="gradient-gold-text">A QUOTE</span>.
             </h1>
             <p className="mt-6 text-lg text-foreground/80">
@@ -89,7 +89,7 @@ Message: ${message}`;
             </div>
           </div>
 
-          <form onSubmit={onSubmit} className="space-y-6 rounded-sm border border-border/60 bg-card/60 p-8 lg:col-span-7 lg:p-12">
+          <form onSubmit={onSubmit} className="space-y-6 rounded-sm border border-border/60 bg-card/60 p-6 sm:p-8 lg:col-span-7 lg:p-12">
             <div className="grid gap-6 sm:grid-cols-2">
               <Field label="Full name" name="name" required />
               <Field label="Email" name="email" type="email" required />
@@ -104,7 +104,7 @@ Message: ${message}`;
               <select
                 name="tour"
                 defaultValue={preselected ?? ""}
-                className="mt-2 w-full rounded-sm border border-border bg-background px-4 py-3 text-foreground focus:border-gold focus:outline-none"
+                className="mt-2 min-h-[48px] w-full rounded-sm border border-border bg-background px-4 py-3 text-foreground focus:border-gold focus:outline-none"
               >
                 <option value="">Select a package…</option>
                 {tours.map((t) => (
@@ -125,14 +125,14 @@ Message: ${message}`;
                 name="message"
                 rows={4}
                 placeholder="Anniversary, dietary notes, must-have moments…"
-                className="mt-2 w-full rounded-sm border border-border bg-background px-4 py-3 text-foreground focus:border-gold focus:outline-none"
+                className="mt-2 min-h-[48px] w-full rounded-sm border border-border bg-background px-4 py-3 text-foreground focus:border-gold focus:outline-none"
               />
             </div>
 
             <button
               type="submit"
               disabled={submitting}
-              className="w-full rounded-sm bg-gold py-4 text-sm font-bold uppercase tracking-[0.2em] text-primary-foreground transition-all hover:opacity-90 disabled:opacity-60"
+              className="w-full min-h-[48px] rounded-sm bg-gold py-4 text-sm font-bold uppercase tracking-[0.2em] text-primary-foreground transition-all hover:opacity-90 disabled:opacity-60"
             >
               {submitting ? "Sending…" : "Submit Request"}
             </button>
@@ -154,7 +154,7 @@ function Field({ label, name, type = "text", ...rest }: React.InputHTMLAttribute
         name={name}
         type={type}
         {...rest}
-        className="mt-2 w-full rounded-sm border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground/60 focus:border-gold focus:outline-none"
+        className="mt-2 min-h-[48px] w-full rounded-sm border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground/60 focus:border-gold focus:outline-none"
       />
     </div>
   );

@@ -22,7 +22,7 @@ function AboutPage() {
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-20">
           <div className="lg:col-span-6">
             <p className="eyebrow">Our Story</p>
-            <h1 className="mt-4 font-display text-5xl leading-[0.95] tracking-wider sm:text-8xl">
+            <h1 className="mt-4 font-display text-4xl leading-[0.95] tracking-wider sm:text-5xl md:text-8xl">
               BUILT FOR <span className="gradient-gold-text">THE GROUP</span>.
             </h1>
             <div className="mt-10 space-y-6 text-lg leading-relaxed text-foreground/85">
@@ -50,7 +50,7 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="border-t border-border/60 bg-card/30 py-24">
+      <section className="border-t border-border/60 bg-card/30 py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <p className="eyebrow">By the numbers</p>
           <div className="mt-10 grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
@@ -61,7 +61,7 @@ function AboutPage() {
               ["4.9★", "Group rating"],
             ].map(([n, l]) => (
               <div key={l}>
-                <div className="font-display text-5xl tracking-wider text-gold lg:text-7xl">{n}</div>
+                <div className="font-display text-4xl tracking-wider text-gold sm:text-5xl lg:text-7xl">{n}</div>
                 <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">{l}</div>
               </div>
             ))}
@@ -69,9 +69,9 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-6 py-32 lg:px-10">
+      <section className="mx-auto max-w-5xl px-6 py-16 sm:py-32 lg:px-10">
         <p className="eyebrow">What we do</p>
-        <h2 className="mt-4 font-display text-4xl leading-tight tracking-wider sm:text-6xl">
+        <h2 className="mt-4 font-display text-3xl leading-tight tracking-wider sm:text-4xl md:text-6xl">
           SEVEN KINDS OF <span className="gradient-gold-text">JOURNEY</span>.
         </h2>
         <div className="mt-16 space-y-12">

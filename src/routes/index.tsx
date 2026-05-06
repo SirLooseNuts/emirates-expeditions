@@ -66,9 +66,9 @@ function Home() {
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
         <div className="absolute inset-0 bg-background/40" />
 
-        <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-end px-6 pb-24 pt-40 lg:px-10">
+        <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-end px-6 pb-16 pt-32 sm:pb-24 sm:pt-40 lg:px-10">
           <p className="eyebrow">Est. Kerala · India</p>
-          <h1 className="mt-6 max-w-5xl font-display text-5xl leading-[0.95] tracking-wider text-foreground sm:text-8xl lg:text-[10rem]">
+          <h1 className="mt-6 max-w-5xl font-display text-4xl leading-[0.95] tracking-wider text-foreground sm:text-8xl lg:text-[10rem]">
             A JOURNEY OF
             <br />
             <span className="gradient-gold-text">THOUSAND MILES</span>
@@ -81,14 +81,14 @@ function Home() {
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <Link
               to="/tours"
-              className="group inline-flex items-center gap-3 rounded-sm bg-gold px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-primary-foreground transition-all hover:opacity-90"
+              className="group inline-flex min-h-[48px] items-center gap-3 rounded-sm bg-gold px-6 py-4 text-sm font-bold uppercase tracking-[0.2em] text-primary-foreground transition-all hover:opacity-90 sm:px-8"
             >
               Explore Packages
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
               to="/booking"
-              className="inline-flex items-center gap-3 rounded-sm border border-foreground/30 px-8 py-4 text-sm font-medium uppercase tracking-[0.2em] text-foreground transition-all hover:border-gold hover:text-gold"
+              className="inline-flex min-h-[48px] items-center gap-3 rounded-sm border border-foreground/30 px-6 py-4 text-sm font-medium uppercase tracking-[0.2em] text-foreground transition-all hover:border-gold hover:text-gold sm:px-8"
             >
               Plan a Group Trip
             </Link>
@@ -116,7 +116,7 @@ function Home() {
       </section>
 
       {/* INTRO */}
-      <section className="relative mx-auto max-w-7xl px-6 py-32 lg:px-10">
+      <section className="relative mx-auto max-w-7xl px-6 py-16 sm:py-32 lg:px-10">
         <div className="grid gap-16 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <p className="eyebrow">Our Mission</p>
@@ -143,7 +143,7 @@ function Home() {
       </section>
 
       {/* MOST DESIRED COLLECTIONS (Carousel) */}
-      <section className="relative overflow-hidden bg-card/30 py-32">
+      <section className="relative overflow-hidden bg-card/30 py-16 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="flex flex-wrap items-end justify-between gap-6 mb-16">
             <div>
@@ -186,7 +186,7 @@ function Home() {
       </section>
 
       {/* PARTNERS */}
-      <section className="relative border-y border-border/60 bg-background py-20">
+      <section className="relative border-y border-border/60 bg-background py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <h2 className="mt-3 text-center font-display text-2xl tracking-wider sm:text-4xl uppercase">
             OUR TRUSTED <span className="gradient-gold-text">TRAVEL PARTNERS</span>
@@ -230,7 +230,7 @@ function Home() {
       </section>
 
       {/* GALLERY PREVIEW */}
-      <section className="mx-auto max-w-7xl px-6 py-32 lg:px-10">
+      <section className="mx-auto max-w-7xl px-6 py-16 sm:py-32 lg:px-10">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <p className="eyebrow">The Gallery</p>
@@ -252,7 +252,7 @@ function Home() {
       </section>
 
       {/* TESTIMONIAL */}
-      <section className="relative mx-auto max-w-5xl px-6 py-32 text-center lg:px-10">
+      <section className="relative mx-auto max-w-5xl px-6 py-16 text-center sm:py-32 lg:px-10">
         <div className="flex justify-center gap-1 text-gold">
           {Array.from({ length: 5 }).map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
         </div>
@@ -267,7 +267,7 @@ function Home() {
       </section>
 
       {/* CTA */}
-      <section className="relative mx-auto max-w-7xl px-6 pb-32 lg:px-10">
+      <section className="relative mx-auto max-w-7xl px-6 pb-16 sm:pb-32 lg:px-10">
         <div className="relative overflow-hidden rounded-sm border border-gold/40 bg-gradient-to-br from-card via-card to-background p-12 lg:p-20">
           <div className="absolute -right-40 -top-40 h-96 w-96 rounded-full bg-gold/15 blur-3xl" />
           <div className="relative grid gap-10 lg:grid-cols-2 lg:items-center">
@@ -288,10 +288,10 @@ function Home() {
               </div>
             </div>
             <div className="flex flex-wrap gap-4 lg:justify-end">
-              <Link to="/booking" className="rounded-sm bg-gold px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-primary-foreground hover:opacity-90">
+              <Link to="/booking" className="inline-flex min-h-[48px] items-center rounded-sm bg-gold px-6 py-4 text-sm font-bold uppercase tracking-[0.2em] text-primary-foreground hover:opacity-90 sm:px-8">
                 Get a Quote
               </Link>
-              <a href="tel:+917012775400" className="rounded-sm border border-foreground/30 px-8 py-4 text-sm font-medium uppercase tracking-[0.2em] hover:border-gold hover:text-gold">
+              <a href="tel:+917012775400" className="inline-flex min-h-[48px] items-center rounded-sm border border-foreground/30 px-6 py-4 text-sm font-medium uppercase tracking-[0.2em] hover:border-gold hover:text-gold sm:px-8">
                 Call +91 70127 75400
               </a>
             </div>

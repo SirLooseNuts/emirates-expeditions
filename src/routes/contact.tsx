@@ -20,7 +20,7 @@ function ContactPage() {
         <div className="grid gap-16 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <p className="eyebrow">Get in touch</p>
-            <h1 className="mt-4 font-display text-5xl leading-[0.95] tracking-wider sm:text-8xl">
+            <h1 className="mt-4 font-display text-4xl leading-[0.95] tracking-wider sm:text-5xl md:text-8xl">
               CALL US, WE <span className="gradient-gold-text">PICK UP</span>.
             </h1>
             <p className="mt-6 max-w-xl text-lg text-foreground/80">
@@ -43,7 +43,7 @@ function ContactPage() {
                 href="https://www.instagram.com/emirates_expedition_/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 inline-flex items-center gap-2 font-mono text-sm uppercase tracking-[0.2em] text-gold hover:underline"
+                className="mt-3 inline-flex min-h-[48px] items-center gap-2 font-mono text-sm uppercase tracking-[0.2em] text-gold hover:underline"
               >
                 <AtSign size={14} /> @emirates_expedition_ →
               </a>

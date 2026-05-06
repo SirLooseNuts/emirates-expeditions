@@ -131,8 +131,8 @@ function ToursPage() {
         </motion.div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-6 pb-32 lg:px-10">
-        <div className="flex flex-col gap-16">
+      <section className="mx-auto max-w-5xl px-6 pb-16 sm:pb-32 lg:px-10">
+        <div className="flex flex-col gap-10 sm:gap-16">
           {packages.map((pkg, idx) => (
             <motion.div 
               key={idx}
@@ -159,7 +159,7 @@ function ToursPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="border-t border-white/5 py-32 bg-card/20 backdrop-blur-sm">
+      <section className="border-t border-white/5 py-16 sm:py-32 bg-card/20 backdrop-blur-sm">
         <div className="mx-auto max-w-5xl px-6 lg:px-10">
           <div className="grid gap-20 lg:grid-cols-2 items-center">
             <div>
@@ -176,7 +176,7 @@ function ToursPage() {
               </p>
               <a
                 href="/booking"
-                className="mt-10 inline-flex items-center gap-6 rounded-xl bg-gold px-10 py-5 text-sm font-bold uppercase tracking-[0.3em] text-primary-foreground hover:scale-[1.02] shadow-glow-sm transition-all"
+                className="mt-10 inline-flex min-h-[48px] items-center gap-6 rounded-xl bg-gold px-10 py-5 text-sm font-bold uppercase tracking-[0.3em] text-primary-foreground hover:scale-[1.02] shadow-glow-sm transition-all"
               >
                 Request Custom Build
               </a>

@@ -76,7 +76,7 @@ export function SiteHeader() {
 
         <button
           onClick={() => setOpen(!open)}
-          className="lg:hidden text-foreground"
+          className="lg:hidden text-foreground p-2 min-h-[48px] min-w-[48px] flex items-center justify-center"
           aria-label="Toggle menu"
         >
           {open ? <X size={24} /> : <Menu size={24} />}
@@ -91,7 +91,7 @@ export function SiteHeader() {
                 key={l.to}
                 to={l.to}
                 onClick={() => setOpen(false)}
-                className="py-3 text-base font-light tracking-wide border-b border-border/40 last:border-0"
+                className="py-4 min-h-[48px] flex items-center text-base font-light tracking-wide border-b border-border/40 last:border-0"
                 activeProps={{ className: "text-gold" }}
                 activeOptions={{ exact: l.to === "/" }}
               >
@@ -104,7 +104,7 @@ export function SiteHeader() {
                   setTheme(theme === "dark" ? "light" : "dark");
                   setOpen(false);
                 }}
-                className="flex items-center gap-3 py-2 text-sm tracking-wide text-foreground"
+                className="flex items-center gap-3 py-4 min-h-[48px] text-sm tracking-wide text-foreground"
               >
                 {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
                 {theme === "dark" ? "Light Mode" : "Dark Mode"}
@@ -113,7 +113,7 @@ export function SiteHeader() {
             <Link
               to="/booking"
               onClick={() => setOpen(false)}
-              className="mt-4 rounded-sm bg-gold px-5 py-3 text-center text-xs font-bold uppercase tracking-[0.2em] text-primary-foreground"
+              className="mt-4 rounded-sm flex items-center justify-center min-h-[48px] bg-gold px-5 py-4 text-center text-xs font-bold uppercase tracking-[0.2em] text-primary-foreground"
             >
               Book Now
             </Link>

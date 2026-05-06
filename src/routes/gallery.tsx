@@ -57,7 +57,7 @@ function GalleryPage() {
       <section className="mx-auto max-w-7xl px-6 pb-16 pt-16 lg:px-10">
         <p className="eyebrow">The Gallery</p>
         <div className="mt-4 flex flex-col md:flex-row md:items-end justify-between gap-8">
-            <h1 className="max-w-3xl font-display text-5xl leading-[0.95] tracking-wider sm:text-8xl">
+            <h1 className="max-w-3xl font-display text-4xl leading-[0.95] tracking-wider sm:text-5xl md:text-8xl">
             MOMENTS FROM <span className="gradient-gold-text">THE ROAD</span>.
             </h1>
         </div>
@@ -103,7 +103,7 @@ function GalleryPage() {
             <div className="mt-20 flex justify-center">
                 <button
                     onClick={handleLoadMore}
-                    className="group flex flex-col items-center gap-4 transition-all"
+                    className="group flex min-h-[48px] flex-col items-center gap-4 transition-all"
                 >
                     <span className="text-[10px] font-mono uppercase tracking-[0.4em] text-gold/60 group-hover:text-gold">
                         Discover More
@@ -125,14 +125,14 @@ function GalleryPage() {
         {/* Brand Shoutout */}
         <div className="mt-32 rounded-sm border border-gold/40 bg-card/40 p-8 text-center backdrop-blur-md">
           <p className="eyebrow">Follow the journey</p>
-          <p className="mt-3 font-display text-3xl tracking-wider">
+          <p className="mt-3 font-display text-2xl tracking-wider sm:text-3xl">
             @EMIRATES_EXPEDITION_
           </p>
           <a
             href="https://www.instagram.com/emirates_expedition_/"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-6 inline-block rounded-sm bg-gold px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-primary-foreground hover:opacity-90 shadow-glow-sm"
+            className="mt-6 inline-flex min-h-[48px] items-center rounded-sm bg-gold px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-primary-foreground hover:opacity-90 shadow-glow-sm"
           >
             Connect on Instagram
           </a>
