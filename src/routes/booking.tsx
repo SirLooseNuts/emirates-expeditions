@@ -33,6 +33,7 @@ function BookingPage() {
     const email = formData.get("email") || "N/A";
     const phone = formData.get("phone") || "N/A";
     const country = formData.get("country") || "N/A";
+    const location = formData.get("location") || "N/A";
     const tourSlug = formData.get("tour");
     const date = formData.get("date") || "N/A";
     const guests = formData.get("guests") || "N/A";
@@ -46,6 +47,7 @@ Name: ${name}
 Email: ${email}
 Phone: ${phone}
 Country: ${country}
+Location: ${location}
 Package: ${tourTitle}
 Date: ${date}
 Guests: ${guests}
@@ -94,6 +96,8 @@ Message: ${message}`;
               <Field label="Phone / WhatsApp" name="phone" />
               <Field label="Country" name="country" />
             </div>
+
+            <Field label="Location / Pick Up location" name="location" />
 
             <div>
               <label className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Package</label>
