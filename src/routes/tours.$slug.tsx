@@ -14,156 +14,11 @@ import {
   Share2,
   Heart,
   ChevronDown,
-  Info,
-  Palmtree,
-  Landmark,
-  Utensils
+  Info
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
-// Curated high-quality, non-watermarked Unsplash images and dynamic content for locations
-const REGION_DATA: Record<string, {
-  attractions: { name: string; image: string }[];
-  culture: { description: string; image: string };
-  food: { description: string; image: string };
-}> = {
-  "munnar": {
-    attractions: [
-      { name: "Eravikulam National Park", image: "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=800&q=80" },
-      { name: "Tea Estates", image: "https://images.unsplash.com/photo-1622308644420-b0bcbc813083?auto=format&fit=crop&w=800&q=80" },
-      { name: "Mattupetty Dam", image: "https://images.unsplash.com/photo-1605555438848-3608149d5b03?auto=format&fit=crop&w=800&q=80" }
-    ],
-    culture: {
-      description: "A blend of colonial heritage and indigenous tribal culture, Munnar's history is deeply intertwined with the tea plantation industry established by the British.",
-      image: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80"
-    },
-    food: {
-      description: "Authentic Kerala cuisine featuring Puttu and Kadala curry, Appam with stew, and fresh farm-to-table tea blends.",
-      image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80"
-    }
-  },
-  "wayanad": {
-    attractions: [
-      { name: "Edakkal Caves", image: "https://images.unsplash.com/photo-1616055745778-5e580e031eb0?auto=format&fit=crop&w=800&q=80" },
-      { name: "Banasura Sagar Dam", image: "https://images.unsplash.com/photo-1582285186095-2cc08f2e23a3?auto=format&fit=crop&w=800&q=80" },
-      { name: "Chembra Peak", image: "https://images.unsplash.com/photo-1598424268673-89bdce8d28ed?auto=format&fit=crop&w=800&q=80" }
-    ],
-    culture: {
-      description: "Rich in indigenous tribal history and lush folklore. Wayanad is known for its agrarian culture and ancient cave carvings dating back to the Neolithic age.",
-      image: "https://images.unsplash.com/photo-1586940864239-0d29759d57a9?auto=format&fit=crop&w=800&q=80"
-    },
-    food: {
-      description: "Famous for bamboo rice, authentic Malabar Biriyani, and traditional tribal cuisine utilizing wild honey and forest spices.",
-      image: "https://images.unsplash.com/photo-1589302168068-964664d93cb0?auto=format&fit=crop&w=800&q=80"
-    }
-  },
-  "ooty": {
-    attractions: [
-      { name: "Botanical Gardens", image: "https://images.unsplash.com/photo-1636224376402-990471b0db43?auto=format&fit=crop&w=800&q=80" },
-      { name: "Nilgiri Mountain Railway", image: "https://images.unsplash.com/photo-1549487295-8a8b1daae01b?auto=format&fit=crop&w=800&q=80" },
-      { name: "Ooty Lake", image: "https://images.unsplash.com/photo-1627882200251-5ee42813df12?auto=format&fit=crop&w=800&q=80" }
-    ],
-    culture: {
-      description: "The Queen of Hill Stations boasts colonial architecture and the indigenous Toda culture known for their distinct barrel-shaped huts and embroidered shawls.",
-      image: "https://images.unsplash.com/photo-1628131343719-7d04bc5570fa?auto=format&fit=crop&w=800&q=80"
-    },
-    food: {
-      description: "Renowned for home-made chocolates, freshly baked Varkey, hot nilgiri tea, and hearty colonial-era bakes.",
-      image: "https://images.unsplash.com/photo-1511082725450-4cc83da59f77?auto=format&fit=crop&w=800&q=80"
-    }
-  },
-  "kodaikanal": {
-    attractions: [
-      { name: "Kodai Lake", image: "https://images.unsplash.com/photo-1616055745778-5e580e031eb0?auto=format&fit=crop&w=800&q=80" },
-      { name: "Coaker's Walk", image: "https://images.unsplash.com/photo-1582285186095-2cc08f2e23a3?auto=format&fit=crop&w=800&q=80" },
-      { name: "Pillar Rocks", image: "https://images.unsplash.com/photo-1612030225134-927c3fdf109b?auto=format&fit=crop&w=800&q=80" }
-    ],
-    culture: {
-      description: "Known as the Princess of Hill Stations, Kodaikanal has a tranquil, misty vibe with a mix of American colonial history and Tamil heritage.",
-      image: "https://images.unsplash.com/photo-1586940864239-0d29759d57a9?auto=format&fit=crop&w=800&q=80"
-    },
-    food: {
-      description: "Sample locally made artisanal cheeses, mountain honey, homemade chocolates, and traditional Tamil delicacies.",
-      image: "https://images.unsplash.com/photo-1589302168068-964664d93cb0?auto=format&fit=crop&w=800&q=80"
-    }
-  },
-  "coorg": {
-    attractions: [
-      { name: "Abbey Falls", image: "https://images.unsplash.com/photo-1614088924225-b467f5df56f3?auto=format&fit=crop&w=800&q=80" },
-      { name: "Raja's Seat", image: "https://images.unsplash.com/photo-1581452486716-43c391295fc7?auto=format&fit=crop&w=800&q=80" },
-      { name: "Coffee Plantations", image: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=800&q=80" }
-    ],
-    culture: {
-      description: "The Scotland of India is home to the Kodava people, known for their martial traditions, distinct ethnic dress, and legendary hospitality.",
-      image: "https://images.unsplash.com/photo-1542281286-9e0a16bb7366?auto=format&fit=crop&w=800&q=80"
-    },
-    food: {
-      description: "Indulge in authentic Kodava cuisine, particularly Pandi Curry (pork curry), Akki Roti, and freshly brewed local Arabica coffee.",
-      image: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=800&q=80"
-    }
-  },
-  "mysore": {
-    attractions: [
-      { name: "Mysore Palace", image: "https://images.unsplash.com/photo-1600100397608-2c2ecf57f4fc?auto=format&fit=crop&w=800&q=80" },
-      { name: "Chamundi Hill", image: "https://images.unsplash.com/photo-1610014605177-3e6f9f3ef4d1?auto=format&fit=crop&w=800&q=80" },
-      { name: "Brindavan Gardens", image: "https://images.unsplash.com/photo-1582555562768-45cf56ab6120?auto=format&fit=crop&w=800&q=80" }
-    ],
-    culture: {
-      description: "The cultural capital of Karnataka, Mysore is famous for the Dasara festival, intricate silk weaving, and deep-rooted royal Wodeyar heritage.",
-      image: "https://images.unsplash.com/photo-1581452486716-43c391295fc7?auto=format&fit=crop&w=800&q=80"
-    },
-    food: {
-      description: "Mysore Pak (a ghee-rich sweet), traditional Mysore Masala Dosa, and the famous filter coffee.",
-      image: "https://images.unsplash.com/photo-1610192131665-276ceeaec39c?auto=format&fit=crop&w=800&q=80"
-    }
-  },
-  "goa": {
-    attractions: [
-      { name: "Baga Beach", image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80" },
-      { name: "Dudhsagar Falls", image: "https://images.unsplash.com/photo-1531086054817-495c34e06bc8?auto=format&fit=crop&w=800&q=80" },
-      { name: "Basilica of Bom Jesus", image: "https://images.unsplash.com/photo-1605333555234-fc565e317c2a?auto=format&fit=crop&w=800&q=80" }
-    ],
-    culture: {
-      description: "A unique blend of Indian and Portuguese cultures, characterized by its laid-back susegad lifestyle, historic churches, and vibrant festivals.",
-      image: "https://images.unsplash.com/photo-1611086111306-03fefd7d91e8?auto=format&fit=crop&w=800&q=80"
-    },
-    food: {
-      description: "Goan fish curry, Vindaloo, Bebinca, and fresh seafood delicacies heavily influenced by Portuguese flavors.",
-      image: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=800&q=80"
-    }
-  },
-  "alleppey": {
-    attractions: [
-      { name: "Backwaters", image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80" },
-      { name: "Marari Beach", image: "https://images.unsplash.com/photo-1594998797451-b87c71baeb33?auto=format&fit=crop&w=800&q=80" },
-      { name: "Kumarakom Bird Sanctuary", image: "https://images.unsplash.com/photo-1587600747447-0e698886d5e1?auto=format&fit=crop&w=800&q=80" }
-    ],
-    culture: {
-      description: "The Venice of the East, known for its tranquil backwaters, snake boat races, and traditional coir-making industry.",
-      image: "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=800&q=80"
-    },
-    food: {
-      description: "Karimeen Pollichathu (pearl spot fish baked in plantain leaves), Kerala Sadhya, and fresh toddy from local palms.",
-      image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80"
-    }
-  },
-  "default": {
-    attractions: [
-      { name: "Scenic Landmarks", image: "https://images.unsplash.com/photo-1506461883276-594c39bb2400?auto=format&fit=crop&w=800&q=80" },
-      { name: "Nature Trails", image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=80" },
-      { name: "Historic Monuments", image: "https://images.unsplash.com/photo-1533130061792-64b345e4a833?auto=format&fit=crop&w=800&q=80" }
-    ],
-    culture: {
-      description: "Experience the vibrant local heritage, ancient traditions, and warm hospitality that makes this region unique.",
-      image: "https://images.unsplash.com/photo-1533050487297-09b450131914?auto=format&fit=crop&w=800&q=80"
-    },
-    food: {
-      description: "Savor the rich and diverse culinary landscape, featuring local spices and traditional recipes passed down through generations.",
-      image: "https://images.unsplash.com/photo-1589302168068-964664d93cb0?auto=format&fit=crop&w=800&q=80"
-    }
-  }
-};
-
+// Dynamic content utilities
 function getRegionsFromTitle(title: string): string[] {
   const t = title.toLowerCase();
   const foundRegions: string[] = [];
@@ -217,7 +72,6 @@ function TourDetail() {
   }, []);
 
   const regions = getRegionsFromTitle(tour.title);
-  const primaryRegionData = REGION_DATA[regions[0]] || REGION_DATA["default"];
 
   const generateDynamicItinerary = () => {
     return Array.from({ length: tour.durationInDays }).map((_, idx) => {
@@ -478,86 +332,7 @@ function TourDetail() {
         </div>
       </section>
 
-      {/* Dynamic Content Sections: Attractions, Culture, Food */}
-      <section className="bg-card/10 border-b border-white/5 py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          
-          <div className="mb-24">
-            <div className="flex items-center gap-4 mb-10">
-              <div className="p-3 bg-gold/10 rounded-xl">
-                 <Palmtree className="text-gold" size={28} />
-              </div>
-              <h2 className="font-display text-4xl sm:text-5xl uppercase tracking-tight text-white">
-                Top <span className="gradient-gold-text">Attractions</span>
-              </h2>
-            </div>
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {primaryRegionData.attractions.map((attr, idx) => (
-                <div key={idx} className="group relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-card">
-                  <img 
-                    src={attr.image} 
-                    alt={attr.name} 
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" 
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-                  <div className="absolute bottom-0 left-0 p-8 w-full">
-                    <span className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-gold mb-2 block">Highlight</span>
-                    <h3 className="text-2xl font-display uppercase tracking-wider text-white">{attr.name}</h3>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
 
-          <div className="grid gap-16 lg:grid-cols-2">
-            
-            <div className="group relative overflow-hidden rounded-3xl border border-white/10 bg-card/50">
-              <div className="aspect-[16/10] w-full overflow-hidden">
-                <img 
-                  src={primaryRegionData.culture.image} 
-                  alt="Culture" 
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                />
-              </div>
-              <div className="p-10">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="p-3 bg-gold/10 rounded-xl">
-                    <Landmark className="text-gold" size={24} />
-                  </div>
-                  <h3 className="font-display text-3xl uppercase tracking-wider text-white">Local Culture</h3>
-                </div>
-                <p className="text-foreground/70 font-light leading-relaxed text-lg">
-                  {primaryRegionData.culture.description}
-                </p>
-              </div>
-            </div>
-
-            <div className="group relative overflow-hidden rounded-3xl border border-white/10 bg-card/50">
-              <div className="aspect-[16/10] w-full overflow-hidden">
-                <img 
-                  src={primaryRegionData.food.image} 
-                  alt="Food" 
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                />
-              </div>
-              <div className="p-10">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="p-3 bg-gold/10 rounded-xl">
-                    <Utensils className="text-gold" size={24} />
-                  </div>
-                  <h3 className="font-display text-3xl uppercase tracking-wider text-white">Culinary Experience</h3>
-                </div>
-                <p className="text-foreground/70 font-light leading-relaxed text-lg">
-                  {primaryRegionData.food.description}
-                </p>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-      </section>
 
       {/* Provisions & Policy (Inclusions/Exclusions) */}
       <section className="bg-card/30 border-y border-white/5 py-32">
