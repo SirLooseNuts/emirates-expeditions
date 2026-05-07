@@ -207,7 +207,7 @@ function ToursPage() {
               onClick={() => setViewMode("explore")}
               className={`flex items-center gap-3 font-mono text-[10px] font-bold uppercase tracking-[0.3em] transition-all ${viewMode === "explore" ? 'text-gold' : 'text-muted-foreground hover:text-white'}`}
             >
-              <LayoutGrid size={14} /> Explore Detailed
+              <LayoutGrid size={14} /> Explore Places
             </button>
             <div className="hidden sm:block h-4 w-px bg-white/10" />
             <button
@@ -234,7 +234,7 @@ function ToursPage() {
                     onClick={() => setFilterMode("duration")}
                     className={`flex items-center gap-3 font-mono text-[10px] font-bold uppercase tracking-[0.3em] transition-all ${filterMode === "duration" ? 'text-gold' : 'text-muted-foreground hover:text-white'}`}
                   >
-                    <Timer size={14} /> Explore By Span
+                    <Timer size={14} /> Days
                   </button>
                   <div className="hidden sm:block h-4 w-px bg-white/10" />
                   <button
