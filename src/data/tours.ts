@@ -1,5 +1,12 @@
-
 // Core Assets - Using requested names from gallery
+import munnar_cinematic from "@/assets/munnar_cinematic.png";
+import alleppey_cinematic from "@/assets/alleppey_cinematic.png";
+import athirapally_cinematic from "@/assets/athirapally_cinematic.png";
+import default_cinematic from "@/assets/default_cinematic.png";
+import goa_cinematic from "@/assets/goa_cinematic.png";
+import misty_mountains_cinematic from "@/assets/misty_mountains_cinematic.png";
+import mysore_cinematic from "@/assets/mysore_cinematic.png";
+import wonderla_cinematic from "@/assets/wonderla_cinematic.png";
 import wayanad1 from "@/assets/tour-wayanad-wildlife.png";
 import marayoor1 from "@/assets/tour-marayoor.png";
 import munnar1 from "@/assets/tour-munnar-tea.png";

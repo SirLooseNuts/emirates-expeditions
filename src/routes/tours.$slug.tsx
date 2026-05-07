@@ -91,7 +91,7 @@ function TourDetail() {
     });
   };
 
-  const itinerary = tour.itinerary[0]?.title.toLowerCase().includes("best spots") 
+  const itinerary = tour.itinerary && tour.itinerary[0] && tour.itinerary[0].title?.toLowerCase().includes("best spots") 
     ? generateDynamicItinerary() 
     : tour.itinerary;
 
@@ -429,3 +429,4 @@ function TourDetail() {
     </div>
   );
 }
+
