@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useRef, useEffect } from "react";
+import SplashCursor from "@/components/SplashCursor";
 import hero from "@/assets/hero-world-landmarks.png";
 import bambooImg from "@/assets/group-bamboo-forest.jpg";
 import wildlife from "@/assets/group-wildlife-sanctuary.webp";
@@ -61,77 +61,20 @@ const partners = [
 ];
 
 function Home() {
-  const partnersRef = useRef<HTMLDivElement>(null);
-  const mousePos = useRef({ 
-    coreX: 0, coreY: 0, 
-    midX: 0, midY: 0, 
-    tailX: 0, tailY: 0,
-    targetX: 0, targetY: 0, 
-    hasMoved: false 
-  });
-  const hue = useRef(51);
 
-  useEffect(() => {
-    let animationFrameId: number;
-    let lastTime = performance.now();
-
-    const renderLoop = (time: number) => {
-      const dt = time - lastTime;
-      lastTime = time;
-
-      if (mousePos.current.hasMoved) {
-        // Lerp for slime effect (3 chained tracking points)
-        mousePos.current.coreX += (mousePos.current.targetX - mousePos.current.coreX) * 0.2;
-        mousePos.current.coreY += (mousePos.current.targetY - mousePos.current.coreY) * 0.2;
-
-        mousePos.current.midX += (mousePos.current.coreX - mousePos.current.midX) * 0.12;
-        mousePos.current.midY += (mousePos.current.coreY - mousePos.current.midY) * 0.12;
-
-        mousePos.current.tailX += (mousePos.current.midX - mousePos.current.tailX) * 0.06;
-        mousePos.current.tailY += (mousePos.current.midY - mousePos.current.tailY) * 0.06;
-        
-        // Cycle hue randomly through 12 million colors
-        hue.current = (hue.current + dt * 0.05) % 360;
-
-        if (partnersRef.current) {
-          const cards = partnersRef.current.querySelectorAll('.partner-card');
-          for (const card of cards) {
-            if (card instanceof HTMLElement) {
-              const rect = card.getBoundingClientRect();
-              
-              card.style.setProperty("--core-x", `${mousePos.current.coreX - rect.left}px`);
-              card.style.setProperty("--core-y", `${mousePos.current.coreY - rect.top}px`);
-              card.style.setProperty("--mid-x", `${mousePos.current.midX - rect.left}px`);
-              card.style.setProperty("--mid-y", `${mousePos.current.midY - rect.top}px`);
-              card.style.setProperty("--tail-x", `${mousePos.current.tailX - rect.left}px`);
-              card.style.setProperty("--tail-y", `${mousePos.current.tailY - rect.top}px`);
-              card.style.setProperty("--glow-hue", `${hue.current}`);
-            }
-          }
-        }
-      }
-      animationFrameId = requestAnimationFrame(renderLoop);
-    };
-
-    animationFrameId = requestAnimationFrame(renderLoop);
-    return () => cancelAnimationFrame(animationFrameId);
-  }, []);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    mousePos.current.targetX = e.clientX;
-    mousePos.current.targetY = e.clientY;
-    if (!mousePos.current.hasMoved) {
-      mousePos.current.coreX = e.clientX;
-      mousePos.current.coreY = e.clientY;
-      mousePos.current.midX = e.clientX;
-      mousePos.current.midY = e.clientY;
-      mousePos.current.tailX = e.clientX;
-      mousePos.current.tailY = e.clientY;
-      mousePos.current.hasMoved = true;
-    }
-  };
   return (
     <>
+      <SplashCursor
+        DENSITY_DISSIPATION={2}
+        VELOCITY_DISSIPATION={9}
+        PRESSURE={0.05}
+        CURL={17}
+        SPLAT_RADIUS={0.13}
+        SPLAT_FORCE={2000}
+        COLOR_UPDATE_SPEED={30}
+        SHADING={false}
+        RAINBOW_MODE
+      />
       {/* HERO */}
       <section className="relative min-h-screen w-full overflow-hidden">
         <img
@@ -272,8 +215,6 @@ function Home() {
           </h2>
         </div>
         <div 
-          ref={partnersRef} 
-          onMouseMove={handleMouseMove} 
           className="group/bento mt-12 flex flex-col gap-6 overflow-hidden"
         >
           {Array.from({ length: 4 }).map((_, rowIndex) => {
@@ -293,29 +234,7 @@ function Home() {
                           key={p.name} 
                           className="partner-card relative flex h-32 w-64 shrink-0 items-center justify-center rounded-sm bg-border/40 px-4 text-center font-display text-xl tracking-widest text-foreground/70 transition-colors hover:text-gold"
                         >
-                          {/* Border Glow */}
-                          <div 
-                            className="pointer-events-none absolute -inset-px rounded-sm opacity-0 transition-opacity duration-300 group-hover/bento:opacity-100"
-                            style={{
-                              background: `
-                                radial-gradient(90px circle at var(--core-x) var(--core-y), hsla(var(--glow-hue, 51), 100%, 65%, 0.9), transparent 100%),
-                                radial-gradient(45px circle at var(--tail-x) var(--tail-y), hsla(calc(var(--glow-hue, 51) + 60), 100%, 55%, 0.7), transparent 100%)
-                              `,
-                            }}
-                          />
-                          {/* Inner background */}
-                          <div className="absolute inset-[1px] z-0 rounded-sm bg-[#09090b]" />
-                          
-                          {/* Inner Glow */}
-                          <div 
-                            className="pointer-events-none absolute inset-[1px] z-10 rounded-sm opacity-0 transition-opacity duration-300 group-hover/bento:opacity-100"
-                            style={{
-                              background: `
-                                radial-gradient(90px circle at var(--core-x) var(--core-y), hsla(var(--glow-hue, 51), 100%, 65%, 0.3), transparent 100%),
-                                radial-gradient(45px circle at var(--tail-x) var(--tail-y), hsla(calc(var(--glow-hue, 51) + 60), 100%, 55%, 0.2), transparent 100%)
-                              `,
-                            }}
-                          />
+
                           
                           <span className="relative z-20">{p.name}</span>
                         </a>
@@ -331,29 +250,7 @@ function Home() {
                           key={`${p.name}-dup`} 
                           className="partner-card relative flex h-32 w-64 shrink-0 items-center justify-center rounded-sm bg-border/40 px-4 text-center font-display text-xl tracking-widest text-foreground/70 transition-colors hover:text-gold"
                         >
-                          {/* Border Glow */}
-                          <div 
-                            className="pointer-events-none absolute -inset-px rounded-sm opacity-0 transition-opacity duration-300 group-hover/bento:opacity-100"
-                            style={{
-                              background: `
-                                radial-gradient(90px circle at var(--core-x) var(--core-y), hsla(var(--glow-hue, 51), 100%, 65%, 0.9), transparent 100%),
-                                radial-gradient(45px circle at var(--tail-x) var(--tail-y), hsla(calc(var(--glow-hue, 51) + 60), 100%, 55%, 0.7), transparent 100%)
-                              `,
-                            }}
-                          />
-                          {/* Inner background */}
-                          <div className="absolute inset-[1px] z-0 rounded-sm bg-[#09090b]" />
-                          
-                          {/* Inner Glow */}
-                          <div 
-                            className="pointer-events-none absolute inset-[1px] z-10 rounded-sm opacity-0 transition-opacity duration-300 group-hover/bento:opacity-100"
-                            style={{
-                              background: `
-                                radial-gradient(90px circle at var(--core-x) var(--core-y), hsla(var(--glow-hue, 51), 100%, 65%, 0.3), transparent 100%),
-                                radial-gradient(45px circle at var(--tail-x) var(--tail-y), hsla(calc(var(--glow-hue, 51) + 60), 100%, 55%, 0.2), transparent 100%)
-                              `,
-                            }}
-                          />
+
                           
                           <span className="relative z-20">{p.name}</span>
                         </a>
