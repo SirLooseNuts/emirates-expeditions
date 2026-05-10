@@ -298,9 +298,9 @@ function Home() {
                             className="pointer-events-none absolute -inset-px rounded-sm opacity-0 transition-opacity duration-300 group-hover/bento:opacity-100"
                             style={{
                               background: `
-                                radial-gradient(200px circle at var(--core-x) var(--core-y), hsla(var(--glow-hue, 51), 100%, 65%, 0.9), transparent 40%),
-                                radial-gradient(350px circle at var(--mid-x) var(--mid-y), hsla(calc(var(--glow-hue, 51) + 60), 100%, 55%, 0.7), transparent 45%),
-                                radial-gradient(500px circle at var(--tail-x) var(--tail-y), hsla(calc(var(--glow-hue, 51) + 120), 100%, 45%, 0.5), transparent 50%)
+                                radial-gradient(80px circle at var(--core-x) var(--core-y), hsla(var(--glow-hue, 51), 100%, 65%, 0.9), transparent 100%),
+                                radial-gradient(120px circle at var(--mid-x) var(--mid-y), hsla(calc(var(--glow-hue, 51) + 60), 100%, 55%, 0.7), transparent 100%),
+                                radial-gradient(160px circle at var(--tail-x) var(--tail-y), hsla(calc(var(--glow-hue, 51) + 120), 100%, 45%, 0.5), transparent 100%)
                               `,
                             }}
                           />
@@ -312,9 +312,9 @@ function Home() {
                             className="pointer-events-none absolute inset-[1px] z-10 rounded-sm opacity-0 transition-opacity duration-300 group-hover/bento:opacity-100"
                             style={{
                               background: `
-                                radial-gradient(200px circle at var(--core-x) var(--core-y), hsla(var(--glow-hue, 51), 100%, 65%, 0.15), transparent 40%),
-                                radial-gradient(350px circle at var(--mid-x) var(--mid-y), hsla(calc(var(--glow-hue, 51) + 60), 100%, 55%, 0.1), transparent 45%),
-                                radial-gradient(500px circle at var(--tail-x) var(--tail-y), hsla(calc(var(--glow-hue, 51) + 120), 100%, 45%, 0.05), transparent 50%)
+                                radial-gradient(80px circle at var(--core-x) var(--core-y), hsla(var(--glow-hue, 51), 100%, 65%, 0.3), transparent 100%),
+                                radial-gradient(120px circle at var(--mid-x) var(--mid-y), hsla(calc(var(--glow-hue, 51) + 60), 100%, 55%, 0.2), transparent 100%),
+                                radial-gradient(160px circle at var(--tail-x) var(--tail-y), hsla(calc(var(--glow-hue, 51) + 120), 100%, 45%, 0.1), transparent 100%)
                               `,
                             }}
                           />
@@ -337,7 +337,11 @@ function Home() {
                           <div 
                             className="pointer-events-none absolute -inset-px rounded-sm opacity-0 transition-opacity duration-300 group-hover/bento:opacity-100"
                             style={{
-                              background: `radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), hsla(var(--glow-hue, 51), 100%, 50%, 0.6), transparent 40%)`,
+                              background: `
+                                radial-gradient(80px circle at var(--core-x) var(--core-y), hsla(var(--glow-hue, 51), 100%, 65%, 0.9), transparent 100%),
+                                radial-gradient(120px circle at var(--mid-x) var(--mid-y), hsla(calc(var(--glow-hue, 51) + 60), 100%, 55%, 0.7), transparent 100%),
+                                radial-gradient(160px circle at var(--tail-x) var(--tail-y), hsla(calc(var(--glow-hue, 51) + 120), 100%, 45%, 0.5), transparent 100%)
+                              `,
                             }}
                           />
                           {/* Inner background */}
@@ -347,7 +351,11 @@ function Home() {
                           <div 
                             className="pointer-events-none absolute inset-[1px] z-10 rounded-sm opacity-0 transition-opacity duration-300 group-hover/bento:opacity-100"
                             style={{
-                              background: `radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), hsla(var(--glow-hue, 51), 100%, 50%, 0.08), transparent 40%)`,
+                              background: `
+                                radial-gradient(80px circle at var(--core-x) var(--core-y), hsla(var(--glow-hue, 51), 100%, 65%, 0.3), transparent 100%),
+                                radial-gradient(120px circle at var(--mid-x) var(--mid-y), hsla(calc(var(--glow-hue, 51) + 60), 100%, 55%, 0.2), transparent 100%),
+                                radial-gradient(160px circle at var(--tail-x) var(--tail-y), hsla(calc(var(--glow-hue, 51) + 120), 100%, 45%, 0.1), transparent 100%)
+                              `,
                             }}
                           />
                           
