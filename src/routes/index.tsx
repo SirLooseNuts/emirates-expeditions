@@ -298,8 +298,8 @@ function Home() {
                             className="pointer-events-none absolute -inset-px rounded-sm opacity-0 transition-opacity duration-300 group-hover/bento:opacity-100"
                             style={{
                               background: `
-                                radial-gradient(120px circle at var(--core-x) var(--core-y), hsla(var(--glow-hue, 51), 100%, 65%, 0.9), transparent 100%),
-                                radial-gradient(60px circle at var(--tail-x) var(--tail-y), hsla(calc(var(--glow-hue, 51) + 60), 100%, 55%, 0.7), transparent 100%)
+                                radial-gradient(2px circle at var(--core-x) var(--core-y), hsla(var(--glow-hue, 51), 100%, 65%, 0.9), transparent 100%),
+                                radial-gradient(2px circle at var(--tail-x) var(--tail-y), hsla(calc(var(--glow-hue, 51) + 60), 100%, 55%, 0.7), transparent 100%)
                               `,
                             }}
                           />
@@ -311,8 +311,8 @@ function Home() {
                             className="pointer-events-none absolute inset-[1px] z-10 rounded-sm opacity-0 transition-opacity duration-300 group-hover/bento:opacity-100"
                             style={{
                               background: `
-                                radial-gradient(120px circle at var(--core-x) var(--core-y), hsla(var(--glow-hue, 51), 100%, 65%, 0.3), transparent 100%),
-                                radial-gradient(60px circle at var(--tail-x) var(--tail-y), hsla(calc(var(--glow-hue, 51) + 60), 100%, 55%, 0.2), transparent 100%)
+                                radial-gradient(2px circle at var(--core-x) var(--core-y), hsla(var(--glow-hue, 51), 100%, 65%, 0.3), transparent 100%),
+                                radial-gradient(2px circle at var(--tail-x) var(--tail-y), hsla(calc(var(--glow-hue, 51) + 60), 100%, 55%, 0.2), transparent 100%)
                               `,
                             }}
                           />
@@ -336,8 +336,8 @@ function Home() {
                             className="pointer-events-none absolute -inset-px rounded-sm opacity-0 transition-opacity duration-300 group-hover/bento:opacity-100"
                             style={{
                               background: `
-                                radial-gradient(120px circle at var(--core-x) var(--core-y), hsla(var(--glow-hue, 51), 100%, 65%, 0.9), transparent 100%),
-                                radial-gradient(60px circle at var(--tail-x) var(--tail-y), hsla(calc(var(--glow-hue, 51) + 60), 100%, 55%, 0.7), transparent 100%)
+                                radial-gradient(2px circle at var(--core-x) var(--core-y), hsla(var(--glow-hue, 51), 100%, 65%, 0.9), transparent 100%),
+                                radial-gradient(2px circle at var(--tail-x) var(--tail-y), hsla(calc(var(--glow-hue, 51) + 60), 100%, 55%, 0.7), transparent 100%)
                               `,
                             }}
                           />
@@ -349,8 +349,8 @@ function Home() {
                             className="pointer-events-none absolute inset-[1px] z-10 rounded-sm opacity-0 transition-opacity duration-300 group-hover/bento:opacity-100"
                             style={{
                               background: `
-                                radial-gradient(120px circle at var(--core-x) var(--core-y), hsla(var(--glow-hue, 51), 100%, 65%, 0.3), transparent 100%),
-                                radial-gradient(60px circle at var(--tail-x) var(--tail-y), hsla(calc(var(--glow-hue, 51) + 60), 100%, 55%, 0.2), transparent 100%)
+                                radial-gradient(2px circle at var(--core-x) var(--core-y), hsla(var(--glow-hue, 51), 100%, 65%, 0.3), transparent 100%),
+                                radial-gradient(2px circle at var(--tail-x) var(--tail-y), hsla(calc(var(--glow-hue, 51) + 60), 100%, 55%, 0.2), transparent 100%)
                               `,
                             }}
                           />
