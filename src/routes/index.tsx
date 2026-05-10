@@ -65,7 +65,8 @@ function Home() {
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!partnersRef.current) return;
-    for (const card of partnersRef.current.children) {
+    const cards = partnersRef.current.querySelectorAll('.partner-card');
+    for (const card of cards) {
       if (card instanceof HTMLElement) {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
@@ -186,7 +187,7 @@ function Home() {
         <div className="relative w-full overflow-hidden">
           <div className="group flex w-max gap-6 px-10">
             {/* The carousel track */}
-            <div className="flex animate-marquee gap-6 group-hover:[animation-play-state:paused]">
+            <div className="flex animate-marquee-left gap-6 group-hover:[animation-play-state:paused]">
               {[1, 2, 3, 4, 5].flatMap((days) => 
                 tours.filter((t) => t.durationInDays === days).slice(0, 2)
               ).map((t, i) => (
@@ -196,7 +197,7 @@ function Home() {
               ))}
             </div>
             {/* Duplicate for infinite effect */}
-            <div className="flex animate-marquee gap-6 group-hover:[animation-play-state:paused]" aria-hidden="true">
+            <div className="flex animate-marquee-left gap-6 group-hover:[animation-play-state:paused]" aria-hidden="true">
               {[1, 2, 3, 4, 5].flatMap((days) => 
                 tours.filter((t) => t.durationInDays === days).slice(0, 2)
               ).map((t, i) => (
@@ -218,37 +219,83 @@ function Home() {
           <div 
             ref={partnersRef} 
             onMouseMove={handleMouseMove} 
-            className="group/bento mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
+            className="group/bento mt-12 flex flex-col gap-6 overflow-hidden"
           >
-            {partners.map((p) => (
-              <a 
-                href={p.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                key={p.name} 
-                className="relative flex h-32 items-center justify-center rounded-sm bg-border/40 px-4 text-center font-display text-xl tracking-widest text-foreground/70 transition-colors hover:text-gold"
-              >
-                {/* Border Glow */}
-                <div 
-                  className="pointer-events-none absolute -inset-px rounded-sm opacity-0 transition-opacity duration-300 group-hover/bento:opacity-100"
-                  style={{
-                    background: `radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(255,215,0,0.4), transparent 40%)`,
-                  }}
-                />
-                {/* Inner background */}
-                <div className="absolute inset-[1px] z-0 rounded-sm bg-[#09090b]" />
-                
-                {/* Inner Glow */}
-                <div 
-                  className="pointer-events-none absolute inset-[1px] z-10 rounded-sm opacity-0 transition-opacity duration-300 group-hover/bento:opacity-100"
-                  style={{
-                    background: `radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(255,215,0,0.06), transparent 40%)`,
-                  }}
-                />
-                
-                <span className="relative z-20">{p.name}</span>
-              </a>
-            ))}
+            {Array.from({ length: 4 }).map((_, rowIndex) => {
+              const rowPartners = partners.slice(rowIndex * 9, (rowIndex + 1) * 9);
+              const isLeftToRight = rowIndex % 2 === 0;
+
+              return (
+                <div key={rowIndex} className="relative flex w-full overflow-hidden">
+                  <div className="flex w-max gap-6">
+                    {/* Track */}
+                    <div className={`flex gap-6 ${isLeftToRight ? 'animate-marquee-right' : 'animate-marquee-left'}`}>
+                      {rowPartners.map((p) => (
+                        <a 
+                          href={p.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          key={p.name} 
+                          className="partner-card relative flex h-32 w-64 shrink-0 items-center justify-center rounded-sm bg-border/40 px-4 text-center font-display text-xl tracking-widest text-foreground/70 transition-colors hover:text-gold"
+                        >
+                          {/* Border Glow */}
+                          <div 
+                            className="pointer-events-none absolute -inset-px rounded-sm opacity-0 transition-opacity duration-300 group-hover/bento:opacity-100"
+                            style={{
+                              background: `radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(255,215,0,0.4), transparent 40%)`,
+                            }}
+                          />
+                          {/* Inner background */}
+                          <div className="absolute inset-[1px] z-0 rounded-sm bg-[#09090b]" />
+                          
+                          {/* Inner Glow */}
+                          <div 
+                            className="pointer-events-none absolute inset-[1px] z-10 rounded-sm opacity-0 transition-opacity duration-300 group-hover/bento:opacity-100"
+                            style={{
+                              background: `radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(255,215,0,0.06), transparent 40%)`,
+                            }}
+                          />
+                          
+                          <span className="relative z-20">{p.name}</span>
+                        </a>
+                      ))}
+                    </div>
+                    {/* Duplicate for infinite effect */}
+                    <div className={`flex gap-6 ${isLeftToRight ? 'animate-marquee-right' : 'animate-marquee-left'}`} aria-hidden="true">
+                      {rowPartners.map((p) => (
+                        <a 
+                          href={p.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          key={`${p.name}-dup`} 
+                          className="partner-card relative flex h-32 w-64 shrink-0 items-center justify-center rounded-sm bg-border/40 px-4 text-center font-display text-xl tracking-widest text-foreground/70 transition-colors hover:text-gold"
+                        >
+                          {/* Border Glow */}
+                          <div 
+                            className="pointer-events-none absolute -inset-px rounded-sm opacity-0 transition-opacity duration-300 group-hover/bento:opacity-100"
+                            style={{
+                              background: `radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(255,215,0,0.4), transparent 40%)`,
+                            }}
+                          />
+                          {/* Inner background */}
+                          <div className="absolute inset-[1px] z-0 rounded-sm bg-[#09090b]" />
+                          
+                          {/* Inner Glow */}
+                          <div 
+                            className="pointer-events-none absolute inset-[1px] z-10 rounded-sm opacity-0 transition-opacity duration-300 group-hover/bento:opacity-100"
+                            style={{
+                              background: `radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(255,215,0,0.06), transparent 40%)`,
+                            }}
+                          />
+                          
+                          <span className="relative z-20">{p.name}</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
