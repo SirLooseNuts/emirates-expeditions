@@ -62,7 +62,13 @@ const partners = [
 
 function Home() {
   const partnersRef = useRef<HTMLDivElement>(null);
-  const mousePos = useRef({ x: 0, y: 0, targetX: 0, targetY: 0, hasMoved: false });
+  const mousePos = useRef({ 
+    coreX: 0, coreY: 0, 
+    midX: 0, midY: 0, 
+    tailX: 0, tailY: 0,
+    targetX: 0, targetY: 0, 
+    hasMoved: false 
+  });
   const hue = useRef(51);
 
   useEffect(() => {
@@ -74,9 +80,15 @@ function Home() {
       lastTime = time;
 
       if (mousePos.current.hasMoved) {
-        // Lerp for comet tail effect
-        mousePos.current.x += (mousePos.current.targetX - mousePos.current.x) * 0.08;
-        mousePos.current.y += (mousePos.current.targetY - mousePos.current.y) * 0.08;
+        // Lerp for slime effect (3 chained tracking points)
+        mousePos.current.coreX += (mousePos.current.targetX - mousePos.current.coreX) * 0.2;
+        mousePos.current.coreY += (mousePos.current.targetY - mousePos.current.coreY) * 0.2;
+
+        mousePos.current.midX += (mousePos.current.coreX - mousePos.current.midX) * 0.12;
+        mousePos.current.midY += (mousePos.current.coreY - mousePos.current.midY) * 0.12;
+
+        mousePos.current.tailX += (mousePos.current.midX - mousePos.current.tailX) * 0.06;
+        mousePos.current.tailY += (mousePos.current.midY - mousePos.current.tailY) * 0.06;
         
         // Cycle hue randomly through 12 million colors
         hue.current = (hue.current + dt * 0.05) % 360;
@@ -86,11 +98,13 @@ function Home() {
           for (const card of cards) {
             if (card instanceof HTMLElement) {
               const rect = card.getBoundingClientRect();
-              const localX = mousePos.current.x - rect.left;
-              const localY = mousePos.current.y - rect.top;
               
-              card.style.setProperty("--mouse-x", `${localX}px`);
-              card.style.setProperty("--mouse-y", `${localY}px`);
+              card.style.setProperty("--core-x", `${mousePos.current.coreX - rect.left}px`);
+              card.style.setProperty("--core-y", `${mousePos.current.coreY - rect.top}px`);
+              card.style.setProperty("--mid-x", `${mousePos.current.midX - rect.left}px`);
+              card.style.setProperty("--mid-y", `${mousePos.current.midY - rect.top}px`);
+              card.style.setProperty("--tail-x", `${mousePos.current.tailX - rect.left}px`);
+              card.style.setProperty("--tail-y", `${mousePos.current.tailY - rect.top}px`);
               card.style.setProperty("--glow-hue", `${hue.current}`);
             }
           }
@@ -107,8 +121,12 @@ function Home() {
     mousePos.current.targetX = e.clientX;
     mousePos.current.targetY = e.clientY;
     if (!mousePos.current.hasMoved) {
-      mousePos.current.x = e.clientX;
-      mousePos.current.y = e.clientY;
+      mousePos.current.coreX = e.clientX;
+      mousePos.current.coreY = e.clientY;
+      mousePos.current.midX = e.clientX;
+      mousePos.current.midY = e.clientY;
+      mousePos.current.tailX = e.clientX;
+      mousePos.current.tailY = e.clientY;
       mousePos.current.hasMoved = true;
     }
   };
@@ -279,7 +297,11 @@ function Home() {
                           <div 
                             className="pointer-events-none absolute -inset-px rounded-sm opacity-0 transition-opacity duration-300 group-hover/bento:opacity-100"
                             style={{
-                              background: `radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), hsla(var(--glow-hue, 51), 100%, 50%, 0.6), transparent 40%)`,
+                              background: `
+                                radial-gradient(200px circle at var(--core-x) var(--core-y), hsla(var(--glow-hue, 51), 100%, 65%, 0.9), transparent 40%),
+                                radial-gradient(350px circle at var(--mid-x) var(--mid-y), hsla(calc(var(--glow-hue, 51) + 60), 100%, 55%, 0.7), transparent 45%),
+                                radial-gradient(500px circle at var(--tail-x) var(--tail-y), hsla(calc(var(--glow-hue, 51) + 120), 100%, 45%, 0.5), transparent 50%)
+                              `,
                             }}
                           />
                           {/* Inner background */}
@@ -289,7 +311,11 @@ function Home() {
                           <div 
                             className="pointer-events-none absolute inset-[1px] z-10 rounded-sm opacity-0 transition-opacity duration-300 group-hover/bento:opacity-100"
                             style={{
-                              background: `radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), hsla(var(--glow-hue, 51), 100%, 50%, 0.08), transparent 40%)`,
+                              background: `
+                                radial-gradient(200px circle at var(--core-x) var(--core-y), hsla(var(--glow-hue, 51), 100%, 65%, 0.15), transparent 40%),
+                                radial-gradient(350px circle at var(--mid-x) var(--mid-y), hsla(calc(var(--glow-hue, 51) + 60), 100%, 55%, 0.1), transparent 45%),
+                                radial-gradient(500px circle at var(--tail-x) var(--tail-y), hsla(calc(var(--glow-hue, 51) + 120), 100%, 45%, 0.05), transparent 50%)
+                              `,
                             }}
                           />
                           
