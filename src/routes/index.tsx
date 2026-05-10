@@ -216,20 +216,21 @@ function Home() {
           <h2 className="mt-3 text-center font-display text-2xl tracking-wider sm:text-4xl uppercase">
             OUR TRUSTED <span className="gradient-gold-text">TRAVEL PARTNERS</span>
           </h2>
-          <div 
-            ref={partnersRef} 
-            onMouseMove={handleMouseMove} 
-            className="group/bento mt-12 flex flex-col gap-6 overflow-hidden"
-          >
-            {Array.from({ length: 4 }).map((_, rowIndex) => {
-              const rowPartners = partners.slice(rowIndex * 9, (rowIndex + 1) * 9);
-              const isLeftToRight = rowIndex % 2 === 0;
+        </div>
+        <div 
+          ref={partnersRef} 
+          onMouseMove={handleMouseMove} 
+          className="group/bento mt-12 flex flex-col gap-6 overflow-hidden"
+        >
+          {Array.from({ length: 4 }).map((_, rowIndex) => {
+            const rowPartners = partners.slice(rowIndex * 9, (rowIndex + 1) * 9);
+            const isLeftToRight = rowIndex % 2 === 0;
 
-              return (
-                <div key={rowIndex} className="relative flex w-full overflow-hidden">
-                  <div className="flex w-max gap-6">
-                    {/* Track */}
-                    <div className={`flex gap-6 ${isLeftToRight ? 'animate-marquee-right' : 'animate-marquee-left'}`}>
+            return (
+              <div key={rowIndex} className="relative flex w-full overflow-hidden">
+                <div className="group flex w-max gap-6">
+                  {/* Track */}
+                  <div className={`flex gap-6 ${isLeftToRight ? 'animate-marquee-right' : 'animate-marquee-left'} group-hover:[animation-play-state:paused]`}>
                       {rowPartners.map((p) => (
                         <a 
                           href={p.url}
@@ -261,7 +262,7 @@ function Home() {
                       ))}
                     </div>
                     {/* Duplicate for infinite effect */}
-                    <div className={`flex gap-6 ${isLeftToRight ? 'animate-marquee-right' : 'animate-marquee-left'}`} aria-hidden="true">
+                    <div className={`flex gap-6 ${isLeftToRight ? 'animate-marquee-right' : 'animate-marquee-left'} group-hover:[animation-play-state:paused]`} aria-hidden="true">
                       {rowPartners.map((p) => (
                         <a 
                           href={p.url}
@@ -296,7 +297,6 @@ function Home() {
                 </div>
               );
             })}
-          </div>
         </div>
       </section>
 
