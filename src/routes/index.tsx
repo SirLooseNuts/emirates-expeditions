@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import hero from "@/assets/hero-world-landmarks.png";
 import bambooImg from "@/assets/group-bamboo-forest.jpg";
 import wildlife from "@/assets/group-wildlife-sanctuary.webp";
@@ -62,18 +62,54 @@ const partners = [
 
 function Home() {
   const partnersRef = useRef<HTMLDivElement>(null);
+  const mousePos = useRef({ x: 0, y: 0, targetX: 0, targetY: 0, hasMoved: false });
+  const hue = useRef(51);
+
+  useEffect(() => {
+    let animationFrameId: number;
+    let lastTime = performance.now();
+
+    const renderLoop = (time: number) => {
+      const dt = time - lastTime;
+      lastTime = time;
+
+      if (mousePos.current.hasMoved) {
+        // Lerp for comet tail effect
+        mousePos.current.x += (mousePos.current.targetX - mousePos.current.x) * 0.08;
+        mousePos.current.y += (mousePos.current.targetY - mousePos.current.y) * 0.08;
+        
+        // Cycle hue randomly through 12 million colors
+        hue.current = (hue.current + dt * 0.05) % 360;
+
+        if (partnersRef.current) {
+          const cards = partnersRef.current.querySelectorAll('.partner-card');
+          for (const card of cards) {
+            if (card instanceof HTMLElement) {
+              const rect = card.getBoundingClientRect();
+              const localX = mousePos.current.x - rect.left;
+              const localY = mousePos.current.y - rect.top;
+              
+              card.style.setProperty("--mouse-x", `${localX}px`);
+              card.style.setProperty("--mouse-y", `${localY}px`);
+              card.style.setProperty("--glow-hue", `${hue.current}`);
+            }
+          }
+        }
+      }
+      animationFrameId = requestAnimationFrame(renderLoop);
+    };
+
+    animationFrameId = requestAnimationFrame(renderLoop);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!partnersRef.current) return;
-    const cards = partnersRef.current.querySelectorAll('.partner-card');
-    for (const card of cards) {
-      if (card instanceof HTMLElement) {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        card.style.setProperty("--mouse-x", `${x}px`);
-        card.style.setProperty("--mouse-y", `${y}px`);
-      }
+    mousePos.current.targetX = e.clientX;
+    mousePos.current.targetY = e.clientY;
+    if (!mousePos.current.hasMoved) {
+      mousePos.current.x = e.clientX;
+      mousePos.current.y = e.clientY;
+      mousePos.current.hasMoved = true;
     }
   };
   return (
@@ -243,7 +279,7 @@ function Home() {
                           <div 
                             className="pointer-events-none absolute -inset-px rounded-sm opacity-0 transition-opacity duration-300 group-hover/bento:opacity-100"
                             style={{
-                              background: `radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(255,215,0,0.4), transparent 40%)`,
+                              background: `radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), hsla(var(--glow-hue, 51), 100%, 50%, 0.6), transparent 40%)`,
                             }}
                           />
                           {/* Inner background */}
@@ -253,7 +289,7 @@ function Home() {
                           <div 
                             className="pointer-events-none absolute inset-[1px] z-10 rounded-sm opacity-0 transition-opacity duration-300 group-hover/bento:opacity-100"
                             style={{
-                              background: `radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(255,215,0,0.06), transparent 40%)`,
+                              background: `radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), hsla(var(--glow-hue, 51), 100%, 50%, 0.08), transparent 40%)`,
                             }}
                           />
                           
@@ -275,7 +311,7 @@ function Home() {
                           <div 
                             className="pointer-events-none absolute -inset-px rounded-sm opacity-0 transition-opacity duration-300 group-hover/bento:opacity-100"
                             style={{
-                              background: `radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(255,215,0,0.4), transparent 40%)`,
+                              background: `radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), hsla(var(--glow-hue, 51), 100%, 50%, 0.6), transparent 40%)`,
                             }}
                           />
                           {/* Inner background */}
@@ -285,7 +321,7 @@ function Home() {
                           <div 
                             className="pointer-events-none absolute inset-[1px] z-10 rounded-sm opacity-0 transition-opacity duration-300 group-hover/bento:opacity-100"
                             style={{
-                              background: `radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(255,215,0,0.06), transparent 40%)`,
+                              background: `radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), hsla(var(--glow-hue, 51), 100%, 50%, 0.08), transparent 40%)`,
                             }}
                           />
                           
