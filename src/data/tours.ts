@@ -1344,7 +1344,7 @@ export const tours: Tour[] = [
     duration: "4 Days",
     durationInDays: 4,
     price: consultPrice,
-    image: dest_goa,
+    image: dest_udupi,
     blurb: "Explore Uduppi, Goa, Goa, Chikmaglore on this carefully crafted 4-day itinerary.",
     highlights: ["Uduppi","Goa","Goa","Chikmaglore"],
     fullDescription: "Join us for an unforgettable 4-day journey covering Uduppi, Goa, Goa, Chikmaglore. This package is designed to offer the best experience, balancing travel, sightseeing, and relaxation.",
@@ -1356,7 +1356,7 @@ export const tours: Tour[] = [
     ],
     inclusions: ["AC Coach", "Accommodations", "Breakfast & Dinner", "Sightseeing"],
     exclusions: ["Lunch", "Entry Permits", "Personal Expenses"],
-    gallery: [munnar1, vagamon1, alappuzha1]
+    gallery: [udupi1, dest_chikmagalur, dest_udupi]
   },
   {
     slug: "4day-rameswaram-kodaikanal-palani-kanyakumari",
