@@ -28,7 +28,7 @@ import hampi1 from "@/assets/tour-marayoor.png";
 import goa1 from "@/assets/tour-3day-alleppey.png";
 import dandeli1 from "@/assets/tour-wayanad-wildlife.png";
 import malpe1 from "@/assets/tour-5day-varkala.png";
-import udupi1 from "@/assets/tour-coorg.png";
+import udupi1 from "@/assets/tours/destinations/udupi.jpg";
 import mistsStone from "@/assets/tour-mists-stone.jpg";
 import vagamonKodaiMist from "@/assets/tour-vagamon-kodai-mist-2.jpg";
 import kodaiMist from "@/assets/tour-kodai-mist.jpg";
