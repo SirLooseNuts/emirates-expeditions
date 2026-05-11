@@ -75,6 +75,11 @@ import dest_calvary_mount from "@/assets/tours/destinations/calvary-mount.jpg";
 import dest_idukki_dam from "@/assets/tours/destinations/idukki-dam.jpg";
 import dest_ramakkalmedu from "@/assets/tours/destinations/ramakkalmedu.jpg";
 
+import wonderla_gal_1 from "@/assets/tours/wonderla/1.jpg";
+import wonderla_gal_2 from "@/assets/tours/wonderla/2.png";
+import wonderla_gal_3 from "@/assets/tours/wonderla/3.png";
+import wonderla_gal_4 from "@/assets/tours/wonderla/4.png";
+
 export type Tour = {
   slug: string;
   title: string;
@@ -115,7 +120,7 @@ export const tours: Tour[] = [
     ],
     inclusions: ["AC Coach", "Accommodations", "Breakfast & Dinner", "Sightseeing"],
     exclusions: ["Lunch", "Entry Permits", "Personal Expenses"],
-    gallery: [vagamon1, alappuzha1, athirappilly1]
+    gallery: [wonderla_gal_1, wonderla_gal_2, wonderla_gal_3, wonderla_gal_4]
   },
   {
     slug: "1day-athirapally-vazhachal-silverstrom-dreamworld",
@@ -408,7 +413,7 @@ export const tours: Tour[] = [
     ],
     inclusions: ["AC Coach", "Accommodations", "Breakfast & Dinner", "Sightseeing"],
     exclusions: ["Lunch", "Entry Permits", "Personal Expenses"],
-    gallery: [kanyakumari1, silverstorm1, mysore1]
+    gallery: [wonderla_gal_1, wonderla_gal_2, wonderla_gal_3, wonderla_gal_4]
   },
   {
     slug: "2day-coorg-mysore",
@@ -484,7 +489,7 @@ export const tours: Tour[] = [
     ],
     inclusions: ["AC Coach", "Accommodations", "Breakfast & Dinner", "Sightseeing"],
     exclusions: ["Lunch", "Entry Permits", "Personal Expenses"],
-    gallery: [bangalore1, chikmagalur1, belur1]
+    gallery: [wonderla_gal_1, wonderla_gal_2, wonderla_gal_3, wonderla_gal_4]
   },
   {
     slug: "2day-wagamon-idukki",
@@ -598,7 +603,7 @@ export const tours: Tour[] = [
     ],
     inclusions: ["AC Coach", "Accommodations", "Breakfast & Dinner", "Sightseeing"],
     exclusions: ["Lunch", "Entry Permits", "Personal Expenses"],
-    gallery: [malpe1, udupi1, mistsStone]
+    gallery: [wonderla_gal_1, wonderla_gal_2, wonderla_gal_3, wonderla_gal_4]
   },
   {
     slug: "2day-ooty-black-thunder",
@@ -675,7 +680,7 @@ export const tours: Tour[] = [
     ],
     inclusions: ["AC Coach", "Accommodations", "Breakfast & Dinner", "Sightseeing"],
     exclusions: ["Lunch", "Entry Permits", "Personal Expenses"],
-    gallery: [ooty1, kanyakumari1, silverstorm1]
+    gallery: [wonderla_gal_1, wonderla_gal_2, wonderla_gal_3, wonderla_gal_4]
   },
   {
     slug: "3day-munnar-marayoor-wonderla",
@@ -695,7 +700,7 @@ export const tours: Tour[] = [
     ],
     inclusions: ["AC Coach", "Accommodations", "Breakfast & Dinner", "Sightseeing"],
     exclusions: ["Lunch", "Entry Permits", "Personal Expenses"],
-    gallery: [kanyakumari1, silverstorm1, mysore1]
+    gallery: [wonderla_gal_1, wonderla_gal_2, wonderla_gal_3, wonderla_gal_4]
   },
   {
     slug: "3day-wagamon-munnar-idukki",
@@ -755,7 +760,7 @@ export const tours: Tour[] = [
     ],
     inclusions: ["AC Coach", "Accommodations", "Breakfast & Dinner", "Sightseeing"],
     exclusions: ["Lunch", "Entry Permits", "Personal Expenses"],
-    gallery: [coorg1, bangalore1, chikmagalur1]
+    gallery: [wonderla_gal_1, wonderla_gal_2, wonderla_gal_3, wonderla_gal_4]
   },
   {
     slug: "3day-coorg-mysore-banglore",
@@ -835,7 +840,7 @@ export const tours: Tour[] = [
     ],
     inclusions: ["AC Coach", "Accommodations", "Breakfast & Dinner", "Sightseeing"],
     exclusions: ["Lunch", "Entry Permits", "Personal Expenses"],
-    gallery: [hampi1, goa1, dandeli1]
+    gallery: [wonderla_gal_1, wonderla_gal_2, wonderla_gal_3, wonderla_gal_4]
   },
   {
     slug: "3day-kodaikanal-munnar-wonderla",
@@ -855,7 +860,7 @@ export const tours: Tour[] = [
     ],
     inclusions: ["AC Coach", "Accommodations", "Breakfast & Dinner", "Sightseeing"],
     exclusions: ["Lunch", "Entry Permits", "Personal Expenses"],
-    gallery: [goa1, dandeli1, malpe1]
+    gallery: [wonderla_gal_1, wonderla_gal_2, wonderla_gal_3, wonderla_gal_4]
   },
   {
     slug: "3day-kodaikanal-marayoor-munnar",
@@ -915,7 +920,7 @@ export const tours: Tour[] = [
     ],
     inclusions: ["AC Coach", "Accommodations", "Breakfast & Dinner", "Sightseeing"],
     exclusions: ["Lunch", "Entry Permits", "Personal Expenses"],
-    gallery: [udupi1, mistsStone, vagamonKodaiMist]
+    gallery: [wonderla_gal_1, wonderla_gal_2, wonderla_gal_3, wonderla_gal_4]
   },
   {
     slug: "3day-wayand-ooty-wonderla",
@@ -935,7 +940,7 @@ export const tours: Tour[] = [
     ],
     inclusions: ["AC Coach", "Accommodations", "Breakfast & Dinner", "Sightseeing"],
     exclusions: ["Lunch", "Entry Permits", "Personal Expenses"],
-    gallery: [mistsStone, vagamonKodaiMist, kodaiMist]
+    gallery: [wonderla_gal_1, wonderla_gal_2, wonderla_gal_3, wonderla_gal_4]
   },
   {
     slug: "3day-mookambika",
@@ -1036,7 +1041,7 @@ export const tours: Tour[] = [
     ],
     inclusions: ["AC Coach", "Accommodations", "Breakfast & Dinner", "Sightseeing"],
     exclusions: ["Lunch", "Entry Permits", "Personal Expenses"],
-    gallery: [mysore1, coorg1, bangalore1]
+    gallery: [wonderla_gal_1, wonderla_gal_2, wonderla_gal_3, wonderla_gal_4]
   },
   {
     slug: "4day-kodaikanal-marayoor-munnar-wonderla",
@@ -1057,7 +1062,7 @@ export const tours: Tour[] = [
     ],
     inclusions: ["AC Coach", "Accommodations", "Breakfast & Dinner", "Sightseeing"],
     exclusions: ["Lunch", "Entry Permits", "Personal Expenses"],
-    gallery: [coorg1, bangalore1, chikmagalur1]
+    gallery: [wonderla_gal_1, wonderla_gal_2, wonderla_gal_3, wonderla_gal_4]
   },
   {
     slug: "4day-kodaikanal-munnar-wagamon-wonderla",
@@ -1078,7 +1083,7 @@ export const tours: Tour[] = [
     ],
     inclusions: ["AC Coach", "Accommodations", "Breakfast & Dinner", "Sightseeing"],
     exclusions: ["Lunch", "Entry Permits", "Personal Expenses"],
-    gallery: [bangalore1, chikmagalur1, belur1]
+    gallery: [wonderla_gal_1, wonderla_gal_2, wonderla_gal_3, wonderla_gal_4]
   },
   {
     slug: "4day-wagamon-ramakkalmedu-idukki-munnar-marayoor-w",
@@ -1099,7 +1104,7 @@ export const tours: Tour[] = [
     ],
     inclusions: ["AC Coach", "Accommodations", "Breakfast & Dinner", "Sightseeing"],
     exclusions: ["Lunch", "Entry Permits", "Personal Expenses"],
-    gallery: [chikmagalur1, belur1, hampi1]
+    gallery: [wonderla_gal_1, wonderla_gal_2, wonderla_gal_3, wonderla_gal_4]
   },
   {
     slug: "4day-banglore-mysore-ooty-wayand-wonderla",
@@ -1120,7 +1125,7 @@ export const tours: Tour[] = [
     ],
     inclusions: ["AC Coach", "Accommodations", "Breakfast & Dinner", "Sightseeing"],
     exclusions: ["Lunch", "Entry Permits", "Personal Expenses"],
-    gallery: [belur1, hampi1, goa1]
+    gallery: [wonderla_gal_1, wonderla_gal_2, wonderla_gal_3, wonderla_gal_4]
   },
   {
     slug: "4day-coorg-chikmanglore-belurmysore",
@@ -1416,7 +1421,7 @@ export const tours: Tour[] = [
     ],
     inclusions: ["AC Coach", "Accommodations", "Breakfast & Dinner", "Sightseeing"],
     exclusions: ["Lunch", "Entry Permits", "Personal Expenses"],
-    gallery: [belur1, hampi1, goa1]
+    gallery: [wonderla_gal_1, wonderla_gal_2, wonderla_gal_3, wonderla_gal_4]
   },
   {
     slug: "5day-coorg-chikmanglore-belur-dendeli-uduppi",
@@ -1504,7 +1509,7 @@ export const tours: Tour[] = [
     ],
     inclusions: ["AC Coach", "Accommodations", "Breakfast & Dinner", "Sightseeing"],
     exclusions: ["Lunch", "Entry Permits", "Personal Expenses"],
-    gallery: [malpe1, udupi1, mistsStone]
+    gallery: [wonderla_gal_1, wonderla_gal_2, wonderla_gal_3, wonderla_gal_4]
   },
   {
     slug: "6day-uduppi-dendeli-goagoa-chikmanglore-coorg",
@@ -1550,7 +1555,7 @@ export const tours: Tour[] = [
     ],
     inclusions: ["AC Coach", "Accommodations", "Breakfast & Dinner", "Sightseeing"],
     exclusions: ["Lunch", "Entry Permits", "Personal Expenses"],
-    gallery: [dandeli1, malpe1, udupi1]
+    gallery: [wonderla_gal_1, wonderla_gal_2, wonderla_gal_3, wonderla_gal_4]
   },
   {
     slug: "6day-coorg-chikmanglore-belur-dendeli-uduppi-kozhi",
@@ -1619,6 +1624,6 @@ export const tours: Tour[] = [
     ],
     inclusions: ["AC Coach", "Accommodations", "Breakfast & Dinner", "Sightseeing"],
     exclusions: ["Lunch", "Entry Permits", "Personal Expenses"],
-    gallery: [mistsStone, vagamonKodaiMist, kodaiMist]
+    gallery: [wonderla_gal_1, wonderla_gal_2, wonderla_gal_3, wonderla_gal_4]
   }
 ];
