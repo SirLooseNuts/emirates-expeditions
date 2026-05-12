@@ -17,7 +17,8 @@ function SplashCursor({
   BACK_COLOR = { r: 0.5, g: 0, b: 0 },
   TRANSPARENT = true,
   RAINBOW_MODE = true,
-  COLOR = '#ff0000'
+  COLOR = '#ff0000',
+  targetSelector = null
 }) {
   const canvasRef = useRef(null);
   const animationFrameId = useRef(null);
@@ -980,6 +981,7 @@ function SplashCursor({
 
     // Named event handlers for proper cleanup
     function handleMouseDown(e) {
+      if (targetSelector && !e.target.closest(targetSelector)) return;
       let pointer = pointers[0];
       let posX = scaleByPixelRatio(e.clientX);
       let posY = scaleByPixelRatio(e.clientY);
@@ -989,6 +991,7 @@ function SplashCursor({
 
     let firstMouseMoveHandled = false;
     function handleMouseMove(e) {
+      if (targetSelector && !e.target.closest(targetSelector)) return;
       let pointer = pointers[0];
       let posX = scaleByPixelRatio(e.clientX);
       let posY = scaleByPixelRatio(e.clientY);
@@ -1002,6 +1005,7 @@ function SplashCursor({
     }
 
     function handleTouchStart(e) {
+      if (targetSelector && !e.target.closest(targetSelector)) return;
       const touches = e.targetTouches;
       let pointer = pointers[0];
       for (let i = 0; i < touches.length; i++) {
@@ -1012,6 +1016,7 @@ function SplashCursor({
     }
 
     function handleTouchMove(e) {
+      if (targetSelector && !e.target.closest(targetSelector)) return;
       const touches = e.targetTouches;
       let pointer = pointers[0];
       for (let i = 0; i < touches.length; i++) {

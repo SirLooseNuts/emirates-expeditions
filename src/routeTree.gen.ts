@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ToursRouteImport } from './routes/tours'
+import { Route as PartnersRouteImport } from './routes/partners'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BookingRouteImport } from './routes/booking'
@@ -21,6 +22,11 @@ import { Route as ToursSlugRouteImport } from './routes/tours.$slug'
 const ToursRoute = ToursRouteImport.update({
   id: '/tours',
   path: '/tours',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnersRoute = PartnersRouteImport.update({
+  id: '/partners',
+  path: '/partners',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GalleryRoute = GalleryRouteImport.update({
@@ -65,6 +71,7 @@ export interface FileRoutesByFullPath {
   '/booking': typeof BookingRoute
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
+  '/partners': typeof PartnersRoute
   '/tours': typeof ToursRouteWithChildren
   '/tours/$slug': typeof ToursSlugRoute
   '/tours/': typeof ToursIndexRoute
@@ -75,6 +82,7 @@ export interface FileRoutesByTo {
   '/booking': typeof BookingRoute
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
+  '/partners': typeof PartnersRoute
   '/tours/$slug': typeof ToursSlugRoute
   '/tours': typeof ToursIndexRoute
 }
@@ -85,6 +93,7 @@ export interface FileRoutesById {
   '/booking': typeof BookingRoute
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
+  '/partners': typeof PartnersRoute
   '/tours': typeof ToursRouteWithChildren
   '/tours/$slug': typeof ToursSlugRoute
   '/tours/': typeof ToursIndexRoute
@@ -97,6 +106,7 @@ export interface FileRouteTypes {
     | '/booking'
     | '/contact'
     | '/gallery'
+    | '/partners'
     | '/tours'
     | '/tours/$slug'
     | '/tours/'
@@ -107,6 +117,7 @@ export interface FileRouteTypes {
     | '/booking'
     | '/contact'
     | '/gallery'
+    | '/partners'
     | '/tours/$slug'
     | '/tours'
   id:
@@ -116,6 +127,7 @@ export interface FileRouteTypes {
     | '/booking'
     | '/contact'
     | '/gallery'
+    | '/partners'
     | '/tours'
     | '/tours/$slug'
     | '/tours/'
@@ -127,6 +139,7 @@ export interface RootRouteChildren {
   BookingRoute: typeof BookingRoute
   ContactRoute: typeof ContactRoute
   GalleryRoute: typeof GalleryRoute
+  PartnersRoute: typeof PartnersRoute
   ToursRoute: typeof ToursRouteWithChildren
 }
 
@@ -137,6 +150,13 @@ declare module '@tanstack/react-router' {
       path: '/tours'
       fullPath: '/tours'
       preLoaderRoute: typeof ToursRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partners': {
+      id: '/partners'
+      path: '/partners'
+      fullPath: '/partners'
+      preLoaderRoute: typeof PartnersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gallery': {
@@ -209,6 +229,7 @@ const rootRouteChildren: RootRouteChildren = {
   BookingRoute: BookingRoute,
   ContactRoute: ContactRoute,
   GalleryRoute: GalleryRoute,
+  PartnersRoute: PartnersRoute,
   ToursRoute: ToursRouteWithChildren,
 }
 export const routeTree = rootRouteImport

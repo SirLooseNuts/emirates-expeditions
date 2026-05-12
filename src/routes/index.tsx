@@ -74,6 +74,7 @@ function Home() {
         COLOR_UPDATE_SPEED={30}
         SHADING={false}
         RAINBOW_MODE
+        targetSelector=".partner-card"
       />
       {/* HERO */}
       <section className="relative min-h-screen w-full overflow-hidden">
@@ -210,12 +211,20 @@ function Home() {
       {/* PARTNERS */}
       <section className="relative border-y border-border/60 bg-background py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <h2 className="mt-3 text-center font-display text-2xl tracking-wider sm:text-4xl uppercase">
-            OUR TRUSTED <span className="gradient-gold-text">TRAVEL PARTNERS</span>
-          </h2>
+          <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
+            <div>
+              <p className="eyebrow">Our Network</p>
+              <h2 className="mt-3 font-display text-2xl tracking-wider sm:text-4xl uppercase">
+                OUR TRUSTED <span className="gradient-gold-text">TRAVEL PARTNERS</span>
+              </h2>
+            </div>
+            <Link to="/partners" className="group inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-gold">
+              View all <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+            </Link>
+          </div>
         </div>
-        <div 
-          className="group/bento mt-12 flex flex-col gap-6 overflow-hidden"
+        <div
+          className="group/bento flex flex-col gap-6 overflow-hidden"
         >
           {Array.from({ length: 4 }).map((_, rowIndex) => {
             const rowPartners = partners.slice(rowIndex * 9, (rowIndex + 1) * 9);
