@@ -87,64 +87,35 @@ function PartnersPage() {
         </motion.div>
       </section>
 
-      {/* PARTNERS GRID */}
+      {/* PARTNERS LIST */}
       <section className="mx-auto max-w-7xl px-6 pb-32 lg:px-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
+          className="max-w-5xl"
         >
-          {partners.map((partner, idx) => (
-            <motion.a
-              key={partner.name}
-              href={partner.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              variants={cardVariants}
-              className="group relative flex flex-col items-center justify-center gap-3 rounded-sm border border-border/40 bg-card/60 px-4 py-8 text-center backdrop-blur-sm transition-all duration-300 hover:border-gold/60 hover:bg-card hover:shadow-[0_0_24px_rgba(212,175,55,0.12)] hover:-translate-y-1"
-              aria-label={`Visit ${partner.name} on Instagram`}
-            >
-              {/* Index badge */}
-              <span className="absolute top-3 left-3 font-mono text-[10px] text-muted-foreground/50 transition-colors group-hover:text-gold/60">
-                {String(idx + 1).padStart(2, "0")}
-              </span>
-
-              {/* Instagram icon (inline SVG) */}
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-muted-foreground/40 transition-all duration-300 group-hover:text-gold group-hover:scale-110"
-                aria-hidden="true"
+          <ul className="grid gap-x-12 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+            {partners.map((partner, idx) => (
+              <motion.li
+                key={partner.name}
+                variants={cardVariants}
+                className="flex gap-4 items-start group"
               >
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-              </svg>
-
-              {/* Partner name */}
-              <span className="font-display text-base tracking-widest text-foreground/70 uppercase transition-colors duration-300 group-hover:text-foreground">
-                {partner.name}
-              </span>
-
-              {/* External link indicator */}
-              <ExternalLink
-                size={12}
-                className="absolute bottom-3 right-3 text-muted-foreground/0 transition-all duration-300 group-hover:text-gold/60"
-              />
-
-              {/* Hover glow accent */}
-              <div className="absolute inset-0 rounded-sm opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none"
-                style={{ background: "radial-gradient(ellipse at center, rgba(212,175,55,0.06) 0%, transparent 70%)" }}
-              />
-            </motion.a>
-          ))}
+                <span className="font-mono text-sm text-muted-foreground min-w-[28px] mt-0.5 group-hover:text-gold transition-colors">
+                  {String(idx + 1).padStart(2, "0")}.
+                </span>
+                <a
+                  href={partner.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-foreground/80 leading-relaxed font-light group-hover:text-white transition-colors"
+                >
+                  {partner.name}
+                </a>
+              </motion.li>
+            ))}
+          </ul>
         </motion.div>
 
         {/* CTA */}
