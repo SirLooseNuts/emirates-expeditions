@@ -16,6 +16,7 @@ const partners = [
   { name: "Komban", url: "https://www.instagram.com/komban_holidays_official/" },
   { name: "Oneness", url: "https://www.instagram.com/onenesstravels/" },
   { name: "Shylock", url: "https://www.instagram.com/shylock_holidays_official/" },
+  { name: "Zero", url: "https://www.instagram.com/zero_expeditions/" },
   { name: "Daivik", url: "https://www.instagram.com/daivik_holidays_official/" },
   { name: "Madrak", url: "https://www.instagram.com/madrak_travel._experts_/" },
   { name: "NORWAY", url: "https://www.instagram.com/norway_travel_premium/" },
@@ -23,7 +24,6 @@ const partners = [
   { name: "Platinum", url: "https://www.instagram.com/platinum_holidays_official/" },
   { name: "Squadron", url: "https://www.instagram.com/squadron_travel_hub/" },
   { name: "Godfather", url: "https://www.instagram.com/godfather_holidays_official/" },
-  { name: "Zero", url: "https://www.instagram.com/zero_expeditions/" },
   { name: "Squirrel", url: "https://www.instagram.com/squirrel_trails/" },
   { name: "dozando", url: "https://www.instagram.com/dozando_tourcompany/" },
   { name: "Karthikeyan", url: "https://www.instagram.com/karthikeyan_travel_hub/" },
@@ -49,6 +49,9 @@ const partners = [
   { name: "Salamz", url: "https://www.instagram.com/salamztravelleisure/" },
   { name: "Captain", url: "https://www.instagram.com/_captain_holidays/" },
   { name: "Turbo", url: "https://www.instagram.com/turbo_travel_hub_/" },
+  { name: "Singam", url: "https://www.instagram.com/singamholidays/" },
+  { name: "Khaleefa", url: "https://www.instagram.com/_khaleefa_official___/" },
+  { name: "Shaimas", url: "https://www.instagram.com/shaimas_travelhub_official/" },
 ];
 
 const containerVariants = {
