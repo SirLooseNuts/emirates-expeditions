@@ -31,7 +31,7 @@ Designed with a clean UI, immersive visuals, and smooth user experience to help 
 * **Frontend:** HTML, CSS, JavaScript
 * **Framework/Library:** React / Next.js *(update if needed)*
 * **Deployment:** Vercel
-* **Styling:** Tailwind CSS *(if used)*
+* **Styling:** Tailwind CSS 
 
 ---
 
