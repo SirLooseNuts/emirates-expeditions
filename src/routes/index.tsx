@@ -6,10 +6,8 @@ import { ArrowRight, Bus, Compass, Mountain, ShieldCheck, Star, Users, ChevronLe
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Brand aligned real photography assets
-import pathoosGroup from "@/assets/group-pathoos-munnar.jpg";
+import heroLandmarks from "@/assets/hero-world-landmarks.png";
 import shylockBus1 from "@/assets/shylock-bus-1.jpg";
-import onenessBus from "@/assets/bus-oneness-combo.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -73,21 +71,7 @@ function Home() {
   const approvedReviews = getStoredReviews().filter((r) => r.approved);
 
   const [activeReview, setActiveReview] = useState(0);
-  const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-
-  const heroImages = [
-    { src: pathoosGroup, alt: "Student group posing in tea gardens of Munnar, Kerala" },
-    { src: shylockBus1, alt: "Premium customized Shylock coach on South India roads" },
-    { src: onenessBus, alt: "Oneness signature tourist coach for school and college expeditions" }
-  ];
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentHeroIndex((prev) => (prev + 1) % heroImages.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, [heroImages.length]);
 
   useEffect(() => {
     if (approvedReviews.length <= 1) return;
@@ -136,22 +120,15 @@ function Home() {
       />
       {/* HERO */}
       <section className="relative min-h-screen w-full overflow-hidden bg-black">
-        {/* Animated Slide Background */}
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={currentHeroIndex}
-            src={heroImages[currentHeroIndex].src}
-            alt={heroImages[currentHeroIndex].alt}
-            width={1920}
-            height={1080}
-            fetchPriority="high"
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-        </AnimatePresence>
+        {/* Background Image */}
+        <img
+          src={heroLandmarks}
+          alt="World landmarks collage background"
+          width={1920}
+          height={1080}
+          fetchPriority="high"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
         <div className="absolute inset-0 bg-background/50" />
 
