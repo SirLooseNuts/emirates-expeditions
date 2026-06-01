@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Mail, MapPin, Phone, AtSign, ShieldAlert } from "lucide-react";
+import { Mail, MapPin, Phone, AtSign } from "lucide-react";
 import logo from "@/assets/logo-main.png";
 import { getStoredSettings } from "@/lib/storage";
 import { useState, useEffect } from "react";
@@ -49,11 +49,6 @@ export function SiteFooter() {
             <li><Link to="/about" className="hover:text-gold">About</Link></li>
             <li><Link to="/booking" className="hover:text-gold">Booking</Link></li>
             <li><Link to="/contact" className="hover:text-gold">Contact</Link></li>
-            <li>
-              <Link to="/admin" className="text-gold font-bold hover:underline inline-flex items-center gap-1.5 mt-2">
-                <ShieldAlert size={12} /> Control Panel
-              </Link>
-            </li>
           </ul>
         </div>
 

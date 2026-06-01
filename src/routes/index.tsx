@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import SplashCursor from "@/components/SplashCursor";
-import { getStoredTours, getStoredPhotos, getStoredReviews } from "@/lib/storage";
+import { getStoredTours, getStoredPhotos, getStoredReviews, getStoredSettings } from "@/lib/storage";
 import { TourCard } from "@/components/TourCard";
 import { ArrowRight, Bus, Compass, Mountain, ShieldCheck, Star, Users, ChevronLeft, ChevronRight, Plus, Minus, HelpCircle } from "lucide-react";
 import { useState, useEffect } from "react";
