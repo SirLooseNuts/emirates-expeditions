@@ -67,9 +67,10 @@ export function TourCard({ tour }: { tour: Tour }) {
               transition={{ duration: 0.3 }}
               className="flex-1 min-w-0"
             >
-              <p className="mb-1 font-mono text-[10px] uppercase tracking-[0.4em] text-gold/70">
-                {tour.duration}
-              </p>
+              <div className="mb-1 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.3em] text-gold/70">
+                <span>{tour.duration}</span>
+                <span className="text-gold font-bold">{tour.price}</span>
+              </div>
               {/* Always-visible location name */}
               <h3 className="font-display text-2xl leading-tight tracking-wider text-foreground uppercase truncate">
                 {tour.title.split(' — ')[1] || tour.title.split(' — ')[0]}

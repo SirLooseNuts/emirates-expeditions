@@ -1,21 +1,24 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { galleryPhotos } from "@/data/gallery";
+import { getStoredPhotos } from "@/lib/storage";
 import { Lightbox } from "@/components/Lightbox";
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Filter, Grid3X3, Layers } from "lucide-react";
 
 export const Route = createFileRoute("/gallery")({
-  head: () => ({
-    meta: [
-      { title: "Gallery — Emirates Expedition" },
-      { name: "description", content: "Group photos, signature touring coaches, and moments from school trips and expeditions across South India." },
-      { property: "og:title", content: "Gallery — Emirates Expedition" },
-      { property: "og:description", content: "Real moments from real trips." },
-      { property: "og:image", content: galleryPhotos[0]?.src || "" },
-      { name: "twitter:image", content: galleryPhotos[0]?.src || "" },
-    ],
-  }),
+  head: () => {
+    const photos = getStoredPhotos();
+    return {
+      meta: [
+        { title: "Gallery — Emirates Expedition" },
+        { name: "description", content: "Group photos, signature touring coaches, and moments from school trips and expeditions across South India." },
+        { property: "og:title", content: "Gallery — Emirates Expedition" },
+        { property: "og:description", content: "Real moments from real trips." },
+        { property: "og:image", content: photos[0]?.src || "" },
+        { name: "twitter:image", content: photos[0]?.src || "" },
+      ],
+    };
+  },
   component: GalleryPage,
 });
 
@@ -26,6 +29,7 @@ const INITIAL_COUNT = 24;
 const STEP_COUNT = 12;
 
 function GalleryPage() {
+  const galleryPhotos = getStoredPhotos();
   const [activeCategory, setActiveCategory] = useState<Category>("All");
   const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
   const [lightbox, setLightbox] = useState({ isOpen: false, index: 0 });

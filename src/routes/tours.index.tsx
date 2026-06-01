@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { tours } from "@/data/tours";
+import { getStoredTours } from "@/lib/storage";
 import { TourCard } from "@/components/TourCard";
 import * as Tabs from "@radix-ui/react-tabs";
 import { motion, AnimatePresence } from "framer-motion";
@@ -47,16 +47,16 @@ const RAW_PACKAGE_LIST = [
     category: "ONE DAY TRIPS",
     items: [
       "Wonderla, Forum Mall/Lulumall",
-      "Athirapally, Vazhachal, Silverstrom/Dreamworld",
+      "Athirappilly, Vazhachal, Silver Storm/Dreamworld",
       "Munnar",
       "Kodaikanal",
       "Wagamon",
       "Marayoor",
       "Idukki",
       "Ooty",
-      "Alapuzha/ Kollam Houseboat",
+      "Alappuzha / Kollam Houseboat",
       "Kanyakumari",
-      "Thenmala, palaruvi, Kutralam",
+      "Thenmala, Palaruvi, Courtallam",
       "Ponmudi, Meenmutty waterfall"
     ],
     startIndex: 1
@@ -64,24 +64,24 @@ const RAW_PACKAGE_LIST = [
   {
     category: "TWO DAY TRIPS (2 day, 3 night)",
     items: [
-      "Ooty, Wayand",
+      "Ooty, Wayanad",
       "Kodaikanal, Munnar",
       "Marayoor, Kodaikanal",
       "Munnar, Marayoor",
       "Munnar, Wonderla",
       "Coorg, Mysore",
       "Mysore, Ooty",
-      "Banglore, Mysore",
-      "Mysore, Banglore Wonderla",
+      "Bangalore, Mysore",
+      "Mysore, Bangalore Wonderla",
       "Wagamon, Idukki",
-      "Mysore, Chikmanglore",
-      "Coorg, Chikmanglore",
+      "Mysore, Chikmagalur",
+      "Coorg, Chikmagalur",
       "Rameswaram, Kodaikanal",
-      "kodaikanal, Wagamon",
+      "Kodaikanal, Wagamon",
       "Wagamon, Wonderla",
       "Ooty, Black Thunder",
       "Malampuzha, Ooty",
-      "Athirapally, Vazhachal, Valpara"
+      "Athirappilly, Vazhachal, Valparai"
     ],
     startIndex: 13
   },
@@ -91,43 +91,43 @@ const RAW_PACKAGE_LIST = [
       "Wagamon, Munnar, Wonderla",
       "Munnar, Marayoor, Wonderla",
       "Wagamon, Munnar, Idukki",
-      "Chikmanglore, Belur, Mysore",
-      "Mysore, Chikmanglore, Wonderla",
-      "Coorg, Mysore, Banglore",
-      "Coorg, Chikmanglore, Mysore",
+      "Chikmagalur, Belur, Mysore",
+      "Mysore, Chikmagalur, Wonderla",
+      "Coorg, Mysore, Bangalore",
+      "Coorg, Chikmagalur, Mysore",
       "Mysore, Coorg, Wayanad",
       "Mysore, Ooty, Wonderla",
       "Kodaikanal, Munnar, Wonderla",
       "Kodaikanal, Marayoor, Munnar",
       "Kodaikanal, Munnar, Wagamon",
       "Kodaikanal, Marayoor, Wonderla",
-      "Wayand, Ooty, Wonderla",
+      "Wayanad, Ooty, Wonderla",
       "Mookambika",
-      "Banglore, Mysore, Chikmanglore",
+      "Bangalore, Mysore, Chikmagalur",
       "Rameswaram, Kodaikanal, Munnar",
-      "Uduppi, Coorg, Mysore"
+      "Udupi, Coorg, Mysore"
     ],
     startIndex: 31
   },
   {
     category: "FOUR DAY TRIPS",
     items: [
-      "Ooty, Wayand, Wonderla",
+      "Ooty, Wayanad, Wonderla",
       "Kodaikanal, Marayoor, Munnar, Wonderla",
       "Kodaikanal, Munnar, Wagamon, Wonderla",
       "Wagamon, Ramakkalmedu, Idukki, Munnar, Marayoor/Wonderla",
-      "Banglore, Mysore, ooty, Wayand/Wonderla",
-      "Coorg, Chikmanglore, Belur,Mysore",
-      "Dendeli, Uduppi, Croög, Chikmanglore",
-      "Uduppi, Coorg, Sravanabelgola, Chikmanglore, Mysore",
-      "Myosre, chikmanglore, Coorg, Wayanad",
-      "Uduppi, Dendeli, Chikmanglore, Coorg",
-      "Coorg, Mysore , Mysore, Wayand",
-      "Banglore, Mysore, chikmanglore, Coorg",
-      "Coorg, Chikmanglore, Belur, Banglore",
-      "Ooty, Mysore, Coorg, Wayand",
-      "Mysore, coorg, Wayand, Kozhikode",
-      "Uduppi, Goa, Goa, Chikmaglore",
+      "Bangalore, Mysore, Ooty, Wayanad/Wonderla",
+      "Coorg, Chikmagalur, Belur, Mysore",
+      "Dandeli, Udupi, Coorg, Chikmagalur",
+      "Udupi, Coorg, Shravanabelagola, Chikmagalur, Mysore",
+      "Mysore, Chikmagalur, Coorg, Wayanad",
+      "Udupi, Dandeli, Chikmagalur, Coorg",
+      "Coorg, Mysore, Wayanad",
+      "Bangalore, Mysore, Chikmagalur, Coorg",
+      "Coorg, Chikmagalur, Belur, Bangalore",
+      "Ooty, Mysore, Coorg, Wayanad",
+      "Mysore, Coorg, Wayanad, Kozhikode",
+      "Udupi, Goa, Chikmagalur",
       "Rameswaram, Kodaikanal, Palani, Kanyakumari"
     ],
     startIndex: 49
@@ -135,38 +135,39 @@ const RAW_PACKAGE_LIST = [
   {
     category: "FIVE DAY TRIPS",
     items: [
-      "Uduppi, Dendeli, Goa,Goa, Chikmanglore",
-      "Banglore, BangloreWonderla, Mysore, Chikmanglore, Coorg",
-      "Coorg, Chikmanglore, Belur, Dendeli, Uduppi",
-      "Wayandu, Ooty, Mysore, Chikmanglore, Coorg",
-      "Coorg, Chikmanglore, Belur, Mysore, Banglore",
-      "Alapuzha House boat, Wagamon, Calveri Mount, Idukki dam, Munnar, Wonderla/Marayoor"
+      "Udupi, Dandeli, Goa, Chikmagalur",
+      "Bangalore, Bangalore Wonderla, Mysore, Chikmagalur, Coorg",
+      "Coorg, Chikmagalur, Belur, Dandeli, Udupi",
+      "Wayanad, Ooty, Mysore, Chikmagalur, Coorg",
+      "Coorg, Chikmagalur, Belur, Mysore, Bangalore",
+      "Alappuzha Houseboat, Wagamon, Calvary Mount, Idukki Dam, Munnar, Wonderla/Marayoor"
     ],
     startIndex: 66
   },
   {
     category: "SIX DAY TRIPS",
     items: [
-      "Uduppi, Dendeli, Goa,Goa, Chikmanglore, Coorg",
-      "Banglore, BangloreWonderla, Mysore, Chikmanglore, Coorg, Wayand",
-      "Coorg, Chikmanglore, Belur, Dendeli, Uduppi, Kozhikode",
-      "Wayandu, Ooty, Mysore, Chikmanglore,Belur, Coorg",
-      "Coorg, Chikmanglore, Belur, Mysore, Banglore, Banglore Wonderla"
+      "Udupi, Dandeli, Goa, Chikmagalur, Coorg",
+      "Bangalore, Bangalore Wonderla, Mysore, Chikmagalur, Coorg, Wayanad",
+      "Coorg, Chikmagalur, Belur, Dandeli, Udupi, Kozhikode",
+      "Wayanad, Ooty, Mysore, Chikmagalur, Belur, Coorg",
+      "Coorg, Chikmagalur, Belur, Mysore, Bangalore, Bangalore Wonderla"
     ],
     startIndex: 72
   }
 ];
 
 function ToursPage() {
+  const toursList = getStoredTours();
   const [viewMode, setViewMode] = useState<"explore" | "list">("explore");
   const [filterMode, setFilterMode] = useState<"duration" | "location">("duration");
 
   const filteredTours = (filterId: string) => {
     if (filterMode === "duration") {
-      return tours.filter((t) => t.durationInDays === parseInt(filterId));
+      return toursList.filter((t) => t.durationInDays === parseInt(filterId));
     } else {
       // Location filtering logic
-      return tours.filter((t) => {
+      return toursList.filter((t) => {
         const title = t.title.toLowerCase();
         const category = t.category.toLowerCase();
         const highlightsString = t.highlights.join(" ").toLowerCase();

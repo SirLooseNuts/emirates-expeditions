@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import logo from "@/assets/logo-main.png";
 import { useTheme } from "./ThemeProvider";
+import { getStoredSettings } from "@/lib/storage";
 
 const links = [
   { to: "/", label: "Home" },
@@ -13,9 +14,20 @@ const links = [
 ] as const;
 
 export function SiteHeader() {
+  const [settings, setSettings] = useState(() => getStoredSettings());
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    const handleUpdate = () => {
+      setSettings(getStoredSettings());
+    };
+    window.addEventListener("local-settings-updated", handleUpdate);
+    return () => {
+      window.removeEventListener("local-settings-updated", handleUpdate);
+    };
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -43,7 +55,7 @@ export function SiteHeader() {
           </Link>
           <div className="hidden md:block h-8 w-px bg-white/10 mx-2" />
           <div className="hidden lg:block font-mono text-[9px] uppercase tracking-[0.4em] text-white/40">
-            A journey of thousand miles
+            {settings.tagline}
           </div>
         </div>
 

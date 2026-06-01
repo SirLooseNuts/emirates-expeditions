@@ -1,11 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import SplashCursor from "@/components/SplashCursor";
-import hero from "@/assets/hero-world-landmarks.png";
-import bambooImg from "@/assets/group-bamboo-forest.jpg";
-import wildlife from "@/assets/group-wildlife-sanctuary.webp";
-import { tours } from "@/data/tours";
+import { getStoredTours, getStoredPhotos, getStoredReviews } from "@/lib/storage";
 import { TourCard } from "@/components/TourCard";
-import { ArrowRight, Bus, Compass, Mountain, ShieldCheck, Star, Users } from "lucide-react";
+import { ArrowRight, Bus, Compass, Mountain, ShieldCheck, Star, Users, ChevronLeft, ChevronRight, Plus, Minus, HelpCircle } from "lucide-react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+// Brand aligned real photography assets
+import pathoosGroup from "@/assets/group-pathoos-munnar.jpg";
+import shylockBus1 from "@/assets/shylock-bus-1.jpg";
+import onenessBus from "@/assets/bus-oneness-combo.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -14,8 +18,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "A journey of thousand miles. Group expeditions, school trips, college tours and custom packages across Munnar, Wayanad, Coorg, Goa & beyond." },
       { property: "og:title", content: "Emirates Expedition — A Journey of Thousand Miles" },
       { property: "og:description", content: "Signature touring coaches, expert trip leaders, and unforgettable group adventures across South India." },
-      { property: "og:image", content: hero },
-      { name: "twitter:image", content: hero },
+      { property: "og:image", content: shylockBus1 },
+      { name: "twitter:image", content: shylockBus1 },
     ],
   }),
   component: Home,
@@ -64,6 +68,57 @@ const partners = [
 ];
 
 function Home() {
+  const toursList = getStoredTours();
+  const galleryPhotos = getStoredPhotos().slice(0, 8);
+  const approvedReviews = getStoredReviews().filter((r) => r.approved);
+
+  const [activeReview, setActiveReview] = useState(0);
+  const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  const heroImages = [
+    { src: pathoosGroup, alt: "Student group posing in tea gardens of Munnar, Kerala" },
+    { src: shylockBus1, alt: "Premium customized Shylock coach on South India roads" },
+    { src: onenessBus, alt: "Oneness signature tourist coach for school and college expeditions" }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentHeroIndex((prev) => (prev + 1) % heroImages.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [heroImages.length]);
+
+  useEffect(() => {
+    if (approvedReviews.length <= 1) return;
+    const timer = setInterval(() => {
+      setActiveReview((prev) => (prev + 1) % approvedReviews.length);
+    }, 7000);
+    return () => clearInterval(timer);
+  }, [approvedReviews.length]);
+
+  const faqs = [
+    {
+      q: "What is the capacity of the buses available in your fleet?",
+      a: "We offer a diverse fleet of premium tourist coaches ranging from 12-seater luxury vans to 17, 26, 40, and 53-seater air-conditioned executive buses, all customized with sound systems and signature aesthetic designs."
+    },
+    {
+      q: "Do you provide food and accommodation arrangements for large school/college groups?",
+      a: "Yes, we engineer complete itineraries including curated stays at trusted premium resorts/villas and hygiene-certified dining plans (breakfast, lunch, dinner) tailored to your group's food preferences."
+    },
+    {
+      q: "Are the trips and transport fully insured and compliant?",
+      a: "Absolutely. All our tourist coaches have active permits, valid national tourism licenses, comprehensive insurance coverage, and are driven by verified and experienced professional captains."
+    },
+    {
+      q: "What is your payment structure for reservation and advance booking?",
+      a: "To secure the coaches and bookings, we require a standard 30% advance payment upon contract signing. The remaining amount is structured into milestones before and during the trip operation."
+    },
+    {
+      q: "What is the cancellation policy for student or group tours?",
+      a: "Cancellations made 15 days or more prior to departure receive a full refund of the advance (minus booking charges). Partial refunds are applicable for shorter notices depending on hotel contract commitments."
+    }
+  ];
 
   return (
     <>
@@ -80,17 +135,25 @@ function Home() {
         targetSelector=".partner-card"
       />
       {/* HERO */}
-      <section className="relative min-h-screen w-full overflow-hidden">
-        <img
-          src={hero}
-          alt="World landmarks collage featuring Taj Mahal, Eiffel Tower, and Big Ben"
-          width={1920}
-          height={1080}
-          fetchPriority="high"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
-        <div className="absolute inset-0 bg-background/40" />
+      <section className="relative min-h-screen w-full overflow-hidden bg-black">
+        {/* Animated Slide Background */}
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={currentHeroIndex}
+            src={heroImages[currentHeroIndex].src}
+            alt={heroImages[currentHeroIndex].alt}
+            width={1920}
+            height={1080}
+            fetchPriority="high"
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        </AnimatePresence>
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+        <div className="absolute inset-0 bg-background/50" />
 
         <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-end px-6 pb-16 pt-32 sm:pb-24 sm:pt-40 lg:px-10">
           <p className="eyebrow">Est. Kerala · India</p>
@@ -190,7 +253,7 @@ function Home() {
             {/* The carousel track */}
             <div className="flex animate-marquee-left gap-6 group-hover:[animation-play-state:paused]">
               {[1, 2, 3, 4, 5].flatMap((days) => 
-                tours.filter((t) => t.durationInDays === days).slice(0, 2)
+                toursList.filter((t) => t.durationInDays === days).slice(0, 2)
               ).map((t, i) => (
                 <div key={`${t.slug}-${i}`} className="w-[300px] sm:w-[400px]">
                   <TourCard tour={t} />
@@ -200,7 +263,7 @@ function Home() {
             {/* Duplicate for infinite effect */}
             <div className="flex animate-marquee-left gap-6 group-hover:[animation-play-state:paused]" aria-hidden="true">
               {[1, 2, 3, 4, 5].flatMap((days) => 
-                tours.filter((t) => t.durationInDays === days).slice(0, 2)
+                toursList.filter((t) => t.durationInDays === days).slice(0, 2)
               ).map((t, i) => (
                 <div key={`${t.slug}-${i}-dup`} className="w-[300px] sm:w-[400px]">
                   <TourCard tour={t} />
@@ -288,28 +351,122 @@ function Home() {
             See more <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
-        <div className="mt-12 grid grid-cols-2 gap-3 lg:grid-cols-4">
-          {[wildlife, bambooImg, hero, bambooImg].map((src, i) => (
-            <div key={i} className="group relative aspect-square overflow-hidden rounded-sm border border-border/40">
-              <img src={src} alt="Group expedition moment" loading="lazy" className="h-full w-full object-cover transition-transform duration-[1500ms] group-hover:scale-110" />
-            </div>
+        
+        <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
+          {galleryPhotos.map((p, i) => (
+            <Link to="/gallery" key={i} className="group relative aspect-square overflow-hidden rounded-sm border border-border/40 block">
+              <img src={p.src} alt={p.alt} loading="lazy" className="h-full w-full object-cover transition-transform duration-[1500ms] group-hover:scale-110" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4 z-10" />
+              <div className="absolute inset-x-0 bottom-0 p-3 translate-y-2 opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100 z-20">
+                <p className="font-mono text-[7px] uppercase tracking-widest text-gold mb-0.5">{p.category}</p>
+                <p className="text-[9px] font-bold uppercase tracking-wider text-white truncate">{p.alt}</p>
+              </div>
+            </Link>
           ))}
         </div>
       </section>
 
-      {/* TESTIMONIAL */}
-      <section className="relative mx-auto max-w-5xl px-6 py-16 text-center sm:py-32 lg:px-10">
-        <div className="flex justify-center gap-1 text-gold">
-          {Array.from({ length: 5 }).map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
+      {/* TESTIMONIALS SLIDER */}
+      <section className="relative mx-auto max-w-5xl px-6 py-16 text-center sm:py-32 lg:px-10 border-y border-white/5 bg-card/10 my-8">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(196,155,90,0.02),transparent_70%)]" />
+        
+        {approvedReviews.length > 0 ? (
+          <div className="relative min-h-[220px] flex flex-col justify-between">
+            <div className="flex justify-center gap-1 text-gold">
+              {Array.from({ length: approvedReviews[activeReview]?.rating || 5 }).map((_, i) => (
+                <Star key={i} size={14} fill="currentColor" />
+              ))}
+            </div>
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeReview}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.4 }}
+                className="my-6"
+              >
+                <blockquote className="font-display text-xl leading-tight tracking-wider text-foreground sm:text-3xl lg:text-4xl max-w-4xl mx-auto uppercase">
+                  "{approvedReviews[activeReview].quote}"
+                </blockquote>
+                <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+                  — {approvedReviews[activeReview].author} · <span className="text-gold">{approvedReviews[activeReview].location}</span> · {approvedReviews[activeReview].tripType}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Testimonials Navigation Dots */}
+            {approvedReviews.length > 1 && (
+              <div className="flex justify-center gap-2 mt-4">
+                {approvedReviews.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveReview(idx)}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      activeReview === idx ? "w-6 bg-gold" : "w-1.5 bg-white/20 hover:bg-white/40"
+                    }`}
+                    aria-label={`Go to review ${idx + 1}`}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className="text-center font-mono text-xs uppercase tracking-widest text-white/40 py-8">
+            No testimonials loaded.
+          </div>
+        )}
+      </section>
+
+      {/* FAQS SECTION */}
+      <section className="mx-auto max-w-4xl px-6 py-16 sm:py-28 lg:px-10">
+        <div className="text-center mb-16">
+          <p className="eyebrow">Got Questions?</p>
+          <h2 className="mt-4 font-display text-3xl tracking-wider sm:text-5xl uppercase">
+            FREQUENTLY ASKED <span className="gradient-gold-text">QUESTIONS</span>
+          </h2>
         </div>
-        <blockquote className="mt-8 font-display text-2xl leading-tight tracking-wider text-foreground sm:text-4xl lg:text-5xl">
-          "WE'VE TAKEN THREE BATCHES OF STUDENTS WITH EMIRATES EXPEDITION. THE
-          BUSES, THE GUIDES, THE FOOD — EVERYTHING WAS SPOT ON. THE KIDS STILL
-          TALK ABOUT MUNNAR."
-        </blockquote>
-        <p className="mt-8 font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">
-          — Faculty Coordinator · GHSS Thonnakkal · KTM 3.0
-        </p>
+
+        <div className="space-y-4">
+          {faqs.map((faq, idx) => {
+            const isOpen = openFaq === idx;
+            return (
+              <div 
+                key={idx} 
+                className="border border-border/60 bg-card/20 rounded-sm overflow-hidden transition-all duration-300 hover:border-gold/30"
+              >
+                <button
+                  onClick={() => setOpenFaq(isOpen ? null : idx)}
+                  className="flex w-full items-center justify-between p-6 text-left focus:outline-none"
+                >
+                  <span className="font-display text-lg tracking-wider text-white uppercase flex items-center gap-4">
+                    <span className="font-mono text-xs text-gold">0{idx + 1}.</span>
+                    {faq.q}
+                  </span>
+                  <div className="text-gold border border-gold/20 rounded-sm p-1">
+                    {isOpen ? <Minus size={14} /> : <Plus size={14} />}
+                  </div>
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                    >
+                      <div className="px-6 pb-6 pt-2 font-mono text-xs text-muted-foreground leading-relaxed border-t border-white/5">
+                        {faq.a}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+        </div>
       </section>
 
       {/* CTA */}
@@ -337,8 +494,11 @@ function Home() {
               <Link to="/booking" className="inline-flex min-h-[48px] items-center rounded-sm bg-gold px-6 py-4 text-sm font-bold uppercase tracking-[0.2em] text-primary-foreground hover:opacity-90 sm:px-8">
                 Get a Quote
               </Link>
-              <a href="tel:+917012775400" className="inline-flex min-h-[48px] items-center rounded-sm border border-foreground/30 px-6 py-4 text-sm font-medium uppercase tracking-[0.2em] hover:border-gold hover:text-gold sm:px-8">
-                Call +91 70127 75400
+              <a 
+                href={`tel:${getStoredSettings().phone1.replace(/\s+/g, "")}`} 
+                className="inline-flex min-h-[48px] items-center rounded-sm border border-foreground/30 px-6 py-4 text-sm font-medium uppercase tracking-[0.2em] hover:border-gold hover:text-gold sm:px-8"
+              >
+                Call {getStoredSettings().phone1}
               </a>
             </div>
           </div>

@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { tours } from "@/data/tours";
+import { getStoredTours } from "@/lib/storage";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Clock, 
@@ -37,7 +37,7 @@ function getRegionsFromTitle(title: string): string[] {
 
 export const Route = createFileRoute("/tours/$slug")({
   loader: ({ params }) => {
-    const tour = tours.find((t) => t.slug === params.slug);
+    const tour = getStoredTours().find((t) => t.slug === params.slug);
     if (!tour) throw notFound();
     return tour;
   },
@@ -100,8 +100,8 @@ function TourDetail() {
       {/* Stickly Mobile Booking Bar */}
       <div className="fixed bottom-0 left-0 right-0 z-[100] md:hidden p-4 bg-background/80 backdrop-blur-xl border-t border-white/10 flex items-center justify-between">
         <div>
-            <p className="text-[10px] font-mono uppercase tracking-widest text-gold mb-1">Lead Expedition</p>
-            <p className="text-sm font-bold tracking-widest text-white uppercase">{tour.duration}</p>
+            <p className="text-[10px] font-mono uppercase tracking-widest text-gold mb-1">{tour.duration}</p>
+            <p className="text-sm font-bold tracking-widest text-white uppercase">{tour.price}</p>
         </div>
         <Link
           to="/booking"
@@ -166,15 +166,19 @@ function TourDetail() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2, duration: 0.8 }}
-              className="grid grid-cols-2 divide-x divide-white/10 rounded-2xl border border-white/20 bg-white/5 p-6 backdrop-blur-xl shadow-2xl"
+              className="grid grid-cols-3 divide-x divide-white/10 rounded-2xl border border-white/20 bg-white/5 p-6 backdrop-blur-xl shadow-2xl"
             >
               <div className="flex flex-col items-center">
                 <span className="font-mono text-[10px] uppercase tracking-widest text-white/50 mb-1">Expedition Span</span>
                 <span className="text-sm font-bold text-white tracking-widest uppercase">{tour.duration}</span>
               </div>
               <div className="flex flex-col items-center">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-white/50 mb-1">Starting Price</span>
+                <span className="text-sm font-bold text-gold tracking-widest uppercase">{tour.price}</span>
+              </div>
+              <div className="flex flex-col items-center">
                 <span className="font-mono text-[10px] uppercase tracking-widest text-white/50 mb-1">Tour Status</span>
-                <span className="text-sm font-bold text-gold tracking-widest uppercase">Booking Open</span>
+                <span className="text-sm font-bold text-emerald-400 tracking-widest uppercase">Booking Open</span>
               </div>
             </motion.div>
           </div>
@@ -254,6 +258,10 @@ function TourDetail() {
                 ))}
               </ul>
               <div className="mt-10 pt-10 border-t border-gold/10">
+                <div className="flex items-center justify-between mb-6 font-mono">
+                  <span className="text-[10px] uppercase tracking-widest text-white/50">Starting Rate</span>
+                  <span className="text-sm font-bold text-gold uppercase">{tour.price}</span>
+                </div>
 
                 <Link
                 to="/booking"
