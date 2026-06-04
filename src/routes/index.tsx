@@ -1,10 +1,29 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import SplashCursor from "@/components/SplashCursor";
-import { getStoredTours, getStoredPhotos, getStoredReviews, getStoredSettings } from "@/lib/storage";
+import {
+  getStoredTours,
+  getStoredPhotos,
+  getStoredReviews,
+  getStoredSettings,
+} from "@/lib/storage";
 import { TourCard } from "@/components/TourCard";
-import { ArrowRight, Bus, Compass, Mountain, ShieldCheck, Star, Users, ChevronLeft, ChevronRight, Plus, Minus, HelpCircle } from "lucide-react";
-import { useState, useEffect } from "react";
+import {
+  ArrowRight,
+  Bus,
+  Compass,
+  Mountain,
+  ShieldCheck,
+  Star,
+  Users,
+  ChevronLeft,
+  ChevronRight,
+  Plus,
+  Minus,
+  HelpCircle,
+} from "lucide-react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+
+const SplashCursor = lazy(() => import("@/components/SplashCursor"));
 
 import heroLandmarks from "@/assets/hero-world-landmarks.png";
 import shylockBus1 from "@/assets/shylock-bus-1.jpg";
@@ -13,9 +32,17 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Emirates Expedition — Group Tours, School Trips & Expeditions Across South India" },
-      { name: "description", content: "A journey of thousand miles. Group expeditions, school trips, college tours and custom packages across Munnar, Wayanad, Coorg, Goa & beyond." },
+      {
+        name: "description",
+        content:
+          "A journey of thousand miles. Group expeditions, school trips, college tours and custom packages across Munnar, Wayanad, Coorg, Goa & beyond.",
+      },
       { property: "og:title", content: "Emirates Expedition — A Journey of Thousand Miles" },
-      { property: "og:description", content: "Signature touring coaches, expert trip leaders, and unforgettable group adventures across South India." },
+      {
+        property: "og:description",
+        content:
+          "Signature touring coaches, expert trip leaders, and unforgettable group adventures across South India.",
+      },
       { property: "og:image", content: shylockBus1 },
       { name: "twitter:image", content: shylockBus1 },
     ],
@@ -66,9 +93,19 @@ const partners = [
 ];
 
 function Home() {
-  const toursList = getStoredTours();
-  const galleryPhotos = getStoredPhotos().slice(0, 8);
-  const approvedReviews = getStoredReviews().filter((r) => r.approved);
+  const [toursList] = useState(() => getStoredTours());
+  const [galleryPhotos] = useState(() => getStoredPhotos().slice(0, 8));
+  const [approvedReviews] = useState(() => getStoredReviews().filter((r) => r.approved));
+  const [settings] = useState(() => getStoredSettings());
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(hover: hover)");
+    setIsDesktop(mediaQuery.matches);
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mediaQuery.addEventListener("change", handler);
+    return () => mediaQuery.removeEventListener("change", handler);
+  }, []);
 
   const [activeReview, setActiveReview] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -84,40 +121,44 @@ function Home() {
   const faqs = [
     {
       q: "What is the capacity of the buses available in your fleet?",
-      a: "We offer a diverse fleet of premium tourist coaches ranging from 12-seater luxury vans to 17, 26, 40, and 53-seater air-conditioned executive buses, all customized with sound systems and signature aesthetic designs."
+      a: "We offer a diverse fleet of premium tourist coaches ranging from 12-seater luxury vans to 17, 26, 40, and 53-seater air-conditioned executive buses, all customized with sound systems and signature aesthetic designs.",
     },
     {
       q: "Do you provide food and accommodation arrangements for large school/college groups?",
-      a: "Yes, we engineer complete itineraries including curated stays at trusted premium resorts/villas and hygiene-certified dining plans (breakfast, lunch, dinner) tailored to your group's food preferences."
+      a: "Yes, we engineer complete itineraries including curated stays at trusted premium resorts/villas and hygiene-certified dining plans (breakfast, lunch, dinner) tailored to your group's food preferences.",
     },
     {
       q: "Are the trips and transport fully insured and compliant?",
-      a: "Absolutely. All our tourist coaches have active permits, valid national tourism licenses, comprehensive insurance coverage, and are driven by verified and experienced professional captains."
+      a: "Absolutely. All our tourist coaches have active permits, valid national tourism licenses, comprehensive insurance coverage, and are driven by verified and experienced professional captains.",
     },
     {
       q: "What is your payment structure for reservation and advance booking?",
-      a: "To secure the coaches and bookings, we require a standard 30% advance payment upon contract signing. The remaining amount is structured into milestones before and during the trip operation."
+      a: "To secure the coaches and bookings, we require a standard 30% advance payment upon contract signing. The remaining amount is structured into milestones before and during the trip operation.",
     },
     {
       q: "What is the cancellation policy for student or group tours?",
-      a: "Cancellations made 15 days or more prior to departure receive a full refund of the advance (minus booking charges). Partial refunds are applicable for shorter notices depending on hotel contract commitments."
-    }
+      a: "Cancellations made 15 days or more prior to departure receive a full refund of the advance (minus booking charges). Partial refunds are applicable for shorter notices depending on hotel contract commitments.",
+    },
   ];
 
   return (
     <>
-      <SplashCursor
-        DENSITY_DISSIPATION={2}
-        VELOCITY_DISSIPATION={9}
-        PRESSURE={0.05}
-        CURL={17}
-        SPLAT_RADIUS={0.13}
-        SPLAT_FORCE={2000}
-        COLOR_UPDATE_SPEED={30}
-        SHADING={false}
-        RAINBOW_MODE
-        targetSelector=".partner-card"
-      />
+      {isDesktop && (
+        <Suspense fallback={null}>
+          <SplashCursor
+            DENSITY_DISSIPATION={2}
+            VELOCITY_DISSIPATION={9}
+            PRESSURE={0.05}
+            CURL={17}
+            SPLAT_RADIUS={0.13}
+            SPLAT_FORCE={2000}
+            COLOR_UPDATE_SPEED={30}
+            SHADING={false}
+            RAINBOW_MODE
+            targetSelector=".partner-card"
+          />
+        </Suspense>
+      )}
       {/* HERO */}
       <section className="relative min-h-screen w-full overflow-hidden bg-black">
         {/* Background Image */}
@@ -140,9 +181,8 @@ function Home() {
             <span className="gradient-gold-text">THOUSAND MILES</span>
           </h1>
           <p className="mt-8 max-w-xl text-base leading-relaxed text-foreground/85 sm:text-lg">
-            Group expeditions, school trips, college tours and custom packages
-            across South India — aboard our signature touring coaches, led by
-            seasoned trip captains.
+            Group expeditions, school trips, college tours and custom packages across South India —
+            aboard our signature touring coaches, led by seasoned trip captains.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <Link
@@ -173,7 +213,22 @@ function Home() {
         <div className="marquee-track flex w-max gap-12 whitespace-nowrap font-display text-2xl tracking-widest">
           {Array.from({ length: 2 }).map((_, k) => (
             <div key={k} className="flex gap-12">
-              {["SCHOOL TRIPS", "★", "GROUP EXPEDITIONS", "★", "COLLEGE TOURS", "★", "DEVOTIONAL", "★", "INDUSTRIAL VISITS", "★", "CUSTOM PACKAGES", "★", "FAMILY TOURS", "★"].map((t, i) => (
+              {[
+                "SCHOOL TRIPS",
+                "★",
+                "GROUP EXPEDITIONS",
+                "★",
+                "COLLEGE TOURS",
+                "★",
+                "DEVOTIONAL",
+                "★",
+                "INDUSTRIAL VISITS",
+                "★",
+                "CUSTOM PACKAGES",
+                "★",
+                "FAMILY TOURS",
+                "★",
+              ].map((t, i) => (
                 <span key={`${k}-${i}`}>{t}</span>
               ))}
             </div>
@@ -194,15 +249,27 @@ function Home() {
           </div>
           <div className="lg:col-span-7 lg:pt-4">
             <p className="text-lg leading-relaxed text-foreground/85">
-              Emirates Expedition is a Kerala-based travel collective specialising
-              in large-group journeys — school field trips, college fests,
-              corporate retreats, and devotional tours. We handle the bus, the
-              route, the food, the photos, and the chaos. You bring the energy.
+              Emirates Expedition is a Kerala-based travel collective specialising in large-group
+              journeys — school field trips, college fests, corporate retreats, and devotional
+              tours. We handle the bus, the route, the food, the photos, and the chaos. You bring
+              the energy.
             </p>
             <div className="mt-10 grid gap-8 sm:grid-cols-3">
-              <Pillar icon={<Bus size={20} />} title="Signature coaches" body="Decorated tourist buses built for the long haul." />
-              <Pillar icon={<ShieldCheck size={20} />} title="Safe & licensed" body="Trained drivers, trip captains, full insurance." />
-              <Pillar icon={<Compass size={20} />} title="Crafted routes" body="Hill stations, beaches, and heritage in one loop." />
+              <Pillar
+                icon={<Bus size={20} />}
+                title="Signature coaches"
+                body="Decorated tourist buses built for the long haul."
+              />
+              <Pillar
+                icon={<ShieldCheck size={20} />}
+                title="Safe & licensed"
+                body="Trained drivers, trip captains, full insurance."
+              />
+              <Pillar
+                icon={<Compass size={20} />}
+                title="Crafted routes"
+                body="Hill stations, beaches, and heritage in one loop."
+              />
             </div>
           </div>
         </div>
@@ -218,8 +285,12 @@ function Home() {
                 MOST <span className="gradient-gold-text">DESIRED</span> COLLECTIONS.
               </h2>
             </div>
-            <Link to="/tours" className="group inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-gold">
-              View all <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+            <Link
+              to="/tours"
+              className="group inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-gold"
+            >
+              View all{" "}
+              <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
         </div>
@@ -229,23 +300,26 @@ function Home() {
           <div className="group flex w-max gap-6 px-10">
             {/* The carousel track */}
             <div className="flex animate-marquee-left gap-6 group-hover:[animation-play-state:paused]">
-              {[1, 2, 3, 4, 5].flatMap((days) => 
-                toursList.filter((t) => t.durationInDays === days).slice(0, 2)
-              ).map((t, i) => (
-                <div key={`${t.slug}-${i}`} className="w-[300px] sm:w-[400px]">
-                  <TourCard tour={t} />
-                </div>
-              ))}
+              {[1, 2, 3, 4, 5]
+                .flatMap((days) => toursList.filter((t) => t.durationInDays === days).slice(0, 2))
+                .map((t, i) => (
+                  <div key={`${t.slug}-${i}`} className="w-[300px] sm:w-[400px]">
+                    <TourCard tour={t} />
+                  </div>
+                ))}
             </div>
             {/* Duplicate for infinite effect */}
-            <div className="flex animate-marquee-left gap-6 group-hover:[animation-play-state:paused]" aria-hidden="true">
-              {[1, 2, 3, 4, 5].flatMap((days) => 
-                toursList.filter((t) => t.durationInDays === days).slice(0, 2)
-              ).map((t, i) => (
-                <div key={`${t.slug}-${i}-dup`} className="w-[300px] sm:w-[400px]">
-                  <TourCard tour={t} />
-                </div>
-              ))}
+            <div
+              className="flex animate-marquee-left gap-6 group-hover:[animation-play-state:paused]"
+              aria-hidden="true"
+            >
+              {[1, 2, 3, 4, 5]
+                .flatMap((days) => toursList.filter((t) => t.durationInDays === days).slice(0, 2))
+                .map((t, i) => (
+                  <div key={`${t.slug}-${i}-dup`} className="w-[300px] sm:w-[400px]">
+                    <TourCard tour={t} />
+                  </div>
+                ))}
             </div>
           </div>
         </div>
@@ -261,14 +335,16 @@ function Home() {
                 OUR TRUSTED <span className="gradient-gold-text">TRAVEL PARTNERS</span>
               </h2>
             </div>
-            <Link to="/partners" className="group inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-gold">
-              View all <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+            <Link
+              to="/partners"
+              className="group inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-gold"
+            >
+              View all{" "}
+              <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
         </div>
-        <div
-          className="group/bento flex flex-col gap-6 overflow-hidden"
-        >
+        <div className="group/bento flex flex-col gap-6 overflow-hidden">
           {Array.from({ length: 4 }).map((_, rowIndex) => {
             const rowPartners = partners.slice(rowIndex * 9, (rowIndex + 1) * 9);
             const isLeftToRight = rowIndex % 2 === 0;
@@ -277,41 +353,42 @@ function Home() {
               <div key={rowIndex} className="relative flex w-full overflow-hidden">
                 <div className="group flex w-max gap-6">
                   {/* Track */}
-                  <div className={`flex gap-6 ${isLeftToRight ? 'animate-marquee-right' : 'animate-marquee-left'} group-hover:[animation-play-state:paused]`}>
-                      {rowPartners.map((p) => (
-                        <a 
-                          href={p.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          key={p.name} 
-                          className="partner-card relative flex h-32 w-64 shrink-0 items-center justify-center rounded-sm bg-border/40 px-4 text-center font-display text-xl tracking-widest text-foreground/70 transition-colors hover:text-gold"
-                        >
-
-                          
-                          <span className="relative z-20">{p.name}</span>
-                        </a>
-                      ))}
-                    </div>
-                    {/* Duplicate for infinite effect */}
-                    <div className={`flex gap-6 ${isLeftToRight ? 'animate-marquee-right' : 'animate-marquee-left'} group-hover:[animation-play-state:paused]`} aria-hidden="true">
-                      {rowPartners.map((p) => (
-                        <a 
-                          href={p.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          key={`${p.name}-dup`} 
-                          className="partner-card relative flex h-32 w-64 shrink-0 items-center justify-center rounded-sm bg-border/40 px-4 text-center font-display text-xl tracking-widest text-foreground/70 transition-colors hover:text-gold"
-                        >
-
-                          
-                          <span className="relative z-20">{p.name}</span>
-                        </a>
-                      ))}
-                    </div>
+                  <div
+                    className={`flex gap-6 ${isLeftToRight ? "animate-marquee-right" : "animate-marquee-left"} group-hover:[animation-play-state:paused]`}
+                  >
+                    {rowPartners.map((p) => (
+                      <a
+                        href={p.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        key={p.name}
+                        className="partner-card relative flex h-32 w-64 shrink-0 items-center justify-center rounded-sm bg-border/40 px-4 text-center font-display text-xl tracking-widest text-foreground/70 transition-colors hover:text-gold"
+                      >
+                        <span className="relative z-20">{p.name}</span>
+                      </a>
+                    ))}
+                  </div>
+                  {/* Duplicate for infinite effect */}
+                  <div
+                    className={`flex gap-6 ${isLeftToRight ? "animate-marquee-right" : "animate-marquee-left"} group-hover:[animation-play-state:paused]`}
+                    aria-hidden="true"
+                  >
+                    {rowPartners.map((p) => (
+                      <a
+                        href={p.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        key={`${p.name}-dup`}
+                        className="partner-card relative flex h-32 w-64 shrink-0 items-center justify-center rounded-sm bg-border/40 px-4 text-center font-display text-xl tracking-widest text-foreground/70 transition-colors hover:text-gold"
+                      >
+                        <span className="relative z-20">{p.name}</span>
+                      </a>
+                    ))}
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            );
+          })}
         </div>
       </section>
 
@@ -324,19 +401,36 @@ function Home() {
               FROM THE <span className="gradient-gold-text">ROAD</span>.
             </h2>
           </div>
-          <Link to="/gallery" className="group inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-gold">
-            See more <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+          <Link
+            to="/gallery"
+            className="group inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-gold"
+          >
+            See more{" "}
+            <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
-        
+
         <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
           {galleryPhotos.map((p, i) => (
-            <Link to="/gallery" key={i} className="group relative aspect-square overflow-hidden rounded-sm border border-border/40 block">
-              <img src={p.src} alt={p.alt} loading="lazy" className="h-full w-full object-cover transition-transform duration-[1500ms] group-hover:scale-110" />
+            <Link
+              to="/gallery"
+              key={i}
+              className="group relative aspect-square overflow-hidden rounded-sm border border-border/40 block"
+            >
+              <img
+                src={p.src}
+                alt={p.alt}
+                loading="lazy"
+                className="h-full w-full object-cover transition-transform duration-[1500ms] group-hover:scale-110"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4 z-10" />
               <div className="absolute inset-x-0 bottom-0 p-3 translate-y-2 opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100 z-20">
-                <p className="font-mono text-[7px] uppercase tracking-widest text-gold mb-0.5">{p.category}</p>
-                <p className="text-[9px] font-bold uppercase tracking-wider text-white truncate">{p.alt}</p>
+                <p className="font-mono text-[7px] uppercase tracking-widest text-gold mb-0.5">
+                  {p.category}
+                </p>
+                <p className="text-[9px] font-bold uppercase tracking-wider text-white truncate">
+                  {p.alt}
+                </p>
               </div>
             </Link>
           ))}
@@ -346,7 +440,7 @@ function Home() {
       {/* TESTIMONIALS SLIDER */}
       <section className="relative mx-auto max-w-5xl px-6 py-16 text-center sm:py-32 lg:px-10 border-y border-white/5 bg-card/10 my-8">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(196,155,90,0.02),transparent_70%)]" />
-        
+
         {approvedReviews.length > 0 ? (
           <div className="relative min-h-[220px] flex flex-col justify-between">
             <div className="flex justify-center gap-1 text-gold">
@@ -368,7 +462,9 @@ function Home() {
                   "{approvedReviews[activeReview].quote}"
                 </blockquote>
                 <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
-                  — {approvedReviews[activeReview].author} · <span className="text-gold">{approvedReviews[activeReview].location}</span> · {approvedReviews[activeReview].tripType}
+                  — {approvedReviews[activeReview].author} ·{" "}
+                  <span className="text-gold">{approvedReviews[activeReview].location}</span> ·{" "}
+                  {approvedReviews[activeReview].tripType}
                 </p>
               </motion.div>
             </AnimatePresence>
@@ -409,8 +505,8 @@ function Home() {
           {faqs.map((faq, idx) => {
             const isOpen = openFaq === idx;
             return (
-              <div 
-                key={idx} 
+              <div
+                key={idx}
                 className="border border-border/60 bg-card/20 rounded-sm overflow-hidden transition-all duration-300 hover:border-gold/30"
               >
                 <button
@@ -459,8 +555,8 @@ function Home() {
                 WE'VE GOT YOU.
               </h2>
               <p className="mt-4 max-w-md text-foreground/80">
-                Tell us your group size, dates, and dream destination. We'll
-                build the route, book the coach, and run the trip end-to-end.
+                Tell us your group size, dates, and dream destination. We'll build the route, book
+                the coach, and run the trip end-to-end.
               </p>
               <div className="mt-6 flex items-center gap-3 font-mono text-sm text-foreground/70">
                 <Users size={16} className="text-gold" />
@@ -468,14 +564,17 @@ function Home() {
               </div>
             </div>
             <div className="flex flex-wrap gap-4 lg:justify-end">
-              <Link to="/booking" className="inline-flex min-h-[48px] items-center rounded-sm bg-gold px-6 py-4 text-sm font-bold uppercase tracking-[0.2em] text-primary-foreground hover:opacity-90 sm:px-8">
+              <Link
+                to="/booking"
+                className="inline-flex min-h-[48px] items-center rounded-sm bg-gold px-6 py-4 text-sm font-bold uppercase tracking-[0.2em] text-primary-foreground hover:opacity-90 sm:px-8"
+              >
                 Get a Quote
               </Link>
-              <a 
-                href={`tel:${getStoredSettings().phone1.replace(/\s+/g, "")}`} 
+              <a
+                href={`tel:${settings.phone1.replace(/\s+/g, "")}`}
                 className="inline-flex min-h-[48px] items-center rounded-sm border border-foreground/30 px-6 py-4 text-sm font-medium uppercase tracking-[0.2em] hover:border-gold hover:text-gold sm:px-8"
               >
-                Call {getStoredSettings().phone1}
+                Call {settings.phone1}
               </a>
             </div>
           </div>
@@ -489,7 +588,9 @@ function Stat({ n, label }: { n: string; label: string }) {
   return (
     <div>
       <div className="font-display text-3xl tracking-wider text-gold sm:text-5xl">{n}</div>
-      <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/70">{label}</div>
+      <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/70">
+        {label}
+      </div>
     </div>
   );
 }
@@ -497,7 +598,9 @@ function Stat({ n, label }: { n: string; label: string }) {
 function Pillar({ icon, title, body }: { icon: React.ReactNode; title: string; body: string }) {
   return (
     <div>
-      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gold text-primary-foreground">{icon}</div>
+      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gold text-primary-foreground">
+        {icon}
+      </div>
       <h3 className="mt-4 font-display text-xl tracking-wider">{title}</h3>
       <p className="mt-2 text-sm text-muted-foreground">{body}</p>
     </div>

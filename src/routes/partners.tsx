@@ -6,7 +6,11 @@ export const Route = createFileRoute("/partners")({
   head: () => ({
     meta: [
       { title: "Our Trusted Travel Partners — Emirates Expedition" },
-      { name: "description", content: "Meet all of Emirates Expedition's trusted travel partners across South India. Click any partner to visit their Instagram." },
+      {
+        name: "description",
+        content:
+          "Meet all of Emirates Expedition's trusted travel partners across South India. Click any partner to visit their Instagram.",
+      },
     ],
   }),
   component: PartnersPage,
@@ -84,7 +88,9 @@ function PartnersPage() {
           </h1>
           <p className="mt-8 max-w-xl text-lg text-foreground/70 font-light leading-relaxed">
             Emirates Expedition works alongside{" "}
-            <span className="text-gold font-medium">{partners.length} trusted travel companies</span>{" "}
+            <span className="text-gold font-medium">
+              {partners.length} trusted travel companies
+            </span>{" "}
             across South India. Each one is a click away — follow them on Instagram.
           </p>
         </motion.div>
@@ -133,7 +139,8 @@ function PartnersPage() {
             BECOME A <span className="gradient-gold-text">PARTNER</span>.
           </h2>
           <p className="mt-4 text-foreground/60 max-w-md mx-auto">
-            Join our growing network of travel companies and reach thousands of group travelers across South India.
+            Join our growing network of travel companies and reach thousands of group travelers
+            across South India.
           </p>
           <a
             href="/contact"

@@ -15,23 +15,23 @@ Designed with a clean UI, immersive visuals, and smooth user experience to help 
 
 ## ✨ Features
 
-* 🌍 Modern responsive travel website
-* 📱 Mobile-friendly design
-* ⚡ Fast and optimized performance
-* 🎨 Clean and aesthetic UI/UX
-* 🧭 Expedition and destination showcase
-* 📸 High-quality travel visuals
-* 📞 Contact and inquiry sections
-* 🔗 Smooth navigation and transitions
+- 🌍 Modern responsive travel website
+- 📱 Mobile-friendly design
+- ⚡ Fast and optimized performance
+- 🎨 Clean and aesthetic UI/UX
+- 🧭 Expedition and destination showcase
+- 📸 High-quality travel visuals
+- 📞 Contact and inquiry sections
+- 🔗 Smooth navigation and transitions
 
 ---
 
 ## 🛠️ Tech Stack
 
-* **Frontend:** HTML, CSS, JavaScript
-* **Framework/Library:** React / Next.js *(update if needed)*
-* **Deployment:** Vercel
-* **Styling:** Tailwind CSS 
+- **Frontend:** HTML, CSS, JavaScript
+- **Framework/Library:** React / Next.js _(update if needed)_
+- **Deployment:** Vercel
+- **Styling:** Tailwind CSS
 
 ---
 
@@ -100,12 +100,12 @@ The goal of this project is to create a visually appealing and professional tour
 
 ## 🌟 Future Improvements
 
-* 🌐 Multi-language support
-* 🗺️ Interactive maps
-* 🏨 Booking integration
-* 💳 Payment gateway
-* 📅 Trip scheduling system
-* 🤖 AI travel assistant
+- 🌐 Multi-language support
+- 🗺️ Interactive maps
+- 🏨 Booking integration
+- 💳 Payment gateway
+- 📅 Trip scheduling system
+- 🤖 AI travel assistant
 
 ---
 

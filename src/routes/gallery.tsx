@@ -11,7 +11,11 @@ export const Route = createFileRoute("/gallery")({
     return {
       meta: [
         { title: "Gallery — Emirates Expedition" },
-        { name: "description", content: "Group photos, signature touring coaches, and moments from school trips and expeditions across South India." },
+        {
+          name: "description",
+          content:
+            "Group photos, signature touring coaches, and moments from school trips and expeditions across South India.",
+        },
         { property: "og:title", content: "Gallery — Emirates Expedition" },
         { property: "og:description", content: "Real moments from real trips." },
         { property: "og:image", content: photos[0]?.src || "" },
@@ -29,7 +33,7 @@ const INITIAL_COUNT = 24;
 const STEP_COUNT = 12;
 
 function GalleryPage() {
-  const galleryPhotos = getStoredPhotos();
+  const [galleryPhotos] = useState(() => getStoredPhotos());
   const [activeCategory, setActiveCategory] = useState<Category>("All");
   const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
   const [lightbox, setLightbox] = useState({ isOpen: false, index: 0 });
@@ -38,7 +42,7 @@ function GalleryPage() {
     return activeCategory === "All"
       ? galleryPhotos
       : galleryPhotos.filter((p) => p.category === activeCategory);
-  }, [activeCategory]);
+  }, [activeCategory, galleryPhotos]);
 
   const visiblePhotos = filteredPhotos.slice(0, visibleCount);
   const hasMore = visibleCount < filteredPhotos.length;
@@ -61,12 +65,13 @@ function GalleryPage() {
       <section className="mx-auto max-w-7xl px-6 pb-16 pt-16 lg:px-10">
         <p className="eyebrow">The Gallery</p>
         <div className="mt-4 flex flex-col md:flex-row md:items-end justify-between gap-8">
-            <h1 className="max-w-3xl font-display text-4xl leading-[0.95] tracking-wider sm:text-5xl md:text-8xl">
+          <h1 className="max-w-3xl font-display text-4xl leading-[0.95] tracking-wider sm:text-5xl md:text-8xl">
             MOMENTS FROM <span className="gradient-gold-text">THE ROAD</span>.
-            </h1>
+          </h1>
         </div>
         <p className="mt-8 max-w-xl text-lg text-foreground/60 font-light">
-          A collection of {galleryPhotos.length} frames from our signature expeditions — the fleet, the crews, and the unforgettable journeys.
+          A collection of {galleryPhotos.length} frames from our signature expeditions — the fleet,
+          the crews, and the unforgettable journeys.
         </p>
       </section>
 
@@ -93,10 +98,12 @@ function GalleryPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
                 <div className="absolute inset-x-0 bottom-0 p-4 translate-y-2 opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
-                    <p className="font-mono text-[8px] uppercase tracking-[0.3em] text-gold mb-1">{p.category}</p>
-                    <figcaption className="text-[10px] font-bold uppercase tracking-[0.1em] text-white">
-                        {p.alt}
-                    </figcaption>
+                  <p className="font-mono text-[8px] uppercase tracking-[0.3em] text-gold mb-1">
+                    {p.category}
+                  </p>
+                  <figcaption className="text-[10px] font-bold uppercase tracking-[0.1em] text-white">
+                    {p.alt}
+                  </figcaption>
                 </div>
               </motion.figure>
             ))}
@@ -104,24 +111,24 @@ function GalleryPage() {
         </div>
 
         {hasMore && (
-            <div className="mt-20 flex justify-center">
-                <button
-                    onClick={handleLoadMore}
-                    className="group flex min-h-[48px] flex-col items-center gap-4 transition-all"
-                >
-                    <span className="text-[10px] font-mono uppercase tracking-[0.4em] text-gold/60 group-hover:text-gold">
-                        Discover More
-                    </span>
-                    <div className="h-12 w-px bg-gradient-to-b from-gold/50 to-transparent group-hover:h-20 transition-all duration-500" />
-                </button>
-            </div>
+          <div className="mt-20 flex justify-center">
+            <button
+              onClick={handleLoadMore}
+              className="group flex min-h-[48px] flex-col items-center gap-4 transition-all"
+            >
+              <span className="text-[10px] font-mono uppercase tracking-[0.4em] text-gold/60 group-hover:text-gold">
+                Discover More
+              </span>
+              <div className="h-12 w-px bg-gradient-to-b from-gold/50 to-transparent group-hover:h-20 transition-all duration-500" />
+            </button>
+          </div>
         )}
 
         {/* Lightbox Integration */}
         <Lightbox
           isOpen={lightbox.isOpen}
           onClose={() => setLightbox({ ...lightbox, isOpen: false })}
-          images={filteredPhotos.map(p => p.src)}
+          images={filteredPhotos.map((p) => p.src)}
           currentIndex={lightbox.index}
           onNavigate={(index) => setLightbox({ ...lightbox, index })}
         />

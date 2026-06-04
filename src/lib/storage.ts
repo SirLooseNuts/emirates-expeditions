@@ -33,7 +33,8 @@ const STORAGE_KEYS = {
 const defaultReviews: Review[] = [
   {
     id: "rev-1",
-    quote: "WE'VE TAKEN THREE BATCHES OF STUDENTS WITH EMIRATES EXPEDITION. THE BUSES, THE GUIDES, THE FOOD — EVERYTHING WAS SPOT ON. THE KIDS STILL TALK ABOUT MUNNAR.",
+    quote:
+      "WE'VE TAKEN THREE BATCHES OF STUDENTS WITH EMIRATES EXPEDITION. THE BUSES, THE GUIDES, THE FOOD — EVERYTHING WAS SPOT ON. THE KIDS STILL TALK ABOUT MUNNAR.",
     author: "Faculty Coordinator",
     location: "GHSS Thonnakkal",
     rating: 5,
@@ -43,7 +44,8 @@ const defaultReviews: Review[] = [
   },
   {
     id: "rev-2",
-    quote: "THE 3-DAY WAYANAD TRIP WAS EXCEPTIONAL. THE SIGNATURE COACH HAD AN AMAZING SOUND SYSTEM AND DANCE LIGHTING. HIGHLY RECOMMEND FOR COLLEGE TOURS!",
+    quote:
+      "THE 3-DAY WAYANAD TRIP WAS EXCEPTIONAL. THE SIGNATURE COACH HAD AN AMAZING SOUND SYSTEM AND DANCE LIGHTING. HIGHLY RECOMMEND FOR COLLEGE TOURS!",
     author: "Nikhil S.",
     location: "St. Thomas College, Kozhencherry",
     rating: 5,
@@ -53,7 +55,8 @@ const defaultReviews: Review[] = [
   },
   {
     id: "rev-3",
-    quote: "SUPERB EXPERIENCE ON OUR MUNNAR-WONDERLA TOUR. THE TRIP CAPTAIN WAS EXTREMELY HELPFUL AND MANAGED ALL PERMITS AND SIGHTSEEING SMOOTHLY.",
+    quote:
+      "SUPERB EXPERIENCE ON OUR MUNNAR-WONDERLA TOUR. THE TRIP CAPTAIN WAS EXTREMELY HELPFUL AND MANAGED ALL PERMITS AND SIGHTSEEING SMOOTHLY.",
     author: "Anjali Krishna",
     location: "LBS Institute of Technology for Women",
     rating: 5,
@@ -63,7 +66,8 @@ const defaultReviews: Review[] = [
   },
   {
     id: "rev-4",
-    quote: "A WELL-PLANNED 4-DAY EXPEDITION TO OOTY, MYSORE & COORG. COMFORTABLE HOTELS, TIMELY TRADITIONAL KERALA FOOD, AND THE TOURIST BUS WAS ABSOLUTE VIBES.",
+    quote:
+      "A WELL-PLANNED 4-DAY EXPEDITION TO OOTY, MYSORE & COORG. COMFORTABLE HOTELS, TIMELY TRADITIONAL KERALA FOOD, AND THE TOURIST BUS WAS ABSOLUTE VIBES.",
     author: "Prof. Ramachandran",
     location: "Mar Ivanios College, Trivandrum",
     rating: 5,
@@ -129,7 +133,7 @@ export function saveStoredTours(tours: Tour[]): void {
 // Helper to correct typos and inject prices on default data
 function correctSpellingAndPricesInTours(toursList: Tour[]): Tour[] {
   return toursList.map((t) => {
-    let title = t.title
+    const title = t.title
       .replace(/\bWayand\b/g, "Wayanad")
       .replace(/\bWayandu\b/g, "Wayanad")
       .replace(/\bMyosre\b/g, "Mysore")
@@ -142,7 +146,7 @@ function correctSpellingAndPricesInTours(toursList: Tour[]): Tour[] {
       .replace(/\bGoa & Goa\b/g, "Goa")
       .replace(/\bGoa,Goa\b/g, "Goa");
 
-    let slug = t.slug
+    const slug = t.slug
       .replace(/\bwayand\b/g, "wayanad")
       .replace(/\bwayandu\b/g, "wayanad")
       .replace(/\bmyosre\b/g, "mysore")
@@ -154,7 +158,7 @@ function correctSpellingAndPricesInTours(toursList: Tour[]): Tour[] {
       .replace(/\bdendeli\b/g, "dandeli")
       .replace(/\bgoagoa\b/g, "goa");
 
-    let blurb = t.blurb
+    const blurb = t.blurb
       .replace(/\bWayand\b/g, "Wayanad")
       .replace(/\bWayandu\b/g, "Wayanad")
       .replace(/\bMyosre\b/g, "Mysore")
@@ -163,7 +167,7 @@ function correctSpellingAndPricesInTours(toursList: Tour[]): Tour[] {
       .replace(/\bUduppi\b/g, "Udupi")
       .replace(/\bGoa,Goa\b/g, "Goa");
 
-    let fullDescription = t.fullDescription
+    const fullDescription = t.fullDescription
       .replace(/\bWayand\b/g, "Wayanad")
       .replace(/\bWayandu\b/g, "Wayanad")
       .replace(/\bMyosre\b/g, "Mysore")
@@ -172,15 +176,18 @@ function correctSpellingAndPricesInTours(toursList: Tour[]): Tour[] {
       .replace(/\bUduppi\b/g, "Udupi")
       .replace(/\bGoa,Goa\b/g, "Goa");
 
-    let highlights = t.highlights.map((h) => 
-      h.replace(/\bWayand\b/g, "Wayanad")
-       .replace(/\bWayandu\b/g, "Wayanad")
-       .replace(/\bMyosre\b/g, "Mysore")
-       .replace(/\bBanglore\b/g, "Bangalore")
-       .replace(/\bChikmanglore\b/g, "Chikmagalur")
-       .replace(/\bUduppi\b/g, "Udupi")
-       .replace(/\bGoa\b/g, "Goa")
-    ).filter((item, index, self) => self.indexOf(item) === index); // Remove duplicate Goa highlights
+    const highlights = t.highlights
+      .map((h) =>
+        h
+          .replace(/\bWayand\b/g, "Wayanad")
+          .replace(/\bWayandu\b/g, "Wayanad")
+          .replace(/\bMyosre\b/g, "Mysore")
+          .replace(/\bBanglore\b/g, "Bangalore")
+          .replace(/\bChikmanglore\b/g, "Chikmagalur")
+          .replace(/\bUduppi\b/g, "Udupi")
+          .replace(/\bGoa\b/g, "Goa"),
+      )
+      .filter((item, index, self) => self.indexOf(item) === index); // Remove duplicate Goa highlights
 
     // Assign starting prices depending on duration
     let price = t.price;
