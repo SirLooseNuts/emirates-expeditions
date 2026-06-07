@@ -46,3 +46,53 @@ export interface BusinessSettings {
   whatsapp: string;
   address: string;
 }
+
+export interface Lead {
+  id: string;
+  name: string;
+  organization: string;
+  designation: string;
+  destination: string;
+  pax: number;
+  preferredDate: string;
+  estimatedValue: number;
+  phone: string;
+  email: string;
+  message: string;
+  source: "WhatsApp" | "Website" | "Referral";
+  status: "New" | "Contacted" | "Quote Sent" | "Hot";
+  timeAgo: string;
+  timeline: { label: string; time: string; done: boolean; pending?: boolean }[];
+  converted: boolean;
+}
+
+export interface Booking {
+  id: string;
+  type: "School" | "College" | "Family" | "Corporate" | "Devotional";
+  title: string;
+  description: string;
+  pax: number;
+  price: string;
+  amount: number;
+  date: string;
+  stage: "Enquiry" | "Quote Sent" | "Advance Paid" | "Confirmed" | "Completed";
+  notes?: string;
+}
+
+export interface Partner {
+  id: string;
+  name: string;
+  type: "Transport" | "Accommodation" | "Guide";
+  contact: string;
+  status: "Active" | "On Trip" | "Available";
+  rating: number;
+}
+
+export interface TripSchedule {
+  id: string;
+  date: string;
+  tourTitle: string;
+  status: "Upcoming" | "In Progress" | "Completed";
+  pax: number;
+  assignedPartner: string;
+}

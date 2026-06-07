@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { getStoredTours } from "@/lib/storage";
+import { getStoredTours, getStoredLeads, saveStoredLeads } from "@/lib/storage";
 import { z } from "zod";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
@@ -64,6 +64,48 @@ Guests: ${guests}
 Message: ${message}`;
 
     const encodedMessage = encodeURIComponent(whatsappMessage);
+    // Save as lead in LocalStorage
+    try {
+      const paxNum = parseInt(guests.toString()) || 2;
+      const tourPrice = tours.find((t) => t.slug === tourSlug)?.price || "₹1000";
+      const cleanedPrice = tourPrice.replace(/,/g, "");
+      const match = cleanedPrice.match(/\d+/);
+      const priceNum = match ? parseInt(match[0]) : 1000;
+      const estimatedValue = priceNum * paxNum;
+
+      const newLead = {
+        id: "lead-" + Date.now(),
+        name: name.toString(),
+        organization: location.toString(),
+        designation: "Faculty Coordinator",
+        destination: tourTitle,
+        pax: paxNum,
+        preferredDate: date.toString(),
+        estimatedValue: estimatedValue,
+        phone: phone.toString(),
+        email: email.toString(),
+        message: message.toString(),
+        source: "Website" as const,
+        status: "New" as const,
+        timeAgo: "Just now",
+        timeline: [
+          { label: "Enquiry received via Website", time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), done: true },
+          { label: "Lead auto-created", time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), done: true },
+          { label: "Send quote / call back", time: "Pending", done: false, pending: true }
+        ],
+        converted: false
+      };
+
+      const existingLeads = getStoredLeads();
+      saveStoredLeads([newLead, ...existingLeads]);
+      
+      // Dispatch storage update events to sync across tabs immediately
+      window.dispatchEvent(new Event("local-settings-updated"));
+      window.dispatchEvent(new Event("storage"));
+    } catch (err) {
+      console.error("Error storing lead:", err);
+    }
+
     const whatsappUrl = `https://wa.me/919400375400?text=${encodedMessage}`;
 
     toast.success("Redirecting to WhatsApp...", {

@@ -71,6 +71,11 @@ export function SiteFooter() {
                 Contact
               </Link>
             </li>
+            <li>
+              <a href="/admin/" className="hover:text-gold text-xs text-white/30 transition-colors">
+                Admin Panel
+              </a>
+            </li>
           </ul>
         </div>
 

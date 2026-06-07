@@ -23,11 +23,45 @@ export interface BusinessSettings {
   address: string;
 }
 
+export interface Lead {
+  id: string;
+  name: string;
+  organization: string;
+  designation: string;
+  destination: string;
+  pax: number;
+  preferredDate: string;
+  estimatedValue: number;
+  phone: string;
+  email: string;
+  message: string;
+  source: "WhatsApp" | "Website" | "Referral";
+  status: "New" | "Contacted" | "Quote Sent" | "Hot";
+  timeAgo: string;
+  timeline: { label: string; time: string; done: boolean; pending?: boolean }[];
+  converted: boolean;
+}
+
+export interface Booking {
+  id: string;
+  type: "School" | "College" | "Family" | "Corporate" | "Devotional";
+  title: string;
+  description: string;
+  pax: number;
+  price: string;
+  amount: number;
+  date: string;
+  stage: "Enquiry" | "Quote Sent" | "Advance Paid" | "Confirmed" | "Completed";
+  notes?: string;
+}
+
 const STORAGE_KEYS = {
   TOURS: "emirates_exp_tours",
   GALLERY: "emirates_exp_gallery",
   REVIEWS: "emirates_exp_reviews",
   SETTINGS: "emirates_exp_settings",
+  LEADS: "emirates_exp_leads",
+  BOOKINGS: "emirates_exp_bookings",
 };
 
 const defaultReviews: Review[] = [
@@ -264,4 +298,38 @@ export function getStoredSettings(): BusinessSettings {
 
 export function saveStoredSettings(settings: BusinessSettings): void {
   safeSetItem(STORAGE_KEYS.SETTINGS, JSON.stringify(settings));
+}
+
+// 5. LEADS API
+export function getStoredLeads(): Lead[] {
+  const stored = safeGetItem(STORAGE_KEYS.LEADS);
+  if (stored) {
+    try {
+      return JSON.parse(stored);
+    } catch {
+      return [];
+    }
+  }
+  return [];
+}
+
+export function saveStoredLeads(leads: Lead[]): void {
+  safeSetItem(STORAGE_KEYS.LEADS, JSON.stringify(leads));
+}
+
+// 6. BOOKINGS API
+export function getStoredBookings(): Booking[] {
+  const stored = safeGetItem(STORAGE_KEYS.BOOKINGS);
+  if (stored) {
+    try {
+      return JSON.parse(stored);
+    } catch {
+      return [];
+    }
+  }
+  return [];
+}
+
+export function saveStoredBookings(bookings: Booking[]): void {
+  safeSetItem(STORAGE_KEYS.BOOKINGS, JSON.stringify(bookings));
 }
