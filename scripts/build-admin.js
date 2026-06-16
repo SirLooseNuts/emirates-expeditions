@@ -14,11 +14,8 @@ console.log("Admin Source Directory:", adminDir);
 console.log("Public Admin Target Directory:", publicAdminDir);
 
 try {
-  // 1. Install dependencies in admin-dashboard if node_modules doesn't exist
-  if (!fs.existsSync(path.join(adminDir, "node_modules"))) {
-    console.log("Installing admin dashboard dependencies...");
-    execSync("npm install", { cwd: adminDir, stdio: "inherit" });
-  }
+  // Dependencies are installed in the root package.json to ensure reliable deployment on Vercel.
+  // We do not run npm install in the subdirectory.
 
   // 2. Build the admin dashboard
   console.log("Building admin dashboard...");
