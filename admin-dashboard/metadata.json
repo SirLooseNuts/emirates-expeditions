@@ -1,0 +1,6 @@
+{
+  "name": "Emirates Expedition Admin",
+  "description": "A professional booking, tour packaging, and dynamic analytics dashboard for Emirates Expedition.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

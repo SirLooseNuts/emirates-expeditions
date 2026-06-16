@@ -93,11 +93,26 @@ const partners = [
 ];
 
 function Home() {
-  const [toursList] = useState(() => getStoredTours());
-  const [galleryPhotos] = useState(() => getStoredPhotos().slice(0, 8));
-  const [approvedReviews] = useState(() => getStoredReviews().filter((r) => r.approved));
-  const [settings] = useState(() => getStoredSettings());
+  const [toursList, setToursList] = useState(() => getStoredTours());
+  const [galleryPhotos, setGalleryPhotos] = useState(() => getStoredPhotos().slice(0, 8));
+  const [approvedReviews, setApprovedReviews] = useState(() => getStoredReviews().filter((r) => r.approved));
+  const [settings, setSettings] = useState(() => getStoredSettings());
   const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const handleUpdate = () => {
+      setToursList(getStoredTours());
+      setGalleryPhotos(getStoredPhotos().slice(0, 8));
+      setApprovedReviews(getStoredReviews().filter((r) => r.approved));
+      setSettings(getStoredSettings());
+    };
+    window.addEventListener("local-settings-updated", handleUpdate);
+    window.addEventListener("storage", handleUpdate);
+    return () => {
+      window.removeEventListener("local-settings-updated", handleUpdate);
+      window.removeEventListener("storage", handleUpdate);
+    };
+  }, []);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(hover: hover)");

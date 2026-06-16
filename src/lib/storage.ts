@@ -333,3 +333,83 @@ export function getStoredBookings(): Booking[] {
 export function saveStoredBookings(bookings: Booking[]): void {
   safeSetItem(STORAGE_KEYS.BOOKINGS, JSON.stringify(bookings));
 }
+
+// Background API Sync
+export const API_URL = (import.meta.env && import.meta.env.VITE_API_URL) || "http://localhost:5000/api";
+
+if (isBrowser) {
+  const syncData = async () => {
+    try {
+      // 1. Fetch Tours/Packages
+      const resTours = await fetch(`${API_URL}/packages`);
+      if (resTours.ok) {
+        const pkgs = await resTours.json();
+        if (pkgs && pkgs.length > 0) {
+          const mappedTours = pkgs.map((pkg: any) => {
+            if (pkg.slug && pkg.title) return pkg;
+            return {
+              slug: pkg.id.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+              title: pkg.name,
+              category: pkg.duration.includes("1-Day") ? "Day Trip" : "Expedition",
+              duration: pkg.duration,
+              durationInDays: parseInt(pkg.duration) || 1,
+              price: `₹${pkg.pricePerHead.toLocaleString()} / head`,
+              image: pkg.image || "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800",
+              blurb: pkg.description,
+              highlights: pkg.stops || [],
+              fullDescription: pkg.description,
+              itinerary: [
+                {
+                  day: 1,
+                  title: "Sightseeing and Activities",
+                  activities: pkg.stops || [],
+                },
+              ],
+              inclusions: ["AC Coach", "Sightseeing", "Tour Guide"],
+              exclusions: ["Personal Expenses", "Lunch"],
+              gallery: [],
+            };
+          });
+          saveStoredTours(mappedTours);
+        }
+      }
+
+      // 2. Fetch Settings
+      const resSettings = await fetch(`${API_URL}/settings`);
+      if (resSettings.ok) {
+        const settings = await resSettings.json();
+        if (settings) {
+          saveStoredSettings(settings);
+        }
+      }
+
+      // 3. Fetch Reviews
+      const resReviews = await fetch(`${API_URL}/reviews`);
+      if (resReviews.ok) {
+        const reviews = await resReviews.json();
+        if (reviews) {
+          saveStoredReviews(reviews);
+        }
+      }
+
+      // 4. Fetch Photos
+      const resPhotos = await fetch(`${API_URL}/photos`);
+      if (resPhotos.ok) {
+        const photos = await resPhotos.json();
+        if (photos) {
+          saveStoredPhotos(photos);
+        }
+      }
+
+      // Dispatch event to notify listeners
+      window.dispatchEvent(new Event("local-settings-updated"));
+      window.dispatchEvent(new Event("storage"));
+    } catch (err) {
+      console.warn("Background API sync failed, using offline localStorage data:", err);
+    }
+  };
+
+  // Run sync on load
+  syncData();
+}
+

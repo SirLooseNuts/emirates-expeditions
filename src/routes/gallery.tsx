@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { getStoredPhotos } from "@/lib/storage";
 import { Lightbox } from "@/components/Lightbox";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Filter, Grid3X3, Layers } from "lucide-react";
 
@@ -33,7 +33,19 @@ const INITIAL_COUNT = 24;
 const STEP_COUNT = 12;
 
 function GalleryPage() {
-  const [galleryPhotos] = useState(() => getStoredPhotos());
+  const [galleryPhotos, setGalleryPhotos] = useState(() => getStoredPhotos());
+
+  useEffect(() => {
+    const handleUpdate = () => {
+      setGalleryPhotos(getStoredPhotos());
+    };
+    window.addEventListener("storage", handleUpdate);
+    window.addEventListener("local-settings-updated", handleUpdate);
+    return () => {
+      window.removeEventListener("storage", handleUpdate);
+      window.removeEventListener("local-settings-updated", handleUpdate);
+    };
+  }, []);
   const [activeCategory, setActiveCategory] = useState<Category>("All");
   const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
   const [lightbox, setLightbox] = useState({ isOpen: false, index: 0 });

@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { getStoredTours, getStoredLeads, saveStoredLeads } from "@/lib/storage";
+import { useState, useEffect } from "react";
+import { getStoredTours, getStoredLeads, saveStoredLeads, API_URL } from "@/lib/storage";
 import { z } from "zod";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
@@ -29,8 +29,20 @@ export const Route = createFileRoute("/booking")({
 
 function BookingPage() {
   const { tour: preselected } = Route.useSearch();
-  const [tours] = useState(() => getStoredTours());
+  const [tours, setTours] = useState(() => getStoredTours());
   const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    const handleUpdate = () => {
+      setTours(getStoredTours());
+    };
+    window.addEventListener("local-settings-updated", handleUpdate);
+    window.addEventListener("storage", handleUpdate);
+    return () => {
+      window.removeEventListener("local-settings-updated", handleUpdate);
+      window.removeEventListener("storage", handleUpdate);
+    };
+  }, []);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -98,6 +110,13 @@ Message: ${message}`;
 
       const existingLeads = getStoredLeads();
       saveStoredLeads([newLead, ...existingLeads]);
+      
+      // Sync the new lead to the REST API backend
+      fetch(`${API_URL}/leads`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newLead),
+      }).catch((err) => console.error("Error syncing lead to API:", err));
       
       // Dispatch storage update events to sync across tabs immediately
       window.dispatchEvent(new Event("local-settings-updated"));

@@ -15,7 +15,7 @@ import {
   LayoutGrid,
   List,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export const Route = createFileRoute("/tours/")({
   component: ToursPage,
@@ -158,7 +158,19 @@ const RAW_PACKAGE_LIST = [
 ];
 
 function ToursPage() {
-  const [toursList] = useState(() => getStoredTours());
+  const [toursList, setToursList] = useState(() => getStoredTours());
+  
+  useEffect(() => {
+    const handleUpdate = () => {
+      setToursList(getStoredTours());
+    };
+    window.addEventListener("storage", handleUpdate);
+    window.addEventListener("local-settings-updated", handleUpdate);
+    return () => {
+      window.removeEventListener("storage", handleUpdate);
+      window.removeEventListener("local-settings-updated", handleUpdate);
+    };
+  }, []);
   const [viewMode, setViewMode] = useState<"explore" | "list">("explore");
   const [filterMode, setFilterMode] = useState<"duration" | "location">("duration");
 

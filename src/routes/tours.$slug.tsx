@@ -62,10 +62,33 @@ const itemVariants = {
 };
 
 function TourDetail() {
-  const tour = Route.useLoaderData();
-  const [settings] = useState(() => getStoredSettings());
+  const loaderTour = Route.useLoaderData();
+  const { slug } = Route.useParams();
+  const [tour, setTour] = useState(loaderTour);
+  const [settings, setSettings] = useState(() => getStoredSettings());
   const [activeDay, setActiveDay] = useState(1);
   const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    setTour(loaderTour);
+  }, [loaderTour]);
+
+  useEffect(() => {
+    const handleUpdate = () => {
+      const updatedTours = getStoredTours();
+      const currentTour = updatedTours.find((t) => t.slug === slug);
+      if (currentTour) {
+        setTour(currentTour);
+      }
+      setSettings(getStoredSettings());
+    };
+    window.addEventListener("local-settings-updated", handleUpdate);
+    window.addEventListener("storage", handleUpdate);
+    return () => {
+      window.removeEventListener("local-settings-updated", handleUpdate);
+      window.removeEventListener("storage", handleUpdate);
+    };
+  }, [slug]);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 100);

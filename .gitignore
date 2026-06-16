@@ -34,3 +34,6 @@ dist-ssr
 # Admin Dashboard build output
 public/admin/
 admin-dashboard/dist/
+admin-dashboard/db.json
+admin-dashboard/server.js
+admin-dashboard-old/

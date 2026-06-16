@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Mail, Phone, MapPin, Clock, AtSign } from "lucide-react";
 import { getStoredSettings } from "@/lib/storage";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export const Route = createFileRoute("/contact")({
   head: () => {
@@ -25,7 +25,19 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
-  const [settings] = useState(() => getStoredSettings());
+  const [settings, setSettings] = useState(() => getStoredSettings());
+
+  useEffect(() => {
+    const handleUpdate = () => {
+      setSettings(getStoredSettings());
+    };
+    window.addEventListener("storage", handleUpdate);
+    window.addEventListener("local-settings-updated", handleUpdate);
+    return () => {
+      window.removeEventListener("storage", handleUpdate);
+      window.removeEventListener("local-settings-updated", handleUpdate);
+    };
+  }, []);
   const addressLines = settings.address.split(", ");
 
   return (
