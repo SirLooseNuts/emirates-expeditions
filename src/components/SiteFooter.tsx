@@ -72,7 +72,7 @@ export function SiteFooter() {
               </Link>
             </li>
             <li>
-              <a href="/admin/" className="hover:text-gold text-xs text-white/30 transition-colors">
+              <a href="/admin/index.html" target="_blank" rel="noopener noreferrer" className="hover:text-gold text-xs text-white/30 transition-colors">
                 Admin Panel
               </a>
             </li>

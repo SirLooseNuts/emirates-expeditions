@@ -26,7 +26,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const SplashCursor = lazy(() => import("@/components/SplashCursor"));
 
 import heroLandmarks from "@/assets/hero-world-landmarks.png";
-import shylockBus1 from "@/assets/shylock-bus-1.jpg";
+import ogShareCover from "@/assets/og-share-cover.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -43,8 +43,8 @@ export const Route = createFileRoute("/")({
         content:
           "Signature touring coaches, expert trip leaders, and unforgettable group adventures across South India.",
       },
-      { property: "og:image", content: shylockBus1 },
-      { name: "twitter:image", content: shylockBus1 },
+      { property: "og:image", content: ogShareCover },
+      { name: "twitter:image", content: ogShareCover },
     ],
   }),
   component: Home,
