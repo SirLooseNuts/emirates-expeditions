@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import bus from "@/assets/tour-2day-munnar.png";
+import aboutCover from "@/assets/about-cover.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -12,8 +12,8 @@ export const Route = createFileRoute("/about")({
       },
       { property: "og:title", content: "About — Emirates Expedition" },
       { property: "og:description", content: "Our story, our coaches, our crew." },
-      { property: "og:image", content: bus },
-      { name: "twitter:image", content: bus },
+      { property: "og:image", content: aboutCover },
+      { name: "twitter:image", content: aboutCover },
     ],
   }),
   component: AboutPage,
@@ -49,7 +49,7 @@ function AboutPage() {
           <div className="lg:col-span-6">
             <div className="sticky top-32 overflow-hidden rounded-sm border border-border/60">
               <img
-                src={bus}
+                src={aboutCover}
                 alt="Signature touring coach"
                 loading="lazy"
                 className="h-full w-full object-cover"
