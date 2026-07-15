@@ -348,7 +348,7 @@ if (isBrowser) {
           const mappedTours = pkgs.map((pkg: any) => {
             if (pkg.slug && pkg.title) return pkg;
             return {
-              slug: pkg.id.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+              slug: String(pkg.id || "").toLowerCase().replace(/[^a-z0-9]+/g, "-"),
               title: pkg.name,
               category: pkg.duration.includes("1-Day") ? "Day Trip" : "Expedition",
               duration: pkg.duration,

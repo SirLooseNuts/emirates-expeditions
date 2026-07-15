@@ -170,7 +170,7 @@ export default function LeadsScreen({
         {/* Left Column: Lead Inbox List */}
         <div className="leads-list">
           <div style={{ paddingBottom: '8px', borderBottom: '0.5px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontSize: '10px', color: 'var(--text-3)', uppercase: 'true', fontWeight: 'bold' }}>INBOUND LIVE ENQUIRIES LIST</span>
+            <span style={{ fontSize: '10px', color: 'var(--text-3)', textTransform: 'uppercase', fontWeight: 'bold' }}>INBOUND LIVE ENQUIRIES LIST</span>
             <span className="badge b-gold" style={{ fontFamily: 'var(--font-mono)' }}>
               {filteredLeads.length} total
             </span>

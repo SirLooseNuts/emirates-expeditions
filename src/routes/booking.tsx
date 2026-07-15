@@ -54,7 +54,7 @@ function BookingPage() {
     const phone = formData.get("phone") || "N/A";
     const country = formData.get("country") || "N/A";
     const location = formData.get("location") || "N/A";
-    const tourSlug = formData.get("tour");
+    const tourSlug = formData.get("tour")?.toString() || "";
     const date = formData.get("date") || "N/A";
     const guests = formData.get("guests") || "N/A";
     const message = formData.get("message") || "N/A";
