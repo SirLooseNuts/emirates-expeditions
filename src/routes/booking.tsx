@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
-import { getStoredTours, getStoredLeads, saveStoredLeads, API_URL } from "@/lib/storage";
+import { getStoredTours, getStoredLeads, saveStoredLeads, API_URL, getStoredSettings } from "@/lib/storage";
 import { z } from "zod";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
@@ -30,11 +30,13 @@ export const Route = createFileRoute("/booking")({
 function BookingPage() {
   const { tour: preselected } = Route.useSearch();
   const [tours, setTours] = useState(() => getStoredTours());
+  const [settings, setSettings] = useState(() => getStoredSettings());
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     const handleUpdate = () => {
       setTours(getStoredTours());
+      setSettings(getStoredSettings());
     };
     window.addEventListener("local-settings-updated", handleUpdate);
     window.addEventListener("storage", handleUpdate);
@@ -125,7 +127,8 @@ Message: ${message}`;
       console.error("Error storing lead:", err);
     }
 
-    const whatsappUrl = `https://wa.me/919400375400?text=${encodedMessage}`;
+    const cleanWhatsapp = settings.whatsapp.replace(/\+/g, "").replace(/\s+/g, "");
+    const whatsappUrl = `https://wa.me/${cleanWhatsapp}?text=${encodedMessage}`;
 
     toast.success("Redirecting to WhatsApp...", {
       description: "Opening WhatsApp to send your request.",
