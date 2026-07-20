@@ -37,7 +37,7 @@ const defaultSettings = {
   name: "Emirates Expedition",
   tagline: "A journey of thousand miles",
   phone1: "+91 70127 75400",
-  phone2: "+91 79945 49785",
+  phone2: "+91 70127 75400",
   email: "emiratesexpedition25@gmail.com",
   instagram: "https://www.instagram.com/emirates_expedition_/",
   whatsapp: "917012775400",
