@@ -115,7 +115,7 @@ const defaultSettings: BusinessSettings = {
   name: "Emirates Expedition",
   tagline: "A journey of thousand miles",
   phone1: "+91 70127 75400",
-  phone2: "+91 79945 49785",
+  phone2: "+91 70127 75400",
   email: "emiratesexpedition25@gmail.com",
   instagram: "https://www.instagram.com/emirates_expedition_/",
   whatsapp: "917012775400",
@@ -348,7 +348,7 @@ if (isBrowser) {
           const mappedTours = pkgs.map((pkg: any) => {
             if (pkg.slug && pkg.title) return pkg;
             return {
-              slug: pkg.id.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+              slug: String(pkg.id || "").toLowerCase().replace(/[^a-z0-9]+/g, "-"),
               title: pkg.name,
               category: pkg.duration.includes("1-Day") ? "Day Trip" : "Expedition",
               duration: pkg.duration,
